@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --background: #f7faf5;
+  --foreground: #111913;
+  --card: #ffffff;
+  --card-foreground: #17201a;
+  --border: rgba(23, 32, 26, 0.12);
+  --muted: #edf4e8;
+  --muted-foreground: rgba(23, 32, 26, 0.66);
+  --primary: #2f7d4d;
+  --primary-foreground: #ffffff;
+  --accent: #e8f5dc;
+  --accent-foreground: #173b27;
+  --success: #1f9d58;
+  --warning: #c89524;
+  --danger: #c2413d;
+  --glass: rgba(255, 255, 255, 0.72);
+  --shadow-soft: 0 18px 48px rgba(23, 32, 26, 0.1);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #050806;
+  --foreground: #eafff1;
+  --card: rgba(11, 18, 13, 0.74);
+  --card-foreground: #eafff1;
+  --border: rgba(81, 255, 155, 0.18);
+  --muted: rgba(30, 54, 38, 0.72);
+  --muted-foreground: rgba(234, 255, 241, 0.68);
+  --primary: #55ff9a;
+  --primary-foreground: #061009;
+  --accent: rgba(85, 255, 154, 0.11);
+  --accent-foreground: #b8ffd1;
+  --success: #55ff9a;
+  --warning: #ffd166;
+  --danger: #ff6b6b;
+  --glass: rgba(11, 18, 13, 0.68);
+  --shadow-soft: 0 22px 70px rgba(0, 0, 0, 0.5);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--primary) 13%, transparent), transparent 34rem),
+    var(--background);
+  color: var(--foreground);
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+a {
+  text-underline-offset: 4px;
+}
+
+a:hover {
+  color: var(--primary);
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.container {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.section {
+  padding: 64px 0;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--card-foreground);
+  padding: 10px 12px;
+}
+
+.input::placeholder {
+  color: var(--muted-foreground);
+}
+
+.field-label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted-foreground);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-weight: 700;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.btn-secondary {
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--card-foreground);
+}
+
+.btn-download {
+  border: 1px solid color-mix(in srgb, var(--warning) 72%, var(--foreground));
+  background: var(--warning);
+  color: #111913;
+  box-shadow: 0 10px 26px color-mix(in srgb, var(--warning) 34%, transparent);
+}
+
+.btn-download:hover {
+  color: #111913;
+  filter: brightness(1.04);
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--card-foreground);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(18px);
+}
+
+.theme-surface {
+  border-color: var(--border);
+  background: var(--glass);
+  color: var(--foreground);
+  backdrop-filter: blur(18px);
+}
+
+.theme-glow {
+  box-shadow: 0 0 16px color-mix(in srgb, var(--primary) 60%, transparent);
+}
+
+.theme-toggle {
+  height: 40px;
+  width: 40px;
+  padding: 0;
+}
+
+.theme-toggle-icon {
+  position: relative;
+  display: block;
+  height: 18px;
+  width: 18px;
+}
+
+.theme-toggle-sun {
+  border-radius: 999px;
+  background: var(--warning);
+  box-shadow:
+    0 0 14px color-mix(in srgb, var(--warning) 70%, transparent),
+    0 -10px 0 -7px var(--warning),
+    0 10px 0 -7px var(--warning),
+    10px 0 0 -7px var(--warning),
+    -10px 0 0 -7px var(--warning),
+    7px 7px 0 -7px var(--warning),
+    -7px -7px 0 -7px var(--warning),
+    7px -7px 0 -7px var(--warning),
+    -7px 7px 0 -7px var(--warning);
+}
+
+.theme-toggle-moon {
+  border-radius: 999px;
+  background: var(--foreground);
+  box-shadow: inset -6px 0 0 var(--card);
+}
+
+.scroll-strip {
+  scrollbar-width: none;
+}
+
+.scroll-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.status-badge {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-foreground);
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  font-weight: 800;
+}

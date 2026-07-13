@@ -1,0 +1,29 @@
+# Local dev infrastructure. Requires Docker Desktop.
+# Alternative (no Docker): use a managed Postgres (Neon/Supabase) + Meilisearch Cloud
+# and set DATABASE_URL / MEILI_HOST / MEILI_KEY in .env. Search also works with no
+# Meilisearch at all (it falls back to direct Postgres queries).
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: nanogro
+      POSTGRES_PASSWORD: nanogro
+      POSTGRES_DB: nanogro
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.10
+    environment:
+      MEILI_MASTER_KEY: devMasterKeyChangeMe
+      MEILI_ENV: development
+    ports:
+      - "7700:7700"
+    volumes:
+      - meilidata:/meili_data
+
+volumes:
+  pgdata:
+  meilidata:

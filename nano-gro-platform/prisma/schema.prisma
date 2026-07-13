@@ -1,0 +1,353 @@
+// Nano-Gro Case Intelligence Platform — data model (spec §4–§5)
+// Postgres = source of truth. Meilisearch is a derived read index (see src/lib/search.ts).
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [pgvector(map: "vector")] // installed for Phase-2 similarity; unused in MVP
+}
+
+enum Locale {
+  en
+  es
+}
+
+enum UserRole {
+  ADMIN
+  EDITOR
+  AGRONOMIST
+}
+
+enum PublicationStatus {
+  DRAFT
+  REVIEW
+  PUBLISHED
+  ARCHIVED
+}
+
+enum VerificationStatus {
+  UNVERIFIED
+  SELF_REPORTED
+  DISTRIBUTOR_VERIFIED
+  AGRONOMIST_VERIFIED
+  LAB_VERIFIED
+}
+
+enum SuccessLevel {
+  LOW
+  MODERATE
+  HIGH
+  EXCEPTIONAL
+}
+
+enum ProblemType {
+  PEST
+  DISEASE
+  DEFICIENCY
+  ENVIRONMENTAL
+}
+
+enum MediaType {
+  PHOTO_BEFORE
+  PHOTO_DURING
+  PHOTO_AFTER
+  VIDEO
+  DOCUMENT
+  LAB_REPORT
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  CONSULTATION
+  TRIAL
+  CUSTOMER
+  LOST
+}
+
+enum LeadBand {
+  HOT
+  WARM
+  COLD
+}
+
+// ---------------------------------------------------------------------------
+// Users / RBAC
+// ---------------------------------------------------------------------------
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String?
+  passwordHash String
+  role         UserRole @default(EDITOR)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  authoredCases Case[] @relation("CaseAuthor")
+}
+
+// ---------------------------------------------------------------------------
+// Controlled-vocabulary taxonomy (each term is also a programmatic SEO hub)
+// ---------------------------------------------------------------------------
+model Crop {
+  id            String  @id @default(cuid())
+  slug          String  @unique
+  nameEn        String
+  nameEs        String
+  descriptionEn String?
+  descriptionEs String?
+  cases         Case[]
+}
+
+model Country {
+  id      String   @id @default(cuid())
+  slug    String   @unique
+  code    String   @unique // ISO-3166 alpha-2
+  nameEn  String
+  nameEs  String
+  regions Region[]
+  cases   Case[]
+}
+
+model Region {
+  id        String  @id @default(cuid())
+  slug      String  @unique
+  nameEn    String
+  nameEs    String
+  countryId String
+  country   Country @relation(fields: [countryId], references: [id])
+  cases     Case[]
+}
+
+model Climate {
+  id     String @id @default(cuid())
+  slug   String @unique
+  nameEn String
+  nameEs String
+  cases  Case[]
+}
+
+model SoilType {
+  id     String @id @default(cuid())
+  slug   String @unique
+  nameEn String
+  nameEs String
+  cases  Case[]
+}
+
+model Problem {
+  id            String      @id @default(cuid())
+  slug          String      @unique
+  type          ProblemType
+  nameEn        String
+  nameEs        String
+  descriptionEn String?
+  descriptionEs String?
+  cases         Case[]      @relation("CaseProblems")
+}
+
+// ---------------------------------------------------------------------------
+// Case study (core asset)
+// ---------------------------------------------------------------------------
+model Case {
+  id        String @id @default(cuid())
+  publicId  String @unique // human-readable, e.g. "NG-BR-0001"
+  slug      String @unique
+  language  Locale @default(es)
+
+  title       String
+  farmName    String?
+  farmerName  String?
+  anonymized  Boolean @default(false)
+  farmSizeHa  Float?
+  variety     String?
+
+  gpsLat Float?
+  gpsLng Float?
+
+  plantingDate DateTime?
+  harvestDate  DateTime?
+
+  // Structured payloads (spec §4): flexible blobs + promoted filterable columns below
+  baselineConditions Json?
+  treatment          Json? // { product, dosage, method, frequency, controlGroup }
+  results            Json? // { rootDevelopment, plantHeightCm, costSavings, notes, ... }
+
+  // Promoted, indexable/filterable columns
+  yieldIncreasePct   Float?
+  qualityImprovePct  Float?
+  diseaseReductPct   Float?
+  roiPct             Float?
+  hasControlGroup    Boolean @default(false)
+
+  conclusions    String?
+  agronomistNotes String?
+
+  tags     String[]
+  keywords String[]
+
+  verificationStatus VerificationStatus @default(UNVERIFIED)
+  successLevel       SuccessLevel       @default(MODERATE)
+  confidenceScore    Int                @default(0) // 0–100, computed (lib/confidence.ts)
+  publicationStatus  PublicationStatus  @default(DRAFT)
+  featured           Boolean            @default(false)
+
+  seoTitle       String?
+  seoDescription String?
+
+  // Taxonomy relations
+  cropId     String
+  crop       Crop      @relation(fields: [cropId], references: [id])
+  countryId  String
+  country    Country   @relation(fields: [countryId], references: [id])
+  regionId   String?
+  region     Region?   @relation(fields: [regionId], references: [id])
+  climateId  String?
+  climate    Climate?  @relation(fields: [climateId], references: [id])
+  soilTypeId String?
+  soilType   SoilType? @relation(fields: [soilTypeId], references: [id])
+  problems   Problem[] @relation("CaseProblems")
+
+  authorId String?
+  author   User?   @relation("CaseAuthor", fields: [authorId], references: [id])
+
+  media        CaseMedia[]
+  testimonials Testimonial[]
+  translations CaseTranslation[]
+  relatedFrom  CaseRelation[]    @relation("RelationFrom")
+  relatedTo    CaseRelation[]    @relation("RelationTo")
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  publishedAt DateTime?
+
+  @@index([publicationStatus, language])
+  @@index([cropId])
+  @@index([countryId])
+  @@index([yieldIncreasePct])
+  @@index([roiPct])
+  @@index([confidenceScore])
+}
+
+model CaseMedia {
+  id       String    @id @default(cuid())
+  caseId   String
+  case     Case      @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  type     MediaType
+  url      String
+  caption  String?
+  order    Int       @default(0)
+}
+
+model Testimonial {
+  id       String  @id @default(cuid())
+  caseId   String
+  case     Case    @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  author   String
+  role     String?
+  quote    String
+  mediaUrl String?
+  verified Boolean @default(false)
+}
+
+model CaseTranslation {
+  id             String @id @default(cuid())
+  caseId         String
+  case           Case   @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  language       Locale
+  title          String
+  body           String?
+  conclusions    String?
+  seoTitle       String?
+  seoDescription String?
+
+  @@unique([caseId, language])
+}
+
+model CaseRelation {
+  id           String @id @default(cuid())
+  fromCaseId   String
+  toCaseId     String
+  relationType String @default("similar")
+  fromCase     Case   @relation("RelationFrom", fields: [fromCaseId], references: [id], onDelete: Cascade)
+  toCase       Case   @relation("RelationTo", fields: [toCaseId], references: [id], onDelete: Cascade)
+
+  @@unique([fromCaseId, toCaseId])
+}
+
+// ---------------------------------------------------------------------------
+// Lead generation (spec §9)
+// ---------------------------------------------------------------------------
+model Lead {
+  id        String @id @default(cuid())
+
+  name     String
+  company  String?
+  country  String?
+  email    String?
+  phone    String?
+  whatsapp String?
+
+  crop           String?
+  hectares       Float?
+  currentProblem String?
+  currentYield   String?
+  mainObjective  String?
+  currentProducts String?
+  budget         String?
+  urgency        String? // low | medium | high
+
+  needAssistance   Boolean @default(false)
+  needDistributor  Boolean @default(false)
+  needProduct      Boolean @default(false)
+  needTrial        Boolean @default(false)
+  needConsultation Boolean @default(false)
+
+  // Diagnostic / engagement payload
+  diagnosticAnswers Json?
+  completedDiagnostic Boolean @default(false)
+  engagement        Json? // { pageViews, casesViewed, returned, downloaded }
+
+  score Int      @default(0)
+  band  LeadBand @default(COLD)
+  status LeadStatus @default(NEW)
+
+  source   String? // diagnostic | case | download | contact | distributor
+  sourceRef String? // e.g. case slug
+  utm      Json?
+
+  assignedTo String? // distributor / sales identifier
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([band, status])
+  @@index([email])
+  @@index([phone])
+}
+
+// ---------------------------------------------------------------------------
+// Diagnostic rule engine (spec §10): symptom -> cause -> case/product
+// ---------------------------------------------------------------------------
+model DiagnosticRule {
+  id              String   @id @default(cuid())
+  cropSlug        String?  // null = applies to any crop
+  symptomKeys     String[] // matched against questionnaire symptom selections
+  problemSlug     String?
+  causeEn         String
+  causeEs         String
+  recommendationEn String
+  recommendationEs String
+  productName     String?
+  dosage          String?
+  applicationMethod String?
+  priority        Int      @default(0)
+
+  @@index([cropSlug])
+}

@@ -1,0 +1,353 @@
+﻿Semana 39 
+
+Calibre 
+ Longitud 
+ Futa Procesada (Lbs.) 
+ EST./HA/AÑO 
+
+Tratamiento 
+ Semana 
+ Color 
+ Edad 
+ Manos 
+ Basal 
+ Apical 
+ Basal 
+ Apical 
+ Peso 
+ Dedos 
+ Peso/dedo 
+ Dedos/caja 
+ B/S 
+ Racs 
+ Cajas 
+ Dedos 
+ 
+ Nanogro 
+ 39 
+ Azul 
+ 84 
+ 9.2 
+ 46.8 
+ 43.2 
+ 10.15 
+ 8.2 
+ 62.2 
+ 147 
+ 0.43 
+ 100 
+ 1.48 
+   
+ 3939 
+ 393900   
+ 
+ Testigo 
+ 39 
+ Azul 
+ 84 
+ 9.2 
+ 45.2 
+ 42.2 
+ 9.75 
+ 8.15 
+ 62.2 
+ 159 
+ 0.39 
+ 108 
+ 1.48 
+   
+ 3939 
+ 425412   
+
+8 dedos menos/caja 
+ 
+ 315 cajas más con NG 
+
+Nanogro 
+ 40 
+ Blanca 
+ 84 
+ 9.6 
+ 45.6 
+ 42.2 
+ 10.35 
+ 8.4 
+ 62.6 
+ 151 
+ 0.41 
+ 102 
+ 1.49 
+   
+ 3965 
+ 404430 
+ 
+ Testigo 
+ 40 
+ Blanca 
+ 84 
+ 9.6 
+ 45.2 
+ 41.8 
+ 10.1 
+ 8.2 
+ 55.6 
+ 139 
+ 0.40 
+ 105 
+ 1.32 
+   
+ 3521 
+ 416325 
+
+3 dedos menos 
+
+283. cajas más con NG 
+ 
+ Nanogro 
+ 41 
+ Amarilla 
+ 84 
+ 8.8 
+ 46.2 
+ 42.4 
+ 9.95 
+ 8.45 
+ 58.8 
+ 132 
+ 0.45 
+ 94 
+ 1.40 
+   
+ 3724 
+ 350056 
+ 
+ Testigo 
+ 41 
+ Amarilla 
+ 84 
+ 8.8 
+ 46.2 
+ 43.4 
+ 9.8 
+ 8.1 
+ 51.6 
+ 118 
+ 0.44 
+ 97 
+ 1.23 
+   
+ 3268 
+ 361228 
+
+3 dedos menos 
+
+266 cajas más con NG 
+ 
+ Nanogro 
+ 42 
+ Negra 
+ 84 
+ 9.6 
+ 47.4 
+ 43.4 
+ 10.1 
+ 8.2 
+ 62.4 
+ 131 
+ 0.48 
+ 88 
+ 1.49 
+ 2660 
+ 3952 
+ 347776 
+ 
+ Testigo 
+ 42 
+ Negra 
+ 84 
+ 9.6 
+ 47.2 
+ 43.2 
+ 10.15 
+ 8.2 
+ 66.2 
+ 147 
+ 0.45 
+ 94 
+ 1.58 
+   
+ 4193 
+ 371488 
+
+6 dedos menos 
+
+564 cajas más con NG 
+ 
+ Nanogro 
+ 43 
+ Roja 
+ 91 
+ 9.2 
+ 44 
+ 41.4 
+ 9.9 
+ 8.3 
+ 58.6 
+ 142 
+ 0.41 
+ 102 
+ 1.40 
+ 2660 
+ 3711 
+ 378522 
+ 
+ Testigo 
+ 43 
+ Roja 
+ 91 
+ 9.2 
+ 43.2 
+ 41.4 
+ 10.1 
+ 8.55 
+ 62.4 
+ 153 
+ 0.41 
+ 103 
+ 1.49 
+ 2660 
+ 3952 
+ 382233 
+
+1 dedo menos 
+
+88 cajas más con NG 
+ 
+ Nanogro 
+ 44 
+ Plata 
+ 84 
+ 8.2 
+ 45.4 
+ 42 
+ 9.8 
+ 8.3 
+ 56.4 
+ 140 
+ 0.41 
+ 102 
+ 1.34 
+ 2660 
+ 3572 
+ En este caso aunque los dedos pesaron iguales, hubo una diferencia de peso total y de cajas a favor del Nano Gro, pero fue debido a la cantidad total de dedos. 
+ 
+ Testigo 
+ 44 
+ Plata 
+ 84 
+ 8 
+ 44.8 
+ 41.8 
+ 9.95 
+ 8.3 
+ 51.4 
+ 125 
+ 0.41 
+ 102 
+ 1.22 
+ 2660 
+ 3255 
+
+317 cajas más con NG 
+ 
+ Nanogro 
+ 45 
+ Verde 
+ 84 
+ 7.8 
+ 44.2 
+ 42 
+ 9.95 
+ 8.5 
+ 55.4 
+ 133 
+ 0.42 
+ 102 
+ 1.32 
+ 2660 
+ 3509 
+
+Testigo 
+ 45 
+ Verde 
+ 84 
+ 7.8 
+ 45.4 
+ 42.2 
+ 10 
+ 8.25 
+ 52.4 
+ 127 
+ 0.41 
+ 103 
+ 1.25 
+ 2660 
+ 3319 
+ 361427 
+
+1 dedos menos 
+
+83.5 cajas más con NG 
+
+Nanogro 
+ 46 
+ Lila 
+ 84 
+ 8 
+ 45 
+ 41.8 
+ 10.4 
+ 8.55 
+ 50.4 
+ 116.8 
+ 0.43 
+ 98 
+ 1.2 
+ 2660 
+ 3192 
+ 312816 
+ 
+ Testigo 
+ 46 
+ Lila 
+ 84 
+ 8 
+ 45 
+ 41.8 
+ 10.2 
+ 8.35 
+ 47.8 
+ 120 
+ 0.40 
+ 107 
+ 1.14 
+ 2660 
+ 3027 
+ 341544 
+
+9 dedos menos 
+
+684 cajas más con Nano Gro. 
+
+Promedio de cajas más con NG/ha/año 
+ 326 cajas ha/año 
+
+Ganancia neta /ha/año 
+ 1630 USD 
+ 
+ La cantidad de cajas hay que obtenerlas no por la cantidad de dedos, en estas mediciones el NG no tiene influencia en la cantidad de dedos, pero si en el peso de los dedos. Por esto hay que tomar la cantidad de dedos por cajas y ver la diferencia. 
+ Solo en un caso no se vio el efecto del Nano Gro o sea el peso del dedo no varió del testigo y tenemos que ver que sucedió. 
+ Todos los demás casos fueron muy positivos. 
+ Hay que destacar que ésta aplicación se realizó a los 56 días haber salido el racimo o sea más de la mitad de su ciclo reproductivo, los resultados solo se vieron en el aumento del peso, sin embargo en el cuadro #2 donde la aplicación se realizó a los 14 días de emitido el racimo ya se ven los aumentos en el tamaño y grosor de los dedos lo cual aumentará el peso total del dedo. 
+ Con este rendimiento y ganancia por ha podemos decir que en 10 000 ha el aumento de las ganancias solo por este concepto sería de 
+ 16 300 000 USD.

@@ -1,0 +1,492 @@
+﻿INFORME FINAL 
+
+EVALUACION DE RENDIMIENTO DE 4 HIBRIDOS COMERCIALES CON Y SIN APLICACIÓN DEL PRODUCTO NANO GRO TM 
+
+Edmidlia Guzmán 
+ Oscar Hernandez 
+ INVESTIGACION Y TECNOLOGI A 
+ ALBA ALIMENTOS DE EL SALVADOR S.A DE C.V. 
+ 
+ 2014  
+
+EVALUACION DE RENDIMIENTO DE ELOTE DE 4 HIBRIDOS COMERCIALES CON Y SIN APLICACIÓN DEL PRODUCTO NANO GRO TM 
+ Edmidlia Guzmán 
+ Oscar Hernández 
+ 
+ INTRODUCCION 
+ Una de las responsabilidades de l Área de Investigación Y Tecnología de la Empresa ALBA ALIMENTOS DE EL SALVADOR S.A de C.V., es desarrollar iniciativas de investigación que contribuyan al fomento de la producción y productividad agropecuaria y agroindustrial de manera sostenible, y que además contribuyan a la seguridad y soberanía alimentaria del país. 
+ En ese sentido, en el Área especializada de la Empresa se buscan diferentes soluciones tecnológicas para apoyar a los product ores y a la producción nacional, mediante la investigación de nuevas tecnologías que logren incrementar los rendimientos sin incurrir en mayores costos . De esa manera la Empresa también puede incursionar en nuevos negocios al proveer productos novedosos de nuevas tecnologías. 
+ En la actualidad existen nuevas formas de manejo de cultivos que son innovadoras y desconocidas en nuestro país. P or la literatura existente se conoce que pueden aportar beneficios a la producción de los cultivos. Una de e llas es la NANO TECNOLOGIA, la cual se refiere en este caso a un producto llamado NANO GRO TM , que se describe como regulador del crecimiento y mejorador de la inmunidad de las plantas. Se presenta como un producto que no es fuente de nutrientes, no contiene hormonas y no cambia la estructura genética de las plantas. El NANO GRO TM ayuda a las plantas a mejorar la experiencia de crecimiento y salud. 
+ E s así que e n esta ocasión se condujo un ensayo con NANO GRO TM , el producto fue proporcionado a través de la Gerencia General de nuestra Empresa, por personas que están interesadas en su uso a nivel de país. Se aplicó a híbridos de maíz de alto rendimiento , a los que también se les aplicó un manejo fitosanitario económicamente viable que es el que recomienda la Empresa . 
+ Este informe se hará con los datos de rendimiento de elote ya que la parte de la parcela que se había dejado para obtener datos de rendimiento de grano de maíz, no fue posible tomarlo porque fue cosechado y se confundieron los tratamientos. 
+ 
+ Objetivo General 
+ 
+ Determinar la respuesta en rendimiento de 4 híbridos comerciales de maíz a la aplicación del producto NANO GRO tm . 
+ 
+ Objetivos Específicos 
+ Determinar la diferencia en los rendimientos de 4 híbridos de maíz tratados con NANO GRO TM comparado con un testigo que corresponde a un plan fitosanitario químico. 
+ Observar el comportamiento de la germinación y sanidad de cada uno de los híbridos evaluados como respuesta a la aplicación del producto NANO GRO TM . 
+ 
+ REVISIÓN DE LITERATURA 
+ Este es un producto de origen canadiense, l a información proporcionada por el Centro de Agricultura Orgánica de Canadá (AOCC) en un Boletín de 2008, lo describe como un regulador orgánico del crecimiento de las plantas y un reforzador de la inmunidad. Citan textualmente “ El producto no es una fuente de nutrientes y tampoco es compuesto a base de proteínas derivado de bacterias o de otros patógenos ” . 
+ También aseguran que Nano Gro TM no contiene hormonas y no cambia en ningún sentido la estructura genética de las plantas. Nano Gro ayuda a las plantas a mejorar e forma natural el crecimiento y la sanidad. 
+ En otra publicación proporcionada por investigadores cubanos, se expone el producto de la siguiente manera: “Nano-Gro™ es una fórmula altamente concentrada que utiliza la tecnología de punta para crear plantas más fuertes, más grandes y más sanas de una manera efectiva y simple de usar”. 
+ Mencionan que los ingredientes activos en Nano-Gro™ vienen empaquetadas en pelotillas cifradas de azúcar , con menos de ⅛ " de diámetro. Estas pelotillas se disuelven en agua normal del grifo para crear una solución. 
+ Empleando concentraciones químicas en una porción por billón, Nano-Gro™ es diferente a cualquier producto del mercado. Nano-Gro™ ayuda a la planta a obtener un crecimiento mejorad, fortalece contra enfermedades , todo de forma natural. 
+ A continuación textualmente se copia lo mencionado en una publicación de la Empresa que produce y comercializa el producto “El método de acción usado por Nano-Gro™ es revolucionario. Actuando como mensajero, Nano-Gro™ es diseñado para aprovecharse de los canales de comunicación que las plantas han desarrollado como resultado de millones de años de evolución. Al contacto con la matriz de la raíz de una planta o una semilla, Nano-Gro™ comienza a comunicarse con la planta. Aunque sea casi imposible de localizar en términos de su concentración, la planta puede detectar la presencia del producto y preparar inmediatamente una respuesta. El mensaje que acaba de interpretar es que la planta está en peligro inminente. La planta “se convence” que su supervivencia esté amenazada.” 
+ Generalmente estos mensajes de stress presionarían a la planta afectada causando efectos contrarios a los indicados arriba. Con Nano-Gro™ las plantas reaccionaron de manera sin precedentes. Con las dosificaciones prescritas, en vez de marchitarse, las plantas tratadas iniciarían naturalmente los mecanismos de supervivencia que permiten que combatan la amenaza. 
+ Los mecanismos de compensación naturales en todas las plantas, se expresan cuando se encuentran bajo un stress indebido. Es decir, cuando una planta se siente amenazada , iniciará los procesos que le ayudan a preservarse. Particularmente, la planta tiende a aumentar su fertilidad, un sistema potente que la impulsa a acelerar su crecimiento, e incrementar sus reservas de proteínas y de azúcares, y más importante, aumentar su reproducción. Estos efectos resultan en un mayor rendimiento y un producto de una mejor calidad. 
+ Nano-Gro™ envía un mensaje de tensión a la planta, este mensaje ocasiona que los mecanismos de la remuneración de la planta se activen. Sin embargo, en ausencia de la tensión verdadera, la planta llega más allá de cualquier expectativa sobre su cosecha que fueron calculadas antes del tratamiento. 
+ El resultado es una mejora en tres áreas importantes de la producción: 
+ Rendimiento: NANO-GRO TM aumenta las producciones de todas las cosechas. Esto implica crecimiento de las hojas, biomasa, fruta y grano. Por ejemplo, en algunos experimentos en granos de girasol la producción creció el 50% y en ensayos con pepino se observó un incremento de la produccion del 25% 
+ Valor Nutricional: Las pruebas demuestran un aumento cerca del 10% en el contenido de proteína y azúcar de la planta tratada; en la mayoría de los tipos de cosechas. 
+ Salud: La salud en general de la planta se incrementa, haciéndola más resistente al mal tiempo y a condiciones extremas del clima. Se aumenta la respuesta inmunológica permitiéndole a la planta combatir enfermedades y la prevención de infecciones. 
+ El mismo documento dice que las plantas tratadas con NANO-GRO TM crecen y rinden de una manera más uniforme; porque los especímenes son llevados a los límites de su crecimiento. Estos tienden a alcanzar niveles máximos en términos de su biomasa, estatura y producto. Esto es muy importante porque así sean equipos de agricultura, procesamiento o de empaquetado la uniformidad de los consumibles es una característica muy deseada. 
+ Más importante aún es el hecho de que estas ventajas se producen sin dañar a las plantas o el suelo. De hecho, como producto orgánico aprobado por el Instituto de Investigación de Materiales Orgánicos de Cuba, NANO-GRO ™ es seguro para ser utilizado por productores orgánicos y no orgánicos. 
+ Una de las cualidades más atractivas de NANO-GRO ™ es lo fácil que es de utilizar . Se puede aplicar de varias y diversas maneras en dependencia de la cosecha y del programa implicado en el manejo de la cosecha. Porque el producto está diseñado para que trabaje al establecer contacto con partes específicas de una planta, su uso se puede modificar para que sea de la manera más económica posible. 
+ NANO-GRO ™ incluso puede ser mezclado con casi todos los fertilizantes o pesticidas para ahorrar el agua y el trabajo. 
+ Se han conducido estudios , ensayos y parcelas en diferentes países y cultivos , los informes coinciden que la aplicación del producto produce en la planta mejor germinación, mejor vigor, produce las primeras hojas más temprano. Por ejemplo en Jamaica se hicieron pruebas de germinación con resultados positivos, en tomate, repollo y lechuga. También el crecimiento fue más rápido. 
+ En Cuba se desarrolló un experimento en papaya con variedad Maradol con las consideraciones finales siguientes: 
+ La utilización del producto ha demostrado su capacidad para acelerar la germinación de las semillas de Papaya Maradol Roja y Amarilla las cuales poseían bajo por ciento de germinación debido al tiempo de cosechada. 
+ El tiempo de mayor impacto tanto en la germinación como en el desarrollo radicular fue de 1 -1.5 minutos de inmersión de la semilla en la solución de una pastilla en 1 litro de agua de PH neutro. 
+ Las plántulas tratadas a diferentes soluciones respondieron mejor a las tratadas que al testigo, tanto en la vigorosidad de las plántulas como en la supervivencia de las mismas. 
+ Importante es decir que el producto no es tóxico, ni dañino para la salud según análisis presentado por la empresa que lo produce y comercializa. 
+ 
+ METODOLOGIA 
+ La parce la se ubicó en terrenos de l a Cooperativa El Jobo, con la cual la Empresa ALBA ALIMENTOS DE EL SALVADOR S.A de C.V. , trabaja en la producción de algunos cultivos. E stá localizada en jurisdicción de Nahuilingo, departamento de Sonsonate . 
+ S e encuentra a una altitud sobre el nivel del mar de alrededor 100 msnm, con temperaturas medias de 26 0 C, en el día puede llegar a 32 0 C y en las horas nocturnas bajar a 19 0 C; aunque en la época de marzo a julio cuando se sembró y desarrolló el ensayo las temperaturas son superiores , llegando a medio día a unos 36 0 C. 
+ Los suelos en son plano s, aunque no están nivelados ; son profundos , con textura franca a franco arcillo limoso, con algunos problemas de mal drenaje , propios para pastos y cultivos limpios como g ranos básicos y otros similares . Bien manejados producen altos rendimientos, porque son fértiles y porque cuentan con agua para riego . 
+ Se planificó como un ensayo de validación donde se compararía la respuesta de los híbridos a la aplicación del producto y se compararían entre ellos para calificar el rendimiento. Por lo mismo, no se planifico un ensayo con un diseño experimental ya que no se harían comparaciones estadísticas entre los tratamientos, como por ejemplo niveles de aplicación del producto ya que la empresa que lo comercializa ya tiene las recomendaciones para los diferentes cultivos. 
+ El ensayo se realizó comparando 4 híbridos comerciales de maíz: 
+ HIBRIDO 
+ ORIGEN 
+ 
+ LUCINO 
+ SYNGENTA 
+ 
+ PIONEER 30F96 
+ DUWEST 
+ 
+ DEKALB 390 
+ DEKALB 
+ 
+ H -59 
+ CENTA 
+
+La parcela contó con un área total de 10,500 m 2 , es decir 1.5 manzanas (mz). El área se dividió primero en 4 partes iguales de 2625 m 2 en la que se ubicó cada hibrido de maíz . Esta parcela se dividió en 2 parcelas de 1312.50 m 2 cada una. En una de ellas se sembr ó el híbrido correspondiente de maíz, tratado con NANO GRO TM y en la otra mitad el hibrido sin dicho tratamiento. 
+ En resumen , se sembraron en el campo 4 parcelas de 2625 m 2 y 8 sub parcelas de 1312.50 m 2 , cada una: 
+ Parcela1 – Hibrido 1 
+ Sub parcela 1-1 - Hibrido 1 con NANO GRO TM 
+ Sub Parcela 1-2 – Hibrido 1 Sin NANO GRO TM 
+ Parcela 2 - Hibrido 2 
+ Sub parcela 1 Hibrido 2 Con NANO GRO TM 
+ Sub parcela 2 Hibrido 2 Sin NANO GRO TM 
+ Parcela 3 - Hibrido 3 
+ Sub parcela 1 Hibrido 3 Con NANO GRO TM 
+ Sub parcela 3 Hibrido 3 Sin NANO GRO TM 
+ Parcela 4 - Hibrido 4 
+ Sub parcela Hibrido 4 con NANO GRO TM 
+ Sub parcela Hibrido 4 sin NANO GRO TM 
+ 
+ El manejo del cultivo se hizo igual para todas las parcelas en cuanto al plan fitosanitario y el manejo del agua, por lo tanto la única variable fue la aplicación del producto. 
+ Se cosechó la mitad de la sub parce la en elote y la mitad se dejó para medir la producción de grano . 
+ Metodolo gía de aplicación del NANO GRO TM 
+ Se aplicó directamente a la semilla, sumergiéndola en una solución del producto en agua pura. Se sumerge la semilla de maíz (en este caso) por 1 a 2 minutos y sembrarlo inmediatamente 
+ La dosis recomendada es de 10 capsulas de NANO GROW por manzana (7000 m2), a razón de 1 capsula por 1 litro de agua. 
+ Posteriormente, al aporco de maíz se puede aplicar al tronco de la planta para que sea absorbida por las raíces. En este caso no se realizó porque no se contó con el producto. 
+ Instalación de las parcelas: 
+ Para Instalar las parcelas del ensayo se siguieron los pasos siguientes en este orden: 
+ • Medir y cuadrar el terreno 
+ • Tomar muestras de suelo 
+ • Medir y señalar las parcelas de acuerdo a plano de campo 
+ • Aplicar el producto NANO GRO TM a la semilla . 
+ • Sembrar los materiales, según el plano de campo y el plan fitosanitario rec omendado para maíz por Alba Alimentos . 
+ • Seguir todas las recomendaciones del Plan Fitosanitario. 
+ 
+ Vale aclarar que se manejó como una siembra comercial, y se tomaron los datos programados. 
+ 
+ TOMA DE DATOS 
+ Para la toma de datos se contó con un cuadro diseñado para tal fin (HOJA DE DATOS) donde se registraron los datos más importantes: 
+ • Fecha de siembra 
+ • Fecha de germinación 
+ • Vigor a la germinación (apreciación y medida de plántulas) 
+ • Altura de planta a los 20 días (promedio de 10 plantas escogidas al azar, por cada tratamiento) 
+ • Numero de hojas a los 20 días (promedio de 10 plantas al azar por parcela) 
+ • Fecha de floración (más del 50% de plantas floreadas) 
+ • Altura de planta a la floración: masculina y femenina 
+ • Altura de mazorca 
+ • Vigor de la planta, color de las hojas 
+ • Ataque de plagas y enfermedades 
+ • Fechas de aplicación de los productos 
+ • Fecha de cosecha de elote 
+ • Fecha de dobla 
+ • Fecha de cosecha de grano. 
+ En otra Hoja se tomarían los datos de la cosecha: 
+ • Cantidad de mazorcas por parcela. Sanidad de mazorca y del grano. 
+ • Peso de 10 mazorcas con grano. 
+ • Peso del grano de 10 mazorcas. Llevarlo a peso de grano por hectárea o manzana. 
+ • Peso de 100 granos 
+ Se documentó con fotografías de todo el proceso desde la preparación del suelo a la cosecha. 
+ PLAN DE MANEJO CULTIVO DE MAIZ. Ensayo con NANO GROW TM 
+ DIA 
+ ACTIVIDAD 
+ OBJETIVO 
+ PRODUCTO 
+ DOSIS/MZ 
+ OBSERVACIONES 
+ 
+ 0 
+ SEMILLA 
+ Establecer cultivo 
+ X 
+ 5 Plantas por metro lineal 
+ 1 Bolsa de semilla de 4 diferentes híbridos 
+ 40,000 Semillas / mz 
+ 
+ 0 
+ APLICACIÓN DE INSECTICIDA 
+ Control de plagas del suelo 
+ Blindaje 
+ 100 cc 
+ Se aplicó a la semilla 
+ 
+ 1 
+ APLICACIÓN DE HERVICIDA PREHEMERGENTE 
+ Control de malezas, gramíneas y hojas anchas. 
+ Glifosato + Atrazina 
+ 2 litros 
+ 1 kg 
+ 1 día posterior a la siembra. 
+ 
+ 8 
+ FERTILIZACION AL SUELO 
+ Nutrición de la planta 
+ Triple 15 
+ 6 qq 
+ 8 días después de la siembra 
+ 
+ 10 
+ APLICACIÓN DE INSECTICIDA Y NUTRICION FOLIAR 
+ Control de masticadores. 
+ NOMAX 
+ X 
+ Aplicación al punto de crecimiento. 
+ 
+ 18 
+ APLICACIÓN DE INSECTICIDA 
+ Control de masticadores 
+ NOMAX 
+ X 
+ Al cogollo. 
+ 
+ 20 
+ FERTILIZACION AL SUELO 
+ Nutrición de la planta 
+ Nitro S 
+ N-S-Ca-Mg-Zn-B 
+ 30-2.5 6-1-0.8-0.6 
+ 2.5 qq 
+ Aplicación al suelo. 
+ 
+ 28 
+ APLICACIÓN FOLIAR 
+ Estimulación fisiológica 
+ Liquid feed Aminoacido 
+ 1 l 
+ Al follaje. 
+ 
+ 32 
+ Aplicación de insecticida granulado 
+ Control de plagas. 
+ X 
+ X 
+ Al l cogollo 
+ 
+ 35 
+ FERTILIZACION AL SUELO 
+ Nutrición de la planta 
+ Nitro S 
+ X 
+ Nutrición de la planta. 
+
+ESQUEMA DE PLANO DE CAMPO 
+ Parcela 1 
+ Hibrido 1 ( LUCINO) 
+ Parcela 2 
+ Hibrido 2 (Dekalb) 
+ Parcela 3 
+ Hibrido 3 (PIONEER) 
+ Parcela 4 
+ Hibrido 4 (CENTA H-59 ) 
+ 
+ Sub parcela 1-1 
+ 
+ CON 
+ 
+ NANO GRO tm 
+ Sub parcela 1-2 
+ 
+ SIN 
+ 
+ NANO GRO tm 
+ Sub parcela 2- 1 
+ 
+ CON 
+ 
+ NANO GRO tm 
+ Sub parcela 2-2 
+ 
+ SIN 
+ 
+ NANO GRO tm 
+ Sub parcela 3- 1 
+ 
+ CON 
+ 
+ NANO GRO tm 
+ Sub parcela 3-2 
+ 
+ SIN 
+ 
+ NANO GRO tm 
+ Sub parcela 4- 1 
+ 
+ CON 
+ 
+ NANO GRO tm 
+ Sub parcela 4-2 
+ 
+ SIN 
+ 
+ NANO GRO tm 
+
+Área total 1.5 mz. 10500 m 2 . Cada parcela tiene 2625 m 2 de área ; y cada Sub parcela mide 1312.50 m2 . La mitad de cada Sub parcela (652.25 m 2 ) se cosechó en elo te y la otra mitad se cosecharía en grano. 
+ 
+ RESULTADOS DE CAMPO 
+ 
+ El ensayo se manejó bajo un protocolo establecido en el documento del ensayo aprobado por la Gerencia General, por lo que se solicitó de manera muy especial tanto al encargado de campo en El Jobo como a los técnicos de producción propia, que no se aplicara ni un producto que no fuera i ndica do p or alguno de los encargados de I nvestigación . 
+ Las actividades se realizaron de acuerdo a la programación siguiente 
+ ACTIVIDAD 
+ FECHA 
+ 
+ Siembra 
+ 21 03 2014 
+ 
+ Germinación 
+ 25 03 2014 
+ 
+ 1ª. Aplicación de Insecticida foliar 
+ 29 03 2014 
+ 
+ Fertilización 
+ 01 04 2014 
+ 
+ Raleo 
+ 08 04 2012 
+ 
+ 1ra. Toma de Datos de Altura de planta (22 DDS) 
+ 12 04 2014 
+ 
+ 2ª. Aplicación Insecticida al follaje 
+ 14 04 2014 
+ 
+ 2ª.- Toma de altura de planta (53 DDS) 
+ 13 -05-2014 
+ 
+ Cosecha de elote (80 DDS) 
+ 09 -06-2014 
+
+La germinación fue del 100% para los 4 híbridos, con excelente vigor. N otándose que el híbrido de la DEKALB presentó más vigor a partir de la germinación, por lo que ha sido más atacado por las plagas. 
+ Prácticamente a partir de la germinación inició un ataque muy virulento y fuerte de insectos, identificándolos en el CENTA como crisomélidos y gusano cogollero, eso no permitió que los materiales se desarroll aran con todo su potencial, se le ha aplicó 2 veces insecticida, la primera con OBOLUS y la segunda con NOMAX, y no se controló . 
+ La exp licación más probable es que debido a que el área ha estado utilizada para pastos durante muchísimos años. Según los trabajadores de la Cooperativa es primera vez que se cult iva maíz. Alrededor de 3 mz de cultivo de maíz, se convirtieron en una isla entre los pastizales. La planta de maíz es más dulce y suave que los pastos , por lo que los insectos han encontrado algo nuevo para alimentarse. El ecosistema se disturbó y causamos un desequilibrio en el mismo, por lo que las plagas atacaran más intensivamente al nuevo elemento en escena. Lamentablemente se tuvo que hacer aplicaciones de insecticida cada 4 días , de lo contrario la plantación corría peligro de perderse. EN su momento s e cons ideró que se perdió un 10% de la población de plantas. 
+ Debido a esa situación se hizo el raleo un poco tarde , cuando la plantación tenía los 15 días . S e dejaron 2 plantas por postura , esperando que los insectos hicier an un rale o más fuerte, lo que en realidad sucedió. 
+ 1ª. Toma de Altura de Planta - Altura de planta a los 20 días 
+ En cuanto a la altura de planta tomada el 1 2 de abril , cuando el cultivo contaba con 20 días, desde la siembra, se pudo notar que la aplicación del producto NANO GRO influyó en el crecimiento y vigor de la plan ta. Los datos se presentan en tabla s y gráfico s . 
+ ALTURA DE PLANTA EN cm a los 23 días después de siembra. 
+ Fecha de toma de datos - 12-abr-14 
+ Parcela 
+ 12-abr-14 
+ Diferencia 
+ 
+ 1 -1 Lucino SN 
+ 17.8 
+
+1-2 Lucino CN 
+ 27.2 
+ 9.4 
+ 
+ 2-1 Pioneer SN 
+ 21.8 
+
+2-2 Pioner CN 
+ 21.8 
+ 0 
+ 
+ 3-1 Dekalb SN 
+ 18.2 
+
+3-2 Dekalb CN 
+ 22.6 
+ 4.4 
+ 
+ 4-1 H-59 SN 
+ 14.4 
+
+4-2 H-59 CN 
+ 15.4 
+ 1 
+ 
+ SN- Sin NONO GRO TM 
+ CN- Con NANO GRO TM 
+ 
+ Promedio de Altura de Planta e n cm a los 20 días , en general para los 4 híbridos 
+ 
+ SN 
+ 17.9 
+ 
+ CN 
+ 21.8 
+
+Graf ica 1. Altura de planta a los 22 días después de siembra. 
+ 
+ Lucino. 2. Pioneer 30F96. 3. Dekalb 390 . 4. H-59. 
+ Observaciones 
+ A esa fecha se encontró que en cuanto a la altura de la planta, el mayor crecimiento lo obtuvo el híbrido Lucino y el menor el CENTA H-59. 
+ Excepto el Pioneer que no presentó diferencia entre los tratamientos, con y sin la aplicación de NANO GRO TM , para los 3 híbridos restantes, la altura de planta a los 20 días fue mayor con la aplicación de NANO GRO TM . El Hibrido Lucino es el que presenta mayor diferencia (9.4 cm) entre los tratamientos. 
+ Es de mencionar que se dejó una parcela testigo, utilizando el hibrido H 59, una parcela sin aplicar ningún otro tratamiento al suelo, más que la aplicación del NANO GRO TM y otra parcela testigo con fertilizante al suelo, los resultados son los siguientes: 
+ Con NANO GRO y sin aplicar fertilizante = 25 cm ( promedio de 5 plantas al azar en la parcela) 
+ Sin NANO GRO TM y aplicando fertilizante = 14.5 cm (promedio de 5 plantas al azar en la parcela) 
+ Diferencia = 8.5 cm a favor de la parcela a la que se le aplicó solamente NANO GRO TM 
+ Si se toma en cuenta que el cultivo está sembrado en un suelo de excelentes características para desarrollar cultivos limpios, al encontrar esa diferencia en altura de planta entre las parcelas a las que se les aplicó Nano Gro y la que no se aplicó , es de concluir que la misma, se debe a la aplicación del producto. 
+ 
+ 2ª. T oma de altura de planta – a los 5 3 días después de la siembra. 
+ Se tomó una segunda vez la altura de planta , el 13 de mayo, para ver el desarrollo de los híbridos y se obtuvieron los resultados siguientes: de los 4 híbridos, el Pioneer 30F96 tuvo la mayor altura con 2.00 m, pero sin mostrar diferencia entre la aplicación y la no aplicación del producto de NANO GRO TM y el Lucino presento la menor altura de planta , en este caso vale la pena aclarar que esto se debió a que a la parcela sin NANO GRO TM un árbol le proporcionaba much a sombra y los resultados nos están mostrando el efecto negativo de este evento. El híbrido DEKALB 390 mostro muy buen crecimiento con 1.92 de altura de planta y el CENTA quedó con 1.64 cm. 
+ LINK Excel.Sheet.12 "C:\\Users\\Edmidlia Guzman\\Documents\\2014\\MAIZ\\INFORMES\\Datos de altura de planta a los 20 dias.xlsx" "13 05 !F4C12:F9C15" \a \f 4 \h 
+ Promedio de altura de planta en cm. 63 DDS 
+
+Sin Nano 
+ Con Nano 
+ Diferencia 
+ 
+ Lucino 
+ 1.42 
+ 1.72 
+ 0.3 
+ 
+ Pioneer 
+ 2.00 
+ 2.00 
+ 0 
+ 
+ Dekalb 
+ 1.86 
+ 1.98 
+ 0.12 
+ 
+ CENTA H 59 
+ 1.80 
+ 1.88 
+ 0.08 
+
+RESULTADOS DE COSECHA DE ELOTE 
+ El 9 de junio, se cosecho el elote de las 8 parcelas. De cada parcela s e cortaron 10 surcos de 10 metros de largo, se contaron todos los elotes y se pesaron con la tusa, ya que así se comercializa. Con estos datos se hicieron los cálculos de rendimiento por manzana para comparar los rendimientos de los diferentes híbridos y tratamientos. 
+ 
+ Nombre del Híbrido 
+ Peso de elotes qq/mz 
+ Numero de elotes/mz 
+
+Con Nano Groo 
+ Sin Nano Groo 
+ Con Nano Groo 
+ Sin Nano Groo 
+ 
+ Lucino 
+ 
+ 193.79 
+ 195.35 
+ 39,160 
+ 24,209 
+ 
+ Pioneer 30F96 
+ 
+ 234.69 
+ 108.26 
+ 43,297 
+ 21,760 
+ 
+ Dekalb 390 
+ 
+ 193.89 
+ 198 .28 
+ 4 6,154 
+ 50,206 
+ 
+ CENTA H -59 
+ 
+ 29 7.57 
+ 297.41 
+ 43,509 
+ 42,175 
+
+Se observa que en la variable peso de elot es el hibrido, Pioneer fue el único que respondió positivamente a la aplicación del producto NANO GRO TM , para los otros 3 híbridos Lucino, Dekalb y CENTA H-59 no hubo diferencia , o sea con y sin el producto tuvieron prácticamente igual peso de elotes . 
+ Obsérvese que el híbrido CENTA H-59 en peso de elote es superior a los demás híbridos en esas condiciones, con 297.57 qui n tales por manzana, contra el rendimiento del segundo hibrido, Pioneer con 234.69 qq/mz con una diferencia de 62.88 qq/mz y contra el rendimiento de los híbridos que obtuvieron menor peso con 193.89 y 193.79, marcando una diferencia de 103.68 qq/mz. 
+ Sin embargo , en la variable número de elotes por manzana (cuadro anterior ) , se observa que 3 híbridos, Lucino, Pioneer y CENTA H-59 respondieron positivamente a la aplicación del producto. 
+ Tomando en cuenta que no es un ensayo con un diseño experimental y que no se puede afirmar con toda seguridad que la variación del número de elotes se debe a la aplicación del producto NANO GRO TM , se presenta lo obtenido de la manera siguiente: l a variación en rendimiento de elote por manzana fue muy grande para el híbrido Pioneer, obteniendo los datos que se presentan- c on NANO GRO 43,297 elotes por manzana y SIN NANO GRO 21,760 elotes por manzana, obteniendo 21,537 más elotes con el tratamiento de NANO GRO, lo que significa un incremento del 99 % de la producción en esta variable en este híbrido . 
+ En el caso del híbrido Lucino se obtuvo 39,160 elotes por manzana con NANO GRO y 24,209 elotes por manzana sin NANO GRO, obteniendo una diferencia de 14,951 elo tes, significando el 38 % de incremento. 
+ Para el hibrido CENTA H-59 la diferencia fue de apenas 1 , 334 unidades, obteniendo el equivalente a 43,509 elotes con NANO GRO y 42,175 elotes sin el producto (solamente un 4% de incremento) . 
+ Y finalmente para el hibrido DEKALB 390, resultó lo contrario de los 3 híbridos anteriores, ya que se obtuvo 46,154 elotes con NANO GRO y 50,206 elotes sin NANO GRO, que corresponde al 8% menos con la aplicación del producto. 
+ Es importante la variable número de elotes , ya que en El Salvador es una forma de comercializarlo al menudeo. A l mayoreo lo compran por carga (redes) y en ese caso también es importante el número de elotes , más que el peso. 
+ Tamaño de elote 
+ La variación del tamaño de elote no f ue significativa, el largo varió de 23 a 26 cm con tuza y el ancho siempre con tuza, entre 5.1 y 5.8 . Mientras que sin tuza el largo varió entre 16 y 18 cm; 4.2 y 4.4 de ancho. El largo mayor fue para Lucino y CENTA H - 59 y el menor para Pioneer 30 F96. 
+
+CONCLUSIONES 
+ Las parcelas germinaron con un vigor excelente y se pudo notar claramente que la aplicación del producto NANO GRO TM hacia la diferencia, las parcelas que no se les había aplicado el producto se mostraron menos vigorosas . 
+ L as parcelas con la aplicación del producto adquirieron un mejor desarrollo y crecimiento al inic io del ciclo agronómico , pero debido a un ataque excesivo de plagas del suelo y del follaje todo el cultivo se deprimió un poc o , incluso se perdió cierta cantidad de plantas . S e notó que las parcelas con el producto, soportaban mejor el ataque de plagas, a pesar de ser más turgentes y desarrolladas . 
+ El ataque virulento de insectos del suelo y del follaje se debió a que el ensayo se sembró en terrenos que tenían más de 40 años de ser utilizados como pastizales , por lo tanto había un equilibrio entre flora y fauna natural; no se había aplicado pesticidas para cultivarlos y la alimentación de los insectos existentes estaba definida . Ese equilibrio se rompió y se incrementó significativamente la población de insectos. 
+ Al realizar el cambio de uso del suelo de pastos para cultivar maíz, se tuvo que rastrear y arar el terreno, lo que provocó que se desatara una proliferación de gusanos del suelo y del follaje que provocó un retraso en el crecimiento y desarrollo, perdidas de plantas. 
+ Los resultados mostraron que en altura de planta en todos los híbridos, los tratamientos con aplicación de NANO GRO TM en todo momento mostraron mayor crecimiento comparado con los tratamientos que no se aplicó el producto. 
+ El hibrido DEKALB 390 fue el que presento mayor crecimiento de las plantas con la aplicación de NANO GRO TM y el hibrido Pioneer 30F96, el que menos diferencia presentó. 
+ Los resultados de rendimiento en elote, para PIONEER 30F96 el tratamiento con NANO GRO obtuvo más del doble en peso y en número de elotes, a pesar de que en altura de planta no mostró ninguna diferencia. 
+ El hibrido LUCINO no presen tó diferencia en el peso pero sí en número de elotes al aplicarle el producto NANO GRO TM . 
+ El híbrido Dekalb 390 no presento mayor diferencia con la aplicación del NANO GRO TM . 
+ El hibrido CENTA H-59 respondió a la aplicación del NANO GRO TM , para ambos parámetros peso y número de elotes, aunque no es muy grande la diferencia. Este material fue el que presentó mayor rendimiento en peso de elote. 
+ No se presentan datos de producción de grano, lo cual lamentamos, no logramos tomar datos de peso de grano debido a que cosecharon toda la parcela con maquinaria , confundiendo los tratamientos. 
+ Esta tecnología puede ser una alternativa para usar en diferentes ocasiones, por ejemplo para asegurar una buena germinación de semilla, lograr mejor vigor en las plántulas y en el crecimiento. También puede ser utilizada cuando la planta presente estrés debido a sequía u otros parámetros climáticos, nutricionales o por plagas. 
+ El producto NANO GRO TM mostró en las variables mencionadas que puede colaborar a mejorar el cultivo y los rendimientos , proponemos realizar un trabajo más exhaustivo, valida n do otras variables , en otras condiciones de suelo y tomando datos de rendimiento de grano en diferentes cultivos . 
+
+GALERIA DE FOTOS 
+
+SIEMBRA 
+ 
+ Medición de Terreno 
+ 
+ Siembra 
+ DESARROLLO AGRONOMICO 
+ 
+ Excelente germinación 
+
+Fertilización, 5 dds 
+ 
+ Excelente desarrollo vegetativo . Recuperándose de ataque de plagas. 
+
+Supervisando aplicación de pesticidas con técnicos de ALBA ALIMENTOS (Producción Propia) y AGRINTER. 
+ Cultivo de maíz. EL JOBO 
+
+Mostrando el desarrollo de los híbridos con NANO GRO TM . 
+ 
+ Excelente recuperación del cultivo después de ataque de plagas. 
+
+NANO GRO TM es el nombre del producto (TM significa “Marca Registrada). 
+ Inga. Agro. M.Sc. e Ing. Agr.- Encargados Área de Investigación y Tecnología, ALBA ALIMENTOS S.A. de C.V. 
+ 
+ Organic Agriculture Centre of Canada (O ACC). Boletín. 2008. Sn, Sp . Revisado doc. Escaneado. 
+ NG Caribbean. Thornhill , ON. CANADA. L4J 3B4 
+ Ing. Pedro Pablo Rivero Hayes. Director de Desarrollo del INIFAT. La Habana Cuba (Comunicación personal) . 
+ Ing. Pedro Pablo Rivero Hayes, Director de Desarrollo del INIFAT. La Habana Cuba. (Documento fotocopiado, sn de referencia). 
+
+Numero de elotes por manzana 'Peso de elote '!$N$9 CON NANO 'Peso de elote '!$M$10:$M$13 LUCINO PIONEER DEKALB H-59 'Peso de elote '!$N$10:$N$13 #,##0 36665 43297 46154 43509 'Peso de elote '!$O$9 SIN NANO 'Peso de elote '!$M$10:$M$13 LUCINO PIONEER DEKALB H-59 'Peso de elote '!$O$10:$O$13 #,##0 24209 21760 50206 42175 
+ 
+ Peso de elotes en qq/mz 'Peso de elote '!$K$8:$K$9 Peso en qq de Elote/ mz CON NANO 'Peso de elote '!$J$10:$J$13 LUCINO PIONEER DEKALB H-59 'Peso de elote '!$K$10:$K$13 General 193.86 234.69 193.89 297.57 'Peso de elote '!$L$8:$L$9 Peso en qq de Elote/ mz SIN NANO 'Peso de elote '!$J$10:$J$13 LUCINO PIONEER DEKALB H-59 'Peso de elote '!$L$10:$L$13 General 195.35 108.26 198.28 297.41000000000003 
+
+Altura de planta a los 53 DDS '13 05 '!$M$5 Sin Nano '13 05 '!$L$6:$L$9 Lucino Pioneer Dekalb CENTA H 59 '13 05 '!$M$6:$M$9 0.00 1.42 2 1.86 1.8 '13 05 '!$N$5 Con Nano '13 05 '!$L$6:$L$9 Lucino Pioneer Dekalb CENTA H 59 '13 05 '!$N$6:$N$9 0.00 1.72 2 1.98 1.88

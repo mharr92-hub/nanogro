@@ -1,0 +1,1878 @@
+{
+  "generatedAt": "2026-06-06T23:13:42.061Z",
+  "results": [
+    {
+      "theme": "dark",
+      "viewport": "mobile",
+      "route": "/",
+      "screenshot": "docs/visual-qa-screenshots/dark-mobile-home.png",
+      "path": "/",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 390,
+      "scrollWidth": 375,
+      "overflow": [
+        {
+          "tag": "A",
+          "text": "Admin",
+          "left": 355.765625,
+          "right": 397.828125,
+          "width": 42.0625
+        }
+      ],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\n\nCASE INGESTION MVP\n\nFind Nano-Gro results by problem, crop, country, evidence, and ROI.\n\nA searchable proof database built for rapid publication o"
+    },
+    {
+      "theme": "dark",
+      "viewport": "mobile",
+      "route": "/cases",
+      "screenshot": "docs/visual-qa-screenshots/dark-mobile-cases.png",
+      "path": "/cases",
+      "title": "Search Nano-Gro Case Studies | Nano-Gro Case Intelligence",
+      "width": 390,
+      "scrollWidth": 375,
+      "overflow": [
+        {
+          "tag": "A",
+          "text": "Admin",
+          "left": 355.765625,
+          "right": 397.828125,
+          "width": 42.0625
+        }
+      ],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\nPublished case studies\n\nOnly published cases are shown. Sort priority is most complete first.\n\nProblem\nLow production\nWater stress\nWeak rooting\nPoo"
+    },
+    {
+      "theme": "dark",
+      "viewport": "mobile",
+      "route": "/diagnostico",
+      "screenshot": "docs/visual-qa-screenshots/dark-mobile-diagnostico.png",
+      "path": "/diagnostico",
+      "title": "Free Crop Diagnostic | Nano-Gro Case Intelligence",
+      "width": 390,
+      "scrollWidth": 375,
+      "overflow": [
+        {
+          "tag": "A",
+          "text": "Admin",
+          "left": 355.765625,
+          "right": 397.828125,
+          "width": 42.0625
+        }
+      ],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [
+        "Name",
+        "Company",
+        "CountryCountryPanamaColombiaPeru",
+        "CropCropCacaoBananaCoffeeRice",
+        "Current problemCurrent problemLow productionWater stressWeak rootingPoor floweri",
+        "Hectares",
+        "Current yield/production",
+        "Main objective",
+        "UrgencyUrgencyNeed help nowWithin 30 daysResearching options",
+        "WhatsApp",
+        "Email",
+        "I agree to be contacted about Nano-Gro case recommendations."
+      ],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\n\nDIAGNOSTIC\n\nFree crop diagnostic\n\nTell us the crop, hectares, problem, and objective. The lead is saved with case context and routed for follow-up"
+    },
+    {
+      "theme": "dark",
+      "viewport": "mobile",
+      "route": "/admin/login",
+      "screenshot": "docs/visual-qa-screenshots/dark-mobile-admin-login.png",
+      "path": "/admin/login",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 390,
+      "scrollWidth": 375,
+      "overflow": [
+        {
+          "tag": "A",
+          "text": "Admin",
+          "left": 355.765625,
+          "right": 397.828125,
+          "width": 42.0625
+        },
+        {
+          "tag": "A",
+          "text": "Taxonomy",
+          "left": 348.546875,
+          "right": 437.484375,
+          "width": 88.9375
+        },
+        {
+          "tag": "A",
+          "text": "Import",
+          "left": 441.484375,
+          "right": 509.40625,
+          "width": 67.921875
+        },
+        {
+          "tag": "A",
+          "text": "Review",
+          "left": 513.40625,
+          "right": 581.984375,
+          "width": 68.578125
+        },
+        {
+          "tag": "A",
+          "text": "Leads",
+          "left": 585.984375,
+          "right": 646.046875,
+          "width": 60.0625
+        }
+      ],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\n\nPROTECTED ADMIN\n\nNano-Gro Admin\nLogin\nNano-Gro Case Intelligence MVP. "
+    },
+    {
+      "theme": "dark",
+      "viewport": "mobile",
+      "route": "/admin",
+      "screenshot": "docs/visual-qa-screenshots/dark-mobile-admin.png",
+      "path": "/admin",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 390,
+      "scrollWidth": 375,
+      "overflow": [
+        {
+          "tag": "A",
+          "text": "Admin",
+          "left": 355.765625,
+          "right": 397.828125,
+          "width": 42.0625
+        },
+        {
+          "tag": "A",
+          "text": "Taxonomy",
+          "left": 348.546875,
+          "right": 437.484375,
+          "width": 88.9375
+        },
+        {
+          "tag": "A",
+          "text": "Import",
+          "left": 441.484375,
+          "right": 509.40625,
+          "width": 67.921875
+        },
+        {
+          "tag": "A",
+          "text": "Review",
+          "left": 513.40625,
+          "right": 581.984375,
+          "width": 68.578125
+        },
+        {
+          "tag": "A",
+          "text": "Leads",
+          "left": 585.984375,
+          "right": 646.046875,
+          "width": 60.0625
+        }
+      ],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nLaunch dashboard\n\nPUBLISHED\n\n3\n\nDRAFTS\n\n0\n\nREVIEW\n\n0\n\nLEADS\n\n0\n\nReview "
+    },
+    {
+      "theme": "dark",
+      "viewport": "mobile",
+      "route": "/admin/import",
+      "screenshot": "docs/visual-qa-screenshots/dark-mobile-admin-import.png",
+      "path": "/admin/import",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 390,
+      "scrollWidth": 375,
+      "overflow": [
+        {
+          "tag": "A",
+          "text": "Admin",
+          "left": 355.765625,
+          "right": 397.828125,
+          "width": 42.0625
+        },
+        {
+          "tag": "A",
+          "text": "Taxonomy",
+          "left": 348.546875,
+          "right": 437.484375,
+          "width": 88.9375
+        },
+        {
+          "tag": "A",
+          "text": "Import",
+          "left": 441.484375,
+          "right": 509.40625,
+          "width": 67.921875
+        },
+        {
+          "tag": "A",
+          "text": "Review",
+          "left": 513.40625,
+          "right": 581.984375,
+          "width": 68.578125
+        },
+        {
+          "tag": "A",
+          "text": "Leads",
+          "left": 585.984375,
+          "right": 646.046875,
+          "width": 60.0625
+        },
+        {
+          "tag": "TABLE",
+          "text": "FILE\tSTATUS\tROWS\tVALID\tINVALID\tIMPORTED\tSKIPPED\tACTIONS",
+          "left": 17,
+          "right": 997,
+          "width": 980
+        },
+        {
+          "tag": "THEAD",
+          "text": "FILE\tSTATUS\tROWS\tVALID\tINVALID\tIMPORTED\tSKIPPED\tACTIONS",
+          "left": 17,
+          "right": 997,
+          "width": 980
+        },
+        {
+          "tag": "TR",
+          "text": "FILE\tSTATUS\tROWS\tVALID\tINVALID\tIMPORTED\tSKIPPED\tACTIONS",
+          "left": 17,
+          "right": 997,
+          "width": 980
+        }
+      ],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nBulk import\n\nCSV import validates rows first. Valid rows can then be co"
+    },
+    {
+      "theme": "dark",
+      "viewport": "mobile",
+      "route": "/admin/review",
+      "screenshot": "docs/visual-qa-screenshots/dark-mobile-admin-review.png",
+      "path": "/admin/review",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 390,
+      "scrollWidth": 375,
+      "overflow": [
+        {
+          "tag": "A",
+          "text": "Admin",
+          "left": 355.765625,
+          "right": 397.828125,
+          "width": 42.0625
+        },
+        {
+          "tag": "A",
+          "text": "Taxonomy",
+          "left": 348.546875,
+          "right": 437.484375,
+          "width": 88.9375
+        },
+        {
+          "tag": "A",
+          "text": "Import",
+          "left": 441.484375,
+          "right": 509.40625,
+          "width": 67.921875
+        },
+        {
+          "tag": "A",
+          "text": "Review",
+          "left": 513.40625,
+          "right": 581.984375,
+          "width": 68.578125
+        },
+        {
+          "tag": "A",
+          "text": "Leads",
+          "left": 585.984375,
+          "right": 646.046875,
+          "width": 60.0625
+        }
+      ],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nReview queue\nNano-Gro Case Intelligence MVP. Results are documented cas"
+    },
+    {
+      "theme": "dark",
+      "viewport": "mobile",
+      "route": "/admin/leads",
+      "screenshot": "docs/visual-qa-screenshots/dark-mobile-admin-leads.png",
+      "path": "/admin/leads",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 390,
+      "scrollWidth": 375,
+      "overflow": [
+        {
+          "tag": "A",
+          "text": "Admin",
+          "left": 355.765625,
+          "right": 397.828125,
+          "width": 42.0625
+        },
+        {
+          "tag": "A",
+          "text": "Taxonomy",
+          "left": 348.546875,
+          "right": 437.484375,
+          "width": 88.9375
+        },
+        {
+          "tag": "A",
+          "text": "Import",
+          "left": 441.484375,
+          "right": 509.40625,
+          "width": 67.921875
+        },
+        {
+          "tag": "A",
+          "text": "Review",
+          "left": 513.40625,
+          "right": 581.984375,
+          "width": 68.578125
+        },
+        {
+          "tag": "A",
+          "text": "Leads",
+          "left": 585.984375,
+          "right": 646.046875,
+          "width": 60.0625
+        },
+        {
+          "tag": "TABLE",
+          "text": "NAME\tWHATSAPP\tEMAIL\tCROP\tPROBLEM\tSCORE\tSTATUS",
+          "left": 17,
+          "right": 897,
+          "width": 880
+        },
+        {
+          "tag": "THEAD",
+          "text": "NAME\tWHATSAPP\tEMAIL\tCROP\tPROBLEM\tSCORE\tSTATUS",
+          "left": 17,
+          "right": 897,
+          "width": 880
+        },
+        {
+          "tag": "TR",
+          "text": "NAME\tWHATSAPP\tEMAIL\tCROP\tPROBLEM\tSCORE\tSTATUS",
+          "left": 17,
+          "right": 897,
+          "width": 880
+        }
+      ],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nLeads\nNAME\tWHATSAPP\tEMAIL\tCROP\tPROBLEM\tSCORE\tSTATUS\nNano-Gro Case Intel"
+    },
+    {
+      "theme": "dark",
+      "viewport": "tablet",
+      "route": "/",
+      "screenshot": "docs/visual-qa-screenshots/dark-tablet-home.png",
+      "path": "/",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\n\nCASE INGESTION MVP\n\nFind Nano-Gro results by problem, crop, country, evidence, and ROI.\n\nA searchable proof database built for rapid publication o"
+    },
+    {
+      "theme": "dark",
+      "viewport": "tablet",
+      "route": "/cases",
+      "screenshot": "docs/visual-qa-screenshots/dark-tablet-cases.png",
+      "path": "/cases",
+      "title": "Search Nano-Gro Case Studies | Nano-Gro Case Intelligence",
+      "width": 768,
+      "scrollWidth": 768,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\nPublished case studies\n\nOnly published cases are shown. Sort priority is most complete first.\n\nProblem\nLow production\nWater stress\nWeak rooting\nPoo"
+    },
+    {
+      "theme": "dark",
+      "viewport": "tablet",
+      "route": "/diagnostico",
+      "screenshot": "docs/visual-qa-screenshots/dark-tablet-diagnostico.png",
+      "path": "/diagnostico",
+      "title": "Free Crop Diagnostic | Nano-Gro Case Intelligence",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [
+        "Name",
+        "Company",
+        "CountryCountryPanamaColombiaPeru",
+        "CropCropCacaoBananaCoffeeRice",
+        "Current problemCurrent problemLow productionWater stressWeak rootingPoor floweri",
+        "Hectares",
+        "Current yield/production",
+        "Main objective",
+        "UrgencyUrgencyNeed help nowWithin 30 daysResearching options",
+        "WhatsApp",
+        "Email",
+        "I agree to be contacted about Nano-Gro case recommendations."
+      ],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\n\nDIAGNOSTIC\n\nFree crop diagnostic\n\nTell us the crop, hectares, problem, and objective. The lead is saved with case context and routed for follow-up"
+    },
+    {
+      "theme": "dark",
+      "viewport": "tablet",
+      "route": "/admin/login",
+      "screenshot": "docs/visual-qa-screenshots/dark-tablet-admin-login.png",
+      "path": "/admin/login",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\n\nPROTECTED ADMIN\n\nNano-Gro Admin\nLogin\nNano-Gro Case Intelligence MVP. "
+    },
+    {
+      "theme": "dark",
+      "viewport": "tablet",
+      "route": "/admin",
+      "screenshot": "docs/visual-qa-screenshots/dark-tablet-admin.png",
+      "path": "/admin",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nLaunch dashboard\n\nPUBLISHED\n\n3\n\nDRAFTS\n\n0\n\nREVIEW\n\n0\n\nLEADS\n\n0\n\nReview "
+    },
+    {
+      "theme": "dark",
+      "viewport": "tablet",
+      "route": "/admin/import",
+      "screenshot": "docs/visual-qa-screenshots/dark-tablet-admin-import.png",
+      "path": "/admin/import",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": [
+        {
+          "tag": "TABLE",
+          "text": "FILE\tSTATUS\tROWS\tVALID\tINVALID\tIMPORTED\tSKIPPED\tACTIONS",
+          "left": 255,
+          "right": 1235,
+          "width": 980
+        },
+        {
+          "tag": "THEAD",
+          "text": "FILE\tSTATUS\tROWS\tVALID\tINVALID\tIMPORTED\tSKIPPED\tACTIONS",
+          "left": 255,
+          "right": 1235,
+          "width": 980
+        },
+        {
+          "tag": "TR",
+          "text": "FILE\tSTATUS\tROWS\tVALID\tINVALID\tIMPORTED\tSKIPPED\tACTIONS",
+          "left": 255,
+          "right": 1235,
+          "width": 980
+        },
+        {
+          "tag": "TH",
+          "text": "INVALID",
+          "left": 677.5625,
+          "right": 808.640625,
+          "width": 131.078125
+        },
+        {
+          "tag": "TH",
+          "text": "IMPORTED",
+          "left": 808.640625,
+          "right": 964.765625,
+          "width": 156.125
+        },
+        {
+          "tag": "TH",
+          "text": "SKIPPED",
+          "left": 964.765625,
+          "right": 1096.578125,
+          "width": 131.8125
+        },
+        {
+          "tag": "TH",
+          "text": "ACTIONS",
+          "left": 1096.578125,
+          "right": 1235,
+          "width": 138.421875
+        },
+        {
+          "tag": "TBODY",
+          "text": "",
+          "left": 255,
+          "right": 1235,
+          "width": 980
+        }
+      ],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nBulk import\n\nCSV import validates rows first. Valid rows can then be co"
+    },
+    {
+      "theme": "dark",
+      "viewport": "tablet",
+      "route": "/admin/review",
+      "screenshot": "docs/visual-qa-screenshots/dark-tablet-admin-review.png",
+      "path": "/admin/review",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nReview queue\nNano-Gro Case Intelligence MVP. Results are documented cas"
+    },
+    {
+      "theme": "dark",
+      "viewport": "tablet",
+      "route": "/admin/leads",
+      "screenshot": "docs/visual-qa-screenshots/dark-tablet-admin-leads.png",
+      "path": "/admin/leads",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": [
+        {
+          "tag": "TABLE",
+          "text": "NAME\tWHATSAPP\tEMAIL\tCROP\tPROBLEM\tSCORE\tSTATUS",
+          "left": 255,
+          "right": 1135,
+          "width": 880
+        },
+        {
+          "tag": "THEAD",
+          "text": "NAME\tWHATSAPP\tEMAIL\tCROP\tPROBLEM\tSCORE\tSTATUS",
+          "left": 255,
+          "right": 1135,
+          "width": 880
+        },
+        {
+          "tag": "TR",
+          "text": "NAME\tWHATSAPP\tEMAIL\tCROP\tPROBLEM\tSCORE\tSTATUS",
+          "left": 255,
+          "right": 1135,
+          "width": 880
+        },
+        {
+          "tag": "TH",
+          "text": "PROBLEM",
+          "left": 748.171875,
+          "right": 896.546875,
+          "width": 148.375
+        },
+        {
+          "tag": "TH",
+          "text": "SCORE",
+          "left": 896.546875,
+          "right": 1010.5625,
+          "width": 114.015625
+        },
+        {
+          "tag": "TH",
+          "text": "STATUS",
+          "left": 1010.5625,
+          "right": 1135,
+          "width": 124.4375
+        },
+        {
+          "tag": "TBODY",
+          "text": "",
+          "left": 255,
+          "right": 1135,
+          "width": 880
+        }
+      ],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nLeads\nNAME\tWHATSAPP\tEMAIL\tCROP\tPROBLEM\tSCORE\tSTATUS\nNano-Gro Case Intel"
+    },
+    {
+      "theme": "dark",
+      "viewport": "desktop",
+      "route": "/",
+      "screenshot": "docs/visual-qa-screenshots/dark-desktop-home.png",
+      "path": "/",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\n\nCASE INGESTION MVP\n\nFind Nano-Gro results by problem, crop, country, evidence, and ROI.\n\nA searchable proof database built for rapid publication o"
+    },
+    {
+      "theme": "dark",
+      "viewport": "desktop",
+      "route": "/cases",
+      "screenshot": "docs/visual-qa-screenshots/dark-desktop-cases.png",
+      "path": "/cases",
+      "title": "Search Nano-Gro Case Studies | Nano-Gro Case Intelligence",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\nPublished case studies\n\nOnly published cases are shown. Sort priority is most complete first.\n\nProblem\nLow production\nWater stress\nWeak rooting\nPoo"
+    },
+    {
+      "theme": "dark",
+      "viewport": "desktop",
+      "route": "/diagnostico",
+      "screenshot": "docs/visual-qa-screenshots/dark-desktop-diagnostico.png",
+      "path": "/diagnostico",
+      "title": "Free Crop Diagnostic | Nano-Gro Case Intelligence",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [
+        "Name",
+        "Company",
+        "CountryCountryPanamaColombiaPeru",
+        "CropCropCacaoBananaCoffeeRice",
+        "Current problemCurrent problemLow productionWater stressWeak rootingPoor floweri",
+        "Hectares",
+        "Current yield/production",
+        "Main objective",
+        "UrgencyUrgencyNeed help nowWithin 30 daysResearching options",
+        "WhatsApp",
+        "Email",
+        "I agree to be contacted about Nano-Gro case recommendations."
+      ],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\n\nDIAGNOSTIC\n\nFree crop diagnostic\n\nTell us the crop, hectares, problem, and objective. The lead is saved with case context and routed for follow-up"
+    },
+    {
+      "theme": "dark",
+      "viewport": "desktop",
+      "route": "/admin/login",
+      "screenshot": "docs/visual-qa-screenshots/dark-desktop-admin-login.png",
+      "path": "/admin/login",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\n\nPROTECTED ADMIN\n\nNano-Gro Admin\nLogin\nNano-Gro Case Intelligence MVP. "
+    },
+    {
+      "theme": "dark",
+      "viewport": "desktop",
+      "route": "/admin",
+      "screenshot": "docs/visual-qa-screenshots/dark-desktop-admin.png",
+      "path": "/admin",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nLaunch dashboard\n\nPUBLISHED\n\n3\n\nDRAFTS\n\n0\n\nREVIEW\n\n0\n\nLEADS\n\n0\n\nReview "
+    },
+    {
+      "theme": "dark",
+      "viewport": "desktop",
+      "route": "/admin/import",
+      "screenshot": "docs/visual-qa-screenshots/dark-desktop-admin-import.png",
+      "path": "/admin/import",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nBulk import\n\nCSV import validates rows first. Valid rows can then be co"
+    },
+    {
+      "theme": "dark",
+      "viewport": "desktop",
+      "route": "/admin/review",
+      "screenshot": "docs/visual-qa-screenshots/dark-desktop-admin-review.png",
+      "path": "/admin/review",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nReview queue\nNano-Gro Case Intelligence MVP. Results are documented cas"
+    },
+    {
+      "theme": "dark",
+      "viewport": "desktop",
+      "route": "/admin/leads",
+      "screenshot": "docs/visual-qa-screenshots/dark-desktop-admin-leads.png",
+      "path": "/admin/leads",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Dark\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nLeads\nNAME\tWHATSAPP\tEMAIL\tCROP\tPROBLEM\tSCORE\tSTATUS\nNano-Gro Case Intel"
+    },
+    {
+      "theme": "light",
+      "viewport": "mobile",
+      "route": "/",
+      "screenshot": "docs/visual-qa-screenshots/light-mobile-home.png",
+      "path": "/",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 390,
+      "scrollWidth": 375,
+      "overflow": [
+        {
+          "tag": "A",
+          "text": "Admin",
+          "left": 355.765625,
+          "right": 397.828125,
+          "width": 42.0625
+        }
+      ],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\n\nCASE INGESTION MVP\n\nFind Nano-Gro results by problem, crop, country, evidence, and ROI.\n\nA searchable proof database built for rapid publication "
+    },
+    {
+      "theme": "light",
+      "viewport": "mobile",
+      "route": "/cases",
+      "screenshot": "docs/visual-qa-screenshots/light-mobile-cases.png",
+      "path": "/cases",
+      "title": "Search Nano-Gro Case Studies | Nano-Gro Case Intelligence",
+      "width": 390,
+      "scrollWidth": 375,
+      "overflow": [
+        {
+          "tag": "A",
+          "text": "Admin",
+          "left": 355.765625,
+          "right": 397.828125,
+          "width": 42.0625
+        }
+      ],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\nPublished case studies\n\nOnly published cases are shown. Sort priority is most complete first.\n\nProblem\nLow production\nWater stress\nWeak rooting\nPo"
+    },
+    {
+      "theme": "light",
+      "viewport": "mobile",
+      "route": "/diagnostico",
+      "screenshot": "docs/visual-qa-screenshots/light-mobile-diagnostico.png",
+      "path": "/diagnostico",
+      "title": "Free Crop Diagnostic | Nano-Gro Case Intelligence",
+      "width": 390,
+      "scrollWidth": 375,
+      "overflow": [
+        {
+          "tag": "A",
+          "text": "Admin",
+          "left": 355.765625,
+          "right": 397.828125,
+          "width": 42.0625
+        }
+      ],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [
+        "Name",
+        "Company",
+        "CountryCountryPanamaColombiaPeru",
+        "CropCropCacaoBananaCoffeeRice",
+        "Current problemCurrent problemLow productionWater stressWeak rootingPoor floweri",
+        "Hectares",
+        "Current yield/production",
+        "Main objective",
+        "UrgencyUrgencyNeed help nowWithin 30 daysResearching options",
+        "WhatsApp",
+        "Email",
+        "I agree to be contacted about Nano-Gro case recommendations."
+      ],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\n\nDIAGNOSTIC\n\nFree crop diagnostic\n\nTell us the crop, hectares, problem, and objective. The lead is saved with case context and routed for follow-u"
+    },
+    {
+      "theme": "light",
+      "viewport": "mobile",
+      "route": "/admin/login",
+      "screenshot": "docs/visual-qa-screenshots/light-mobile-admin-login.png",
+      "path": "/admin/login",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 390,
+      "scrollWidth": 375,
+      "overflow": [
+        {
+          "tag": "A",
+          "text": "Admin",
+          "left": 355.765625,
+          "right": 397.828125,
+          "width": 42.0625
+        },
+        {
+          "tag": "A",
+          "text": "Taxonomy",
+          "left": 348.546875,
+          "right": 437.484375,
+          "width": 88.9375
+        },
+        {
+          "tag": "A",
+          "text": "Import",
+          "left": 441.484375,
+          "right": 509.40625,
+          "width": 67.921875
+        },
+        {
+          "tag": "A",
+          "text": "Review",
+          "left": 513.40625,
+          "right": 581.984375,
+          "width": 68.578125
+        },
+        {
+          "tag": "A",
+          "text": "Leads",
+          "left": 585.984375,
+          "right": 646.046875,
+          "width": 60.0625
+        }
+      ],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\n\nPROTECTED ADMIN\n\nNano-Gro Admin\nLogin\nNano-Gro Case Intelligence MVP."
+    },
+    {
+      "theme": "light",
+      "viewport": "mobile",
+      "route": "/admin",
+      "screenshot": "docs/visual-qa-screenshots/light-mobile-admin.png",
+      "path": "/admin",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 390,
+      "scrollWidth": 375,
+      "overflow": [
+        {
+          "tag": "A",
+          "text": "Admin",
+          "left": 355.765625,
+          "right": 397.828125,
+          "width": 42.0625
+        },
+        {
+          "tag": "A",
+          "text": "Taxonomy",
+          "left": 348.546875,
+          "right": 437.484375,
+          "width": 88.9375
+        },
+        {
+          "tag": "A",
+          "text": "Import",
+          "left": 441.484375,
+          "right": 509.40625,
+          "width": 67.921875
+        },
+        {
+          "tag": "A",
+          "text": "Review",
+          "left": 513.40625,
+          "right": 581.984375,
+          "width": 68.578125
+        },
+        {
+          "tag": "A",
+          "text": "Leads",
+          "left": 585.984375,
+          "right": 646.046875,
+          "width": 60.0625
+        }
+      ],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nLaunch dashboard\n\nPUBLISHED\n\n3\n\nDRAFTS\n\n0\n\nREVIEW\n\n0\n\nLEADS\n\n0\n\nReview"
+    },
+    {
+      "theme": "light",
+      "viewport": "mobile",
+      "route": "/admin/import",
+      "screenshot": "docs/visual-qa-screenshots/light-mobile-admin-import.png",
+      "path": "/admin/import",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 390,
+      "scrollWidth": 375,
+      "overflow": [
+        {
+          "tag": "A",
+          "text": "Admin",
+          "left": 355.765625,
+          "right": 397.828125,
+          "width": 42.0625
+        },
+        {
+          "tag": "A",
+          "text": "Taxonomy",
+          "left": 348.546875,
+          "right": 437.484375,
+          "width": 88.9375
+        },
+        {
+          "tag": "A",
+          "text": "Import",
+          "left": 441.484375,
+          "right": 509.40625,
+          "width": 67.921875
+        },
+        {
+          "tag": "A",
+          "text": "Review",
+          "left": 513.40625,
+          "right": 581.984375,
+          "width": 68.578125
+        },
+        {
+          "tag": "A",
+          "text": "Leads",
+          "left": 585.984375,
+          "right": 646.046875,
+          "width": 60.0625
+        },
+        {
+          "tag": "TABLE",
+          "text": "FILE\tSTATUS\tROWS\tVALID\tINVALID\tIMPORTED\tSKIPPED\tACTIONS",
+          "left": 17,
+          "right": 997,
+          "width": 980
+        },
+        {
+          "tag": "THEAD",
+          "text": "FILE\tSTATUS\tROWS\tVALID\tINVALID\tIMPORTED\tSKIPPED\tACTIONS",
+          "left": 17,
+          "right": 997,
+          "width": 980
+        },
+        {
+          "tag": "TR",
+          "text": "FILE\tSTATUS\tROWS\tVALID\tINVALID\tIMPORTED\tSKIPPED\tACTIONS",
+          "left": 17,
+          "right": 997,
+          "width": 980
+        }
+      ],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nBulk import\n\nCSV import validates rows first. Valid rows can then be c"
+    },
+    {
+      "theme": "light",
+      "viewport": "mobile",
+      "route": "/admin/review",
+      "screenshot": "docs/visual-qa-screenshots/light-mobile-admin-review.png",
+      "path": "/admin/review",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 390,
+      "scrollWidth": 375,
+      "overflow": [
+        {
+          "tag": "A",
+          "text": "Admin",
+          "left": 355.765625,
+          "right": 397.828125,
+          "width": 42.0625
+        },
+        {
+          "tag": "A",
+          "text": "Taxonomy",
+          "left": 348.546875,
+          "right": 437.484375,
+          "width": 88.9375
+        },
+        {
+          "tag": "A",
+          "text": "Import",
+          "left": 441.484375,
+          "right": 509.40625,
+          "width": 67.921875
+        },
+        {
+          "tag": "A",
+          "text": "Review",
+          "left": 513.40625,
+          "right": 581.984375,
+          "width": 68.578125
+        },
+        {
+          "tag": "A",
+          "text": "Leads",
+          "left": 585.984375,
+          "right": 646.046875,
+          "width": 60.0625
+        }
+      ],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nReview queue\nNano-Gro Case Intelligence MVP. Results are documented ca"
+    },
+    {
+      "theme": "light",
+      "viewport": "mobile",
+      "route": "/admin/leads",
+      "screenshot": "docs/visual-qa-screenshots/light-mobile-admin-leads.png",
+      "path": "/admin/leads",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 390,
+      "scrollWidth": 375,
+      "overflow": [
+        {
+          "tag": "A",
+          "text": "Admin",
+          "left": 355.765625,
+          "right": 397.828125,
+          "width": 42.0625
+        },
+        {
+          "tag": "A",
+          "text": "Taxonomy",
+          "left": 348.546875,
+          "right": 437.484375,
+          "width": 88.9375
+        },
+        {
+          "tag": "A",
+          "text": "Import",
+          "left": 441.484375,
+          "right": 509.40625,
+          "width": 67.921875
+        },
+        {
+          "tag": "A",
+          "text": "Review",
+          "left": 513.40625,
+          "right": 581.984375,
+          "width": 68.578125
+        },
+        {
+          "tag": "A",
+          "text": "Leads",
+          "left": 585.984375,
+          "right": 646.046875,
+          "width": 60.0625
+        },
+        {
+          "tag": "TABLE",
+          "text": "NAME\tWHATSAPP\tEMAIL\tCROP\tPROBLEM\tSCORE\tSTATUS",
+          "left": 17,
+          "right": 897,
+          "width": 880
+        },
+        {
+          "tag": "THEAD",
+          "text": "NAME\tWHATSAPP\tEMAIL\tCROP\tPROBLEM\tSCORE\tSTATUS",
+          "left": 17,
+          "right": 897,
+          "width": 880
+        },
+        {
+          "tag": "TR",
+          "text": "NAME\tWHATSAPP\tEMAIL\tCROP\tPROBLEM\tSCORE\tSTATUS",
+          "left": 17,
+          "right": 897,
+          "width": 880
+        }
+      ],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nLeads\nNAME\tWHATSAPP\tEMAIL\tCROP\tPROBLEM\tSCORE\tSTATUS\nNano-Gro Case Inte"
+    },
+    {
+      "theme": "light",
+      "viewport": "tablet",
+      "route": "/",
+      "screenshot": "docs/visual-qa-screenshots/light-tablet-home.png",
+      "path": "/",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\n\nCASE INGESTION MVP\n\nFind Nano-Gro results by problem, crop, country, evidence, and ROI.\n\nA searchable proof database built for rapid publication "
+    },
+    {
+      "theme": "light",
+      "viewport": "tablet",
+      "route": "/cases",
+      "screenshot": "docs/visual-qa-screenshots/light-tablet-cases.png",
+      "path": "/cases",
+      "title": "Search Nano-Gro Case Studies | Nano-Gro Case Intelligence",
+      "width": 768,
+      "scrollWidth": 768,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\nPublished case studies\n\nOnly published cases are shown. Sort priority is most complete first.\n\nProblem\nLow production\nWater stress\nWeak rooting\nPo"
+    },
+    {
+      "theme": "light",
+      "viewport": "tablet",
+      "route": "/diagnostico",
+      "screenshot": "docs/visual-qa-screenshots/light-tablet-diagnostico.png",
+      "path": "/diagnostico",
+      "title": "Free Crop Diagnostic | Nano-Gro Case Intelligence",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [
+        "Name",
+        "Company",
+        "CountryCountryPanamaColombiaPeru",
+        "CropCropCacaoBananaCoffeeRice",
+        "Current problemCurrent problemLow productionWater stressWeak rootingPoor floweri",
+        "Hectares",
+        "Current yield/production",
+        "Main objective",
+        "UrgencyUrgencyNeed help nowWithin 30 daysResearching options",
+        "WhatsApp",
+        "Email",
+        "I agree to be contacted about Nano-Gro case recommendations."
+      ],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\n\nDIAGNOSTIC\n\nFree crop diagnostic\n\nTell us the crop, hectares, problem, and objective. The lead is saved with case context and routed for follow-u"
+    },
+    {
+      "theme": "light",
+      "viewport": "tablet",
+      "route": "/admin/login",
+      "screenshot": "docs/visual-qa-screenshots/light-tablet-admin-login.png",
+      "path": "/admin/login",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\n\nPROTECTED ADMIN\n\nNano-Gro Admin\nLogin\nNano-Gro Case Intelligence MVP."
+    },
+    {
+      "theme": "light",
+      "viewport": "tablet",
+      "route": "/admin",
+      "screenshot": "docs/visual-qa-screenshots/light-tablet-admin.png",
+      "path": "/admin",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nLaunch dashboard\n\nPUBLISHED\n\n3\n\nDRAFTS\n\n0\n\nREVIEW\n\n0\n\nLEADS\n\n0\n\nReview"
+    },
+    {
+      "theme": "light",
+      "viewport": "tablet",
+      "route": "/admin/import",
+      "screenshot": "docs/visual-qa-screenshots/light-tablet-admin-import.png",
+      "path": "/admin/import",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": [
+        {
+          "tag": "TABLE",
+          "text": "FILE\tSTATUS\tROWS\tVALID\tINVALID\tIMPORTED\tSKIPPED\tACTIONS",
+          "left": 255,
+          "right": 1235,
+          "width": 980
+        },
+        {
+          "tag": "THEAD",
+          "text": "FILE\tSTATUS\tROWS\tVALID\tINVALID\tIMPORTED\tSKIPPED\tACTIONS",
+          "left": 255,
+          "right": 1235,
+          "width": 980
+        },
+        {
+          "tag": "TR",
+          "text": "FILE\tSTATUS\tROWS\tVALID\tINVALID\tIMPORTED\tSKIPPED\tACTIONS",
+          "left": 255,
+          "right": 1235,
+          "width": 980
+        },
+        {
+          "tag": "TH",
+          "text": "INVALID",
+          "left": 677.5625,
+          "right": 808.640625,
+          "width": 131.078125
+        },
+        {
+          "tag": "TH",
+          "text": "IMPORTED",
+          "left": 808.640625,
+          "right": 964.765625,
+          "width": 156.125
+        },
+        {
+          "tag": "TH",
+          "text": "SKIPPED",
+          "left": 964.765625,
+          "right": 1096.578125,
+          "width": 131.8125
+        },
+        {
+          "tag": "TH",
+          "text": "ACTIONS",
+          "left": 1096.578125,
+          "right": 1235,
+          "width": 138.421875
+        },
+        {
+          "tag": "TBODY",
+          "text": "",
+          "left": 255,
+          "right": 1235,
+          "width": 980
+        }
+      ],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nBulk import\n\nCSV import validates rows first. Valid rows can then be c"
+    },
+    {
+      "theme": "light",
+      "viewport": "tablet",
+      "route": "/admin/review",
+      "screenshot": "docs/visual-qa-screenshots/light-tablet-admin-review.png",
+      "path": "/admin/review",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nReview queue\nNano-Gro Case Intelligence MVP. Results are documented ca"
+    },
+    {
+      "theme": "light",
+      "viewport": "tablet",
+      "route": "/admin/leads",
+      "screenshot": "docs/visual-qa-screenshots/light-tablet-admin-leads.png",
+      "path": "/admin/leads",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 768,
+      "scrollWidth": 753,
+      "overflow": [
+        {
+          "tag": "TABLE",
+          "text": "NAME\tWHATSAPP\tEMAIL\tCROP\tPROBLEM\tSCORE\tSTATUS",
+          "left": 255,
+          "right": 1135,
+          "width": 880
+        },
+        {
+          "tag": "THEAD",
+          "text": "NAME\tWHATSAPP\tEMAIL\tCROP\tPROBLEM\tSCORE\tSTATUS",
+          "left": 255,
+          "right": 1135,
+          "width": 880
+        },
+        {
+          "tag": "TR",
+          "text": "NAME\tWHATSAPP\tEMAIL\tCROP\tPROBLEM\tSCORE\tSTATUS",
+          "left": 255,
+          "right": 1135,
+          "width": 880
+        },
+        {
+          "tag": "TH",
+          "text": "PROBLEM",
+          "left": 748.171875,
+          "right": 896.546875,
+          "width": 148.375
+        },
+        {
+          "tag": "TH",
+          "text": "SCORE",
+          "left": 896.546875,
+          "right": 1010.5625,
+          "width": 114.015625
+        },
+        {
+          "tag": "TH",
+          "text": "STATUS",
+          "left": 1010.5625,
+          "right": 1135,
+          "width": 124.4375
+        },
+        {
+          "tag": "TBODY",
+          "text": "",
+          "left": 255,
+          "right": 1135,
+          "width": 880
+        }
+      ],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nLeads\nNAME\tWHATSAPP\tEMAIL\tCROP\tPROBLEM\tSCORE\tSTATUS\nNano-Gro Case Inte"
+    },
+    {
+      "theme": "light",
+      "viewport": "desktop",
+      "route": "/",
+      "screenshot": "docs/visual-qa-screenshots/light-desktop-home.png",
+      "path": "/",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\n\nCASE INGESTION MVP\n\nFind Nano-Gro results by problem, crop, country, evidence, and ROI.\n\nA searchable proof database built for rapid publication "
+    },
+    {
+      "theme": "light",
+      "viewport": "desktop",
+      "route": "/cases",
+      "screenshot": "docs/visual-qa-screenshots/light-desktop-cases.png",
+      "path": "/cases",
+      "title": "Search Nano-Gro Case Studies | Nano-Gro Case Intelligence",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\nPublished case studies\n\nOnly published cases are shown. Sort priority is most complete first.\n\nProblem\nLow production\nWater stress\nWeak rooting\nPo"
+    },
+    {
+      "theme": "light",
+      "viewport": "desktop",
+      "route": "/diagnostico",
+      "screenshot": "docs/visual-qa-screenshots/light-desktop-diagnostico.png",
+      "path": "/diagnostico",
+      "title": "Free Crop Diagnostic | Nano-Gro Case Intelligence",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [
+        "Name",
+        "Company",
+        "CountryCountryPanamaColombiaPeru",
+        "CropCropCacaoBananaCoffeeRice",
+        "Current problemCurrent problemLow productionWater stressWeak rootingPoor floweri",
+        "Hectares",
+        "Current yield/production",
+        "Main objective",
+        "UrgencyUrgencyNeed help nowWithin 30 daysResearching options",
+        "WhatsApp",
+        "Email",
+        "I agree to be contacted about Nano-Gro case recommendations."
+      ],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\n\nDIAGNOSTIC\n\nFree crop diagnostic\n\nTell us the crop, hectares, problem, and objective. The lead is saved with case context and routed for follow-u"
+    },
+    {
+      "theme": "light",
+      "viewport": "desktop",
+      "route": "/admin/login",
+      "screenshot": "docs/visual-qa-screenshots/light-desktop-admin-login.png",
+      "path": "/admin/login",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\n\nPROTECTED ADMIN\n\nNano-Gro Admin\nLogin\nNano-Gro Case Intelligence MVP."
+    },
+    {
+      "theme": "light",
+      "viewport": "desktop",
+      "route": "/admin",
+      "screenshot": "docs/visual-qa-screenshots/light-desktop-admin.png",
+      "path": "/admin",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nLaunch dashboard\n\nPUBLISHED\n\n3\n\nDRAFTS\n\n0\n\nREVIEW\n\n0\n\nLEADS\n\n0\n\nReview"
+    },
+    {
+      "theme": "light",
+      "viewport": "desktop",
+      "route": "/admin/import",
+      "screenshot": "docs/visual-qa-screenshots/light-desktop-admin-import.png",
+      "path": "/admin/import",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nBulk import\n\nCSV import validates rows first. Valid rows can then be c"
+    },
+    {
+      "theme": "light",
+      "viewport": "desktop",
+      "route": "/admin/review",
+      "screenshot": "docs/visual-qa-screenshots/light-desktop-admin-review.png",
+      "path": "/admin/review",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nReview queue\nNano-Gro Case Intelligence MVP. Results are documented ca"
+    },
+    {
+      "theme": "light",
+      "viewport": "desktop",
+      "route": "/admin/leads",
+      "screenshot": "docs/visual-qa-screenshots/light-desktop-admin-leads.png",
+      "path": "/admin/leads",
+      "title": "Nano-Gro Case Intelligence",
+      "width": 1440,
+      "scrollWidth": 1425,
+      "overflow": [],
+      "navLinks": [
+        "Cases",
+        "Problems",
+        "Crops",
+        "Countries",
+        "Diagnostic",
+        "Admin"
+      ],
+      "labels": [],
+      "emptyInteractiveCount": 0,
+      "textSample": "Nano-Gro Cases\nCases\nProblems\nCrops\nCountries\nDiagnostic\nAdmin\nNano Light\nAdmin\nDashboard\nCases\nNew case\nEvidence\nTaxonomy\nImport\nReview\nLeads\nLogout\nLeads\nNAME\tWHATSAPP\tEMAIL\tCROP\tPROBLEM\tSCORE\tSTATUS\nNano-Gro Case Inte"
+    }
+  ],
+  "interactions": {
+    "systemPref": {
+      "theme": "dark",
+      "stored": "dark",
+      "prefersLight": false
+    },
+    "toggleResult": {
+      "theme": "light",
+      "stored": "light"
+    },
+    "filterResult": {
+      "path": "/cases",
+      "query": "?crop=cacao&sort=complete",
+      "hasFilters": true
+    },
+    "leadFormResult": {
+      "labels": [
+        "Name",
+        "Company",
+        "CountryCountryPanamaColombiaPeru",
+        "CropCropCacaoBananaCoffeeRice",
+        "Current problemCurrent problemLow productionWater stressWeak rootingPoor flowering",
+        "Hectares",
+        "Current yield/production",
+        "Main objective",
+        "UrgencyUrgencyNeed help nowWithin 30 daysResearching options",
+        "WhatsApp",
+        "Email",
+        "I agree to be contacted about Nano-Gro case recommendations."
+      ],
+      "hasSubmit": true
+    }
+  }
+}
