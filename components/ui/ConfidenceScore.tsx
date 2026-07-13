@@ -1,5 +1,5 @@
-import { countDocumented, getEvidenceChecklist } from "@/lib/evidence-checklist";
-import type { Messages } from "@/lib/i18n";
+﻿import { countDocumented, getEvidenceChecklist } from "@/lib/evidence-checklist";
+import type { Messages } from "@/lib/i18n-shared";
 import { formatMessage } from "@/lib/i18n-shared";
 import type { CaseStudy } from "@/lib/types";
 

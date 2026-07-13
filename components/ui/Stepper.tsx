@@ -1,4 +1,4 @@
-import type { Messages } from "@/lib/i18n";
+﻿import type { Messages } from "@/lib/i18n-shared";
 import { formatMessage } from "@/lib/i18n-shared";
 
 /**

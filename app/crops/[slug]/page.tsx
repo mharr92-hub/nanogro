@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { CaseCard } from "@/components/CaseCard";
+import { TaxonomyHub } from "@/components/TaxonomyHub";
+import { WhatsAppFab } from "@/components/WhatsAppFab";
+import { trackEvent } from "@/lib/analytics";
 import { getCasesByTaxonomy, getTaxonomy } from "@/lib/data";
-import { formatMessage, getLocale, getMessages } from "@/lib/i18n";
+import { countByTerm } from "@/lib/hub";
+import { formatMessage, getLocale, getMessages, localizedHref } from "@/lib/i18n";
 import { localizeCases, localizeTaxonomy } from "@/lib/localized-content";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -11,9 +14,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const messages = await getMessages(locale);
   const { crops } = await getTaxonomy();
   const crop = localizeTaxonomy(crops, locale).find((item) => item.slug === slug);
+  const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  if (!crop) return { title: messages.crops.metadataFallback };
   return {
-    title: crop ? formatMessage(messages.crops.metadataTitle, { name: crop.name }) : messages.crops.metadataFallback,
-    description: crop ? formatMessage(messages.crops.metadataDescription, { name: crop.name }) : undefined
+    title: formatMessage(messages.crops.metadataTitle, { name: crop.name }),
+    description: formatMessage(messages.crops.metadataDescription, { name: crop.name }),
+    alternates: { canonical: `${site}${localizedHref(locale, `/crops/${crop.slug}`)}` }
   };
 }
 
@@ -21,20 +27,40 @@ export default async function CropPage({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const locale = await getLocale();
   const messages = await getMessages(locale);
+
   const { crops } = await getTaxonomy();
   const crop = localizeTaxonomy(crops, locale).find((item) => item.slug === slug);
   if (!crop) notFound();
+
+  await trackEvent("page_view", { page_path: `/crops/${slug}` });
   const cases = localizeCases(await getCasesByTaxonomy("crop", slug), locale);
+
+  // Enlazado interno de la seccion 14: cultivo -> problema (SEO programatico) y cultivo -> pais.
+  const problems = countByTerm(cases, (item) => item.primary_problem).map((entry) => ({
+    name: formatMessage(messages.hub.browseProblem, { problem: entry.name, crop: crop.name }),
+    href: localizedHref(locale, `/crops/${slug}/${entry.slug}`),
+    count: entry.count
+  }));
+  const countries = countByTerm(cases, (item) => item.country).map((entry) => ({
+    name: entry.name,
+    href: localizedHref(locale, `/countries/${entry.slug}/${slug}`),
+    count: entry.count
+  }));
+
   return (
-    <section className="section">
-      <div className="container">
-        <p className="text-sm font-black uppercase tracking-wide text-primary">{messages.crops.eyebrow}</p>
-        <h1 className="mt-2 text-4xl font-black">{crop.name}</h1>
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
-          {cases.map((item) => <CaseCard key={item.id} item={item} locale={locale} messages={messages} />)}
-        </div>
-      </div>
-    </section>
+    <>
+      <TaxonomyHub
+        kind="crop"
+        term={crop}
+        cases={cases}
+        crossLinks={[
+          { label: messages.hub.topProblems, items: problems },
+          { label: messages.hub.topCountries, items: countries }
+        ]}
+        locale={locale}
+        messages={messages}
+      />
+      <WhatsAppFab message={messages.whatsapp.genericMessage} messages={messages} />
+    </>
   );
 }
-

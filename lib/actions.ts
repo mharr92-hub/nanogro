@@ -373,6 +373,13 @@ export async function submitLead(formData: FormData) {
   const problemText = String(formData.get("problem_text") || "").trim();
   const whatsapp = String(formData.get("whatsapp") || "").trim();
   const comments = String(formData.get("comments") || "").trim();
+  // Campos aditivos: el formulario antiguo no los enviaba y siguen resolviendo a "".
+  const email = String(formData.get("email") || "").trim();
+  const currentProduction = String(formData.get("current_production") || "").trim();
+  const objective = String(formData.get("objective") || "").trim();
+  const cropSlug = String(formData.get("crop_slug") || "").trim();
+  const countrySlug = String(formData.get("country_slug") || "").trim();
+  const problemSlug = String(formData.get("problem_slug") || "").trim();
   const hectares = parseAreaNumber(areaText);
   const recommended = String(formData.get("recommended_case_ids") || "")
     .split(",")
@@ -380,7 +387,7 @@ export async function submitLead(formData: FormData) {
   const score = calculateLeadScore({
     hectares: hectares || 0,
     whatsapp,
-    email: "",
+    email,
     problemMatchesPublishedCase: Boolean(problemText),
     relatedViewedCount: recommended.length,
     requestedDiagnostic: true
@@ -416,9 +423,9 @@ Gracias.`;
       comments,
       hectares,
       whatsapp,
-      email: "",
-      current_production: "",
-      objective: "WhatsApp recommendation request",
+      email,
+      current_production: currentProduction,
+      objective: objective || "WhatsApp recommendation request",
       urgency: "whatsapp",
       viewed_case_id: String(formData.get("viewed_case_id") || "") || null,
       source_path: String(formData.get("source_path") || ""),
@@ -429,7 +436,23 @@ Gracias.`;
     });
   }
 
-  redirect(buildWhatsAppUrl(whatsappMessage));
+  /*
+   * El lead ya esta guardado. Antes de este cambio la accion hacia redirect() a wa.me y
+   * el usuario salia del sitio sin recibir nada, incumpliendo la regla de la spec de que
+   * "the user should receive value immediately: similar cases, likely issue category,
+   * preliminary recommendation". Ahora aterriza en su diagnostico preliminar, con el
+   * boton de WhatsApp (mismo mensaje pre-rellenado) a un toque de distancia.
+   */
+  const params = new URLSearchParams();
+  if (cropSlug) params.set("crop", cropSlug);
+  if (countrySlug) params.set("country", countrySlug);
+  if (problemSlug) params.set("problem", problemSlug);
+  if (cropText) params.set("cropName", cropText);
+  if (countryText) params.set("countryName", countryText);
+  if (problemText) params.set("problemName", problemText);
+  if (hectares) params.set("hectares", String(hectares));
+
+  redirect(`/diagnostico/resultado?${params.toString()}`);
 }
 
 async function findExistingCase(publicId?: string, importRowId?: string) {
@@ -592,13 +615,6 @@ function truthy(value?: string) {
 function parseAreaNumber(value: string) {
   const match = value.replace(",", ".").match(/\d+(\.\d+)?/);
   return match ? Number(match[0]) : null;
-}
-
-function buildWhatsAppUrl(message: string) {
-  const configuredNumber = process.env.NANO_GRO_WHATSAPP_NUMBER || process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "";
-  const phone = configuredNumber.replace(/\D/g, "");
-  const text = encodeURIComponent(message);
-  return phone ? `https://wa.me/${phone}?text=${text}` : `https://wa.me/?text=${text}`;
 }
 
 function splitLines(value?: string) {

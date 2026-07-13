@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
-import type { Messages } from "@/lib/i18n";
+﻿import type { ReactNode } from "react";
+import type { Messages } from "@/lib/i18n-shared";
 import type { EvidenceLevel } from "@/lib/types";
 
 export type BadgeTone = "neutral" | "leaf" | "data" | "warning" | "danger";

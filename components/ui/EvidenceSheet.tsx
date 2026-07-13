@@ -1,8 +1,8 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import type { CSSProperties } from "react";
 import { evidenceLevelOf } from "@/lib/evidence-checklist";
 import { publicContentText } from "@/lib/evidence-labels";
-import { localizedHref, type Locale, type Messages } from "@/lib/i18n";
+import { localizedHref, type Locale, type Messages } from "@/lib/i18n-shared";
 import type { CaseStudy, EvidenceLevel } from "@/lib/types";
 import { EvidenceLevelBadge } from "./Badge";
 

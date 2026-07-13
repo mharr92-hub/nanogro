@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { CaseCard } from "@/components/CaseCard";
+import { TaxonomyHub } from "@/components/TaxonomyHub";
+import { WhatsAppFab } from "@/components/WhatsAppFab";
+import { trackEvent } from "@/lib/analytics";
 import { getCasesByTaxonomy, getTaxonomy } from "@/lib/data";
-import { formatMessage, getLocale, getMessages } from "@/lib/i18n";
+import { countByTerm } from "@/lib/hub";
+import { formatMessage, getLocale, getMessages, localizedHref } from "@/lib/i18n";
 import { localizeCases, localizeTaxonomy } from "@/lib/localized-content";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -11,9 +14,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const messages = await getMessages(locale);
   const { countries } = await getTaxonomy();
   const country = localizeTaxonomy(countries, locale).find((item) => item.slug === slug);
+  const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  if (!country) return { title: messages.countries.metadataFallback };
   return {
-    title: country ? formatMessage(messages.countries.metadataTitle, { name: country.name }) : messages.countries.metadataFallback,
-    description: country ? formatMessage(messages.countries.metadataDescription, { name: country.name }) : undefined
+    title: formatMessage(messages.countries.metadataTitle, { name: country.name }),
+    description: formatMessage(messages.countries.metadataDescription, { name: country.name }),
+    alternates: { canonical: `${site}${localizedHref(locale, `/countries/${country.slug}`)}` }
   };
 }
 
@@ -21,20 +27,39 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
   const { slug } = await params;
   const locale = await getLocale();
   const messages = await getMessages(locale);
+
   const { countries } = await getTaxonomy();
   const country = localizeTaxonomy(countries, locale).find((item) => item.slug === slug);
   if (!country) notFound();
+
+  await trackEvent("page_view", { page_path: `/countries/${slug}` });
   const cases = localizeCases(await getCasesByTaxonomy("country", slug), locale);
+
+  const crops = countByTerm(cases, (item) => item.crop).map((entry) => ({
+    name: entry.name,
+    href: localizedHref(locale, `/countries/${slug}/${entry.slug}`),
+    count: entry.count
+  }));
+  const problems = countByTerm(cases, (item) => item.primary_problem).map((entry) => ({
+    name: entry.name,
+    href: localizedHref(locale, `/problems/${entry.slug}`),
+    count: entry.count
+  }));
+
   return (
-    <section className="section">
-      <div className="container">
-        <p className="text-sm font-black uppercase tracking-wide text-primary">{messages.countries.eyebrow}</p>
-        <h1 className="mt-2 text-4xl font-black">{country.name}</h1>
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
-          {cases.map((item) => <CaseCard key={item.id} item={item} locale={locale} messages={messages} />)}
-        </div>
-      </div>
-    </section>
+    <>
+      <TaxonomyHub
+        kind="country"
+        term={country}
+        cases={cases}
+        crossLinks={[
+          { label: messages.hub.topCrops, items: crops },
+          { label: messages.hub.topProblems, items: problems }
+        ]}
+        locale={locale}
+        messages={messages}
+      />
+      <WhatsAppFab message={messages.whatsapp.genericMessage} messages={messages} />
+    </>
   );
 }
-

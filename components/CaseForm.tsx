@@ -1,5 +1,5 @@
-import { saveCase } from "@/lib/actions";
-import type { Messages } from "@/lib/i18n";
+﻿import { saveCase } from "@/lib/actions";
+import type { Messages } from "@/lib/i18n-shared";
 import { getEvidenceProfile } from "@/lib/publication-quality";
 import type { CaseStudy, Country, TaxonomyItem } from "@/lib/types";
 
