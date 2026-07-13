@@ -5,6 +5,7 @@ import { WhatsAppFab } from "@/components/WhatsAppFab";
 import { trackEvent } from "@/lib/analytics";
 import { getCasesByTaxonomy, getTaxonomy } from "@/lib/data";
 import { countByTerm } from "@/lib/hub";
+import { cropIcon, problemIcon } from "@/lib/icons";
 import { formatMessage, getLocale, getMessages, localizedHref } from "@/lib/i18n";
 import { localizeCases, localizeTaxonomy } from "@/lib/localized-content";
 
@@ -38,12 +39,14 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
   const crops = countByTerm(cases, (item) => item.crop).map((entry) => ({
     name: entry.name,
     href: localizedHref(locale, `/countries/${slug}/${entry.slug}`),
-    count: entry.count
+    count: entry.count,
+    icon: cropIcon(entry)
   }));
   const problems = countByTerm(cases, (item) => item.primary_problem).map((entry) => ({
     name: entry.name,
     href: localizedHref(locale, `/problems/${entry.slug}`),
-    count: entry.count
+    count: entry.count,
+    icon: problemIcon(entry)
   }));
 
   return (

@@ -2,8 +2,9 @@
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { EvidenceImage } from "@/components/EvidenceImage";
 import { JsonLd } from "@/components/JsonLd";
-import { EmptyState, EvidenceSheet, MetricStat } from "@/components/ui";
+import { Emoji, EmptyState, EvidenceSheet, MetricStat } from "@/components/ui";
 import { formatAggregate, getAggregateResults } from "@/lib/aggregate";
+import { taxonomyIcon } from "@/lib/icons";
 import { formatMessage, localizedHref, type Locale, type Messages } from "@/lib/i18n-shared";
 import type { CaseStudy, TaxonomyItem } from "@/lib/types";
 
@@ -31,7 +32,7 @@ export function TaxonomyHub({
   kind: HubKind;
   term: TaxonomyItem;
   cases: CaseStudy[];
-  crossLinks: { label: string; items: { name: string; href: string; count: number }[] }[];
+  crossLinks: { label: string; items: { name: string; href: string; count: number; icon?: string }[] }[];
   locale: Locale;
   messages: Messages;
 }) {
@@ -64,11 +65,19 @@ export function TaxonomyHub({
           messages={messages}
         />
 
-        <header className="mt-4">
-          <h1 className="text-h1 text-foreground md:text-display">{term.name}</h1>
-          {term.description ? (
-            <p className="mt-3 max-w-prose text-body-lg text-muted-foreground">{term.description}</p>
-          ) : null}
+        <header className="mt-4 flex items-center gap-4">
+          <span
+            aria-hidden="true"
+            className="grid h-16 w-16 flex-none place-items-center rounded-card bg-accent text-[2rem] leading-none md:h-20 md:w-20 md:text-[2.75rem]"
+          >
+            {taxonomyIcon(kind, term)}
+          </span>
+          <div className="min-w-0">
+            <h1 className="text-h1 text-foreground md:text-display">{term.name}</h1>
+            {term.description ? (
+              <p className="mt-2 max-w-prose text-body-lg text-muted-foreground">{term.description}</p>
+            ) : null}
+          </div>
         </header>
 
         {cases.length ? (
@@ -115,6 +124,7 @@ export function TaxonomyHub({
                         className="inline-flex min-h-[44px] items-center gap-2 rounded-pill border border-border bg-card px-4 text-body text-foreground hover:bg-muted"
                         href={link.href}
                       >
+                        {link.icon ? <Emoji symbol={link.icon} /> : null}
                         {link.name}
                         <span className="tabular text-caption text-muted-foreground">{link.count}</span>
                       </Link>
@@ -216,6 +226,7 @@ export function TaxonomyHub({
 
 /** Indice de taxonomia: los tres listados que antes eran el mismo markup copiado. */
 export function TaxonomyIndex({
+  kind,
   title,
   items,
   basePath,
@@ -224,6 +235,7 @@ export function TaxonomyIndex({
   locale,
   messages
 }: {
+  kind: HubKind;
   title: string;
   items: TaxonomyItem[];
   basePath: string;
@@ -246,11 +258,17 @@ export function TaxonomyIndex({
           {withCounts.map(({ term, count }) => (
             <Link
               key={term.id}
-              className="card flex min-h-[88px] items-center justify-between gap-4 p-5 hover:bg-muted"
+              className="card flex min-h-[88px] items-center gap-4 p-5 hover:bg-muted"
               href={localizedHref(locale, `${basePath}/${term.slug}`)}
             >
-              <span>
-                <span className="block text-h4 text-foreground">{term.name}</span>
+              <span
+                aria-hidden="true"
+                className="grid h-12 w-12 flex-none place-items-center rounded-card bg-accent text-h2 leading-none"
+              >
+                {taxonomyIcon(kind, term)}
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block truncate text-h4 text-foreground">{term.name}</span>
                 <span className="mt-1 block text-caption text-muted-foreground">{messages.hub.casesPublished}</span>
               </span>
               <span className="tabular text-metric text-data">{count}</span>

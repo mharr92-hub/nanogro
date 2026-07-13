@@ -24,6 +24,7 @@ export default async function ProblemsPage() {
 
   return (
     <TaxonomyIndex
+      kind="problem"
       title={messages.problems.title}
       items={localizeTaxonomy(taxonomy.problems, locale)}
       basePath="/problems"

@@ -17,22 +17,23 @@
 :root {
   color-scheme: light;
 
-  --background: #f4f5f1;
+  /* Papel blanco. Las superficies se separan del fondo por borde, no por tono. */
+  --background: #ffffff;
   --foreground: #171a16;
   --card: #ffffff;
   --card-foreground: #171a16;
-  --border: rgba(23, 26, 22, 0.14);
-  --muted: #e9ebe4;
-  --muted-foreground: #575c53;
+  --border: rgba(23, 26, 22, 0.16);
+  --muted: #f2f4f0;
+  --muted-foreground: #5a6057;
 
   --primary: #14523a;
   --primary-foreground: #ffffff;
-  --accent: #e4ebe5;
+  --accent: #eef4ef;
   --accent-foreground: #10402d;
 
   --data: #0a5a73;
   --data-foreground: #ffffff;
-  --data-tint: #e2edf1;
+  --data-tint: #eaf3f6;
 
   --success: #1b7a4b;
   --warning: #8a5a00;
@@ -288,6 +289,19 @@ a:hover {
 
 .sheet-rule {
   border-top: 1px dashed var(--border);
+}
+
+/*
+ * Fondo del hero: dos halos muy suaves (hoja y laboratorio) sobre el papel blanco, mas la
+ * misma reticula de la Ficha de Evidencia a muy baja opacidad. Da profundidad sin meter una
+ * imagen que haya que descargar, y no toca el contraste del texto.
+ */
+.hero-field {
+  background-image:
+    radial-gradient(60rem 22rem at 8% -10%, color-mix(in srgb, var(--primary) 9%, transparent), transparent),
+    radial-gradient(48rem 20rem at 92% 0%, color-mix(in srgb, var(--data) 8%, transparent), transparent),
+    linear-gradient(var(--grid-line) 1px, transparent 1px);
+  background-size: auto, auto, 100% 32px;
 }
 
 .theme-surface {

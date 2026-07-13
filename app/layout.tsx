@@ -13,14 +13,14 @@ const body = Inter({ subsets: ["latin"], variable: "--font-body", display: "swap
 // Datos: cifras tabulares. ROI, %, hectareas y scores siempre se leen en columna.
 const data = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-data", display: "swap" });
 
+// El tema por defecto es claro SIEMPRE, no la preferencia del sistema: la mayoria del
+// trafico llega desde un movil a pleno sol en campo, y ahi el papel claro gana. El usuario
+// que quiera oscuro lo elige con el toggle y su eleccion se recuerda.
 const themeInitScript = `
 (() => {
   try {
     const stored = window.localStorage.getItem("nano-gro-theme");
-    const theme = stored === "light" || stored === "dark"
-      ? stored
-      : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    document.documentElement.dataset.theme = theme;
+    document.documentElement.dataset.theme = stored === "dark" ? "dark" : "light";
   } catch {
     document.documentElement.dataset.theme = "light";
   }

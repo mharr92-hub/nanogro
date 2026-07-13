@@ -24,6 +24,7 @@ export default async function CountriesPage() {
 
   return (
     <TaxonomyIndex
+      kind="country"
       title={messages.countries.title}
       items={localizeTaxonomy(taxonomy.countries, locale)}
       basePath="/countries"

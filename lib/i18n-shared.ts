@@ -6,14 +6,15 @@ export type Messages = typeof en;
 export const locales: Locale[] = ["en", "es"];
 export const localeCookie = "nano_gro_lang";
 
+/**
+ * Espanol por defecto. El publico de la plataforma es la agricultura latinoamericana:
+ * el ingles es la excepcion, y se sirve solo cuando el usuario lo pide explicitamente
+ * (prefijo /en/... o el selector de idioma).
+ */
+export const defaultLocale: Locale = "es";
+
 export function isLocale(value?: string | null): value is Locale {
   return value === "en" || value === "es";
-}
-
-export function localeFromAcceptLanguage(value?: string | null): Locale {
-  const first = value?.split(",").map((item) => item.trim().slice(0, 2).toLowerCase()).find(Boolean);
-  if (first === "en") return "en";
-  return "es";
 }
 
 export function formatMessage(template: string, values: Record<string, string | number>) {

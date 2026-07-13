@@ -6,7 +6,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { EvidenceImage } from "@/components/EvidenceImage";
 import { JsonLd } from "@/components/JsonLd";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
-import { ConfidenceScore, EmptyState, EvidenceSheet } from "@/components/ui";
+import { ConfidenceScore, Emoji, EmptyState, EvidenceSheet, IconBadge } from "@/components/ui";
 import { trackEvent } from "@/lib/analytics";
 import { buildPublicCaseReport } from "@/lib/case-report";
 import { getCaseBySlug, getPublishedCases } from "@/lib/data";
@@ -78,7 +78,8 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
   // con el cultivo y el pais de ESTE caso. WhatsApp es el canal alternativo, no un CTA rival.
   const cta = (
     <div className="card p-5">
-      <h2 className="text-h4 text-foreground">{messages.caseDetail.ctaTitle}</h2>
+      <IconBadge symbol="🩺" />
+      <h2 className="mt-3 text-h4 text-foreground">{messages.caseDetail.ctaTitle}</h2>
       <p className="mt-2 text-body text-muted-foreground">
         {item.crop?.name && item.country?.name
           ? formatMessage(messages.caseDetail.ctaBodyContext, {
@@ -121,18 +122,19 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
 
               <nav aria-label={messages.caseDetail.onThisPage} className="mt-6 flex flex-wrap gap-2">
                 {[
-                  { id: "context", label: messages.caseDetail.context },
-                  { id: "protocol", label: messages.caseDetail.protocol },
-                  { id: "results", label: messages.caseDetail.results },
-                  ...(photos.length ? [{ id: "media", label: messages.caseDetail.media }] : []),
-                  ...(documents.length ? [{ id: "documents", label: messages.caseDetail.documents }] : []),
-                  { id: "related", label: messages.caseDetail.relatedTitle }
+                  { id: "context", label: messages.caseDetail.context, icon: "📍" },
+                  { id: "protocol", label: messages.caseDetail.protocol, icon: "🧪" },
+                  { id: "results", label: messages.caseDetail.results, icon: "📈" },
+                  ...(photos.length ? [{ id: "media", label: messages.caseDetail.media, icon: "📸" }] : []),
+                  ...(documents.length ? [{ id: "documents", label: messages.caseDetail.documents, icon: "📄" }] : []),
+                  { id: "related", label: messages.caseDetail.relatedTitle, icon: "🔗" }
                 ].map((entry) => (
                   <a
                     key={entry.id}
-                    className="inline-flex min-h-[44px] items-center rounded-pill border border-border px-4 text-body text-muted-foreground hover:bg-muted hover:text-foreground"
+                    className="inline-flex min-h-[44px] items-center gap-2 rounded-pill border border-border px-4 text-body text-muted-foreground hover:bg-muted hover:text-foreground"
                     href={`#${entry.id}`}
                   >
+                    <Emoji symbol={entry.icon} />
                     {entry.label}
                   </a>
                 ))}

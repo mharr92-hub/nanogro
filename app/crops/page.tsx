@@ -24,6 +24,7 @@ export default async function CropsPage() {
 
   return (
     <TaxonomyIndex
+      kind="crop"
       title={messages.crops.title}
       items={localizeTaxonomy(taxonomy.crops, locale)}
       basePath="/crops"

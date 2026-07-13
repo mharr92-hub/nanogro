@@ -3,10 +3,11 @@ import { EvidenceImage } from "@/components/EvidenceImage";
 import { HeroSearch } from "@/components/HeroSearch";
 import { JsonLd } from "@/components/JsonLd";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
-import { EvidenceSheet, MetricStat } from "@/components/ui";
+import { Emoji, EvidenceSheet, IconBadge, MetricStat } from "@/components/ui";
 import { formatAggregate, getAggregateResults } from "@/lib/aggregate";
 import { trackEvent } from "@/lib/analytics";
 import { getPublishedCases, getTaxonomy } from "@/lib/data";
+import { countryIcon, problemIcon } from "@/lib/icons";
 import { getLocale, getMessages, localizedHref } from "@/lib/i18n";
 import { formatMessage } from "@/lib/i18n-shared";
 import { localizeCases, localizeTaxonomy } from "@/lib/localized-content";
@@ -41,9 +42,13 @@ export default async function HomePage() {
   return (
     <>
       {/* El buscador ES el hero. Sin banner decorativo delante. */}
-      <section className="border-b border-border bg-accent/40 py-10 md:py-16">
+      <section className="hero-field border-b border-border py-10 md:py-16">
         <div className="container">
-          <h1 className="max-w-3xl text-display text-foreground md:text-display-lg">{messages.hero.title}</h1>
+          <p className="flex items-center gap-2 text-label font-semibold uppercase tracking-wide text-data">
+            <Emoji symbol="🌱" className="text-h4" />
+            {messages.aggregate.title}
+          </p>
+          <h1 className="mt-3 max-w-3xl text-display text-foreground md:text-display-lg">{messages.hero.title}</h1>
           <p className="mt-4 max-w-prose text-body-lg text-muted-foreground">{messages.hero.subtitle}</p>
           <div className="mt-7 max-w-4xl">
             <HeroSearch {...localizedTaxonomy} locale={locale} messages={messages} />
@@ -54,7 +59,8 @@ export default async function HomePage() {
       {/* Franja de metricas agregadas. Cada cifra con su n. Guardrails de la spec. */}
       <section className="border-b border-border py-8">
         <div className="container">
-          <h2 className="text-label font-semibold uppercase tracking-wide text-muted-foreground">
+          <h2 className="flex items-center gap-2 text-label font-semibold uppercase tracking-wide text-muted-foreground">
+            <Emoji symbol="📊" className="text-h4" />
             {messages.aggregate.title}
           </h2>
           <div className="mt-5 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-6">
@@ -104,19 +110,30 @@ export default async function HomePage() {
       {/* Navegacion problema-primero: el agricultor no conoce el producto, conoce su problema. */}
       <section className="section border-b border-border">
         <div className="container">
-          <h2 className="text-h2 text-foreground">{messages.problemFirst.title}</h2>
+          <div className="flex items-center gap-3">
+            <IconBadge symbol="🔎" />
+            <h2 className="text-h2 text-foreground">{messages.problemFirst.title}</h2>
+          </div>
           <p className="mt-2 max-w-prose text-body text-muted-foreground">{messages.problemFirst.subtitle}</p>
-          <div className="mt-6 flex flex-wrap gap-3">
+
+          {/* Tarjetas de problema con icono: se reconoce el sintoma antes de leerlo. */}
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {localizedTaxonomy.problems.map((problem) => {
               const count = cases.filter((item) => item.primary_problem?.slug === problem.slug).length;
               return (
                 <Link
                   key={problem.id}
-                  className="inline-flex min-h-[44px] items-center gap-2 rounded-pill border border-border bg-card px-4 text-body text-foreground hover:bg-muted"
+                  className="card flex min-h-[88px] items-center gap-4 p-5 hover:bg-muted"
                   href={localizedHref(locale, `/problems/${problem.slug}`)}
                 >
-                  {problem.name}
-                  <span className="tabular text-caption text-muted-foreground">{count}</span>
+                  <span
+                    aria-hidden="true"
+                    className="grid h-12 w-12 flex-none place-items-center rounded-card bg-accent text-h2 leading-none"
+                  >
+                    {problemIcon(problem)}
+                  </span>
+                  <span className="min-w-0 flex-1 truncate text-h5 text-foreground">{problem.name}</span>
+                  <span className="tabular text-h4 text-data">{count}</span>
                 </Link>
               );
             })}
@@ -127,11 +144,14 @@ export default async function HomePage() {
       <section className="section border-b border-border">
         <div className="container">
           <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="text-label font-semibold uppercase tracking-wide text-data">
-                {messages.homeSections.featuredEyebrow}
-              </p>
-              <h2 className="mt-1 text-h2 text-foreground">{messages.homeSections.featuredTitle}</h2>
+            <div className="flex items-center gap-3">
+              <IconBadge symbol="🧪" tone="data" />
+              <div>
+                <p className="text-label font-semibold uppercase tracking-wide text-data">
+                  {messages.homeSections.featuredEyebrow}
+                </p>
+                <h2 className="mt-1 text-h2 text-foreground">{messages.homeSections.featuredTitle}</h2>
+              </div>
             </div>
             <Link className="btn btn-secondary" href={localizedHref(locale, "/cases")}>
               {messages.homeSections.allCases}
@@ -149,14 +169,17 @@ export default async function HomePage() {
         <section className="section border-b border-border">
           <div className="container">
             <div className="flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <p className="text-label font-semibold uppercase tracking-wide text-data">
-                  {messages.homeSections.galleryEyebrow}
-                </p>
-                <h2 className="mt-1 text-h2 text-foreground">{messages.homeSections.galleryTitle}</h2>
-                <p className="mt-2 max-w-prose text-body text-muted-foreground">
-                  {messages.homeSections.galleryBody}
-                </p>
+              <div className="flex items-start gap-3">
+                <IconBadge symbol="📸" tone="data" />
+                <div>
+                  <p className="text-label font-semibold uppercase tracking-wide text-data">
+                    {messages.homeSections.galleryEyebrow}
+                  </p>
+                  <h2 className="mt-1 text-h2 text-foreground">{messages.homeSections.galleryTitle}</h2>
+                  <p className="mt-2 max-w-prose text-body text-muted-foreground">
+                    {messages.homeSections.galleryBody}
+                  </p>
+                </div>
               </div>
               <Link className="btn btn-secondary" href={localizedHref(locale, "/before-after")}>
                 {messages.homeSections.galleryCta}
@@ -185,7 +208,8 @@ export default async function HomePage() {
       <section className="section border-b border-border">
         <div className="container grid gap-6 lg:grid-cols-2">
           <div className="card p-6">
-            <p className="text-label font-semibold uppercase tracking-wide text-data">
+            <IconBadge symbol="💰" tone="data" />
+            <p className="mt-3 text-label font-semibold uppercase tracking-wide text-data">
               {messages.homeSections.roiEyebrow}
             </p>
             <h2 className="mt-1 text-h2 text-foreground">{messages.homeSections.roiTitle}</h2>
@@ -196,7 +220,8 @@ export default async function HomePage() {
           </div>
 
           <div className="card p-6">
-            <h2 className="text-h2 text-foreground">{messages.homeSections.mapTitle}</h2>
+            <IconBadge symbol="🌎" />
+            <h2 className="mt-3 text-h2 text-foreground">{messages.homeSections.mapTitle}</h2>
             <p className="mt-2 max-w-prose text-body text-muted-foreground">{messages.homeSections.mapBody}</p>
             <ul className="mt-5 grid gap-2">
               {countriesWithCases.slice(0, 6).map((country) => (
@@ -205,7 +230,10 @@ export default async function HomePage() {
                     className="flex min-h-[44px] items-center justify-between gap-3 rounded border border-border px-3 hover:bg-muted"
                     href={localizedHref(locale, `/countries/${country.slug}`)}
                   >
-                    <span className="text-body text-foreground">{country.name}</span>
+                    <span className="flex items-center gap-2 text-body text-foreground">
+                      <Emoji symbol={countryIcon(country)} className="text-h4" />
+                      {country.name}
+                    </span>
                     <span className="tabular text-caption text-muted-foreground">{country.count}</span>
                   </Link>
                 </li>
@@ -233,12 +261,17 @@ export default async function HomePage() {
       </section>
 
       <section className="section">
-        <div className="container">
-          <p className="text-label font-semibold uppercase tracking-wide text-muted-foreground">
-            {messages.homeSections.distributorEyebrow}
-          </p>
-          <h2 className="mt-1 text-h2 text-foreground">{messages.homeSections.distributorTitle}</h2>
-          <p className="mt-2 max-w-prose text-body text-muted-foreground">{messages.homeSections.distributorBody}</p>
+        <div className="container flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+          <IconBadge symbol="🤝" />
+          <div>
+            <p className="text-label font-semibold uppercase tracking-wide text-muted-foreground">
+              {messages.homeSections.distributorEyebrow}
+            </p>
+            <h2 className="mt-1 text-h2 text-foreground">{messages.homeSections.distributorTitle}</h2>
+            <p className="mt-2 max-w-prose text-body text-muted-foreground">
+              {messages.homeSections.distributorBody}
+            </p>
+          </div>
         </div>
       </section>
 

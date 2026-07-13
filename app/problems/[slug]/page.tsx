@@ -5,6 +5,7 @@ import { WhatsAppFab } from "@/components/WhatsAppFab";
 import { trackEvent } from "@/lib/analytics";
 import { getCasesByTaxonomy, getTaxonomy } from "@/lib/data";
 import { countByTerm } from "@/lib/hub";
+import { countryIconBySlug, cropIcon } from "@/lib/icons";
 import { formatMessage, getLocale, getMessages, localizedHref } from "@/lib/i18n";
 import { localizeCases, localizeTaxonomy } from "@/lib/localized-content";
 
@@ -28,8 +29,8 @@ export default async function ProblemPage({ params }: { params: Promise<{ slug: 
   const locale = await getLocale();
   const messages = await getMessages(locale);
 
-  const { problems } = await getTaxonomy();
-  const problem = localizeTaxonomy(problems, locale).find((item) => item.slug === slug);
+  const taxonomy = await getTaxonomy();
+  const problem = localizeTaxonomy(taxonomy.problems, locale).find((item) => item.slug === slug);
   if (!problem) notFound();
 
   await trackEvent("page_view", { page_path: `/problems/${slug}` });
@@ -38,12 +39,14 @@ export default async function ProblemPage({ params }: { params: Promise<{ slug: 
   const crops = countByTerm(cases, (item) => item.crop).map((entry) => ({
     name: entry.name,
     href: localizedHref(locale, `/crops/${entry.slug}/${slug}`),
-    count: entry.count
+    count: entry.count,
+    icon: cropIcon(entry)
   }));
   const countries = countByTerm(cases, (item) => item.country).map((entry) => ({
     name: entry.name,
     href: localizedHref(locale, `/countries/${entry.slug}`),
-    count: entry.count
+    count: entry.count,
+    icon: countryIconBySlug(entry.slug, localizeTaxonomy(taxonomy.countries, locale))
   }));
 
   return (

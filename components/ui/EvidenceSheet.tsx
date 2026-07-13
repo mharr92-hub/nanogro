@@ -2,6 +2,8 @@
 import type { CSSProperties } from "react";
 import { evidenceLevelOf } from "@/lib/evidence-checklist";
 import { publicContentText } from "@/lib/evidence-labels";
+import { countryIcon, cropIcon, problemIcon } from "@/lib/icons";
+import { Emoji } from "./Emoji";
 import { localizedHref, type Locale, type Messages } from "@/lib/i18n-shared";
 import type { CaseStudy, EvidenceLevel } from "@/lib/types";
 import { EvidenceLevelBadge } from "./Badge";
@@ -67,11 +69,22 @@ export function EvidenceSheet({
       </Heading>
 
       <dl className="mt-4 grid grid-cols-3 gap-3 border-t border-border pt-4 text-body">
-        <Field label={messages.common.crop} value={item.crop?.name} fallback={messages.sheet.notReported} />
-        <Field label={messages.common.country} value={item.country?.name} fallback={messages.sheet.notReported} />
+        <Field
+          label={messages.common.crop}
+          value={item.crop?.name}
+          icon={item.crop ? cropIcon(item.crop) : undefined}
+          fallback={messages.sheet.notReported}
+        />
+        <Field
+          label={messages.common.country}
+          value={item.country?.name}
+          icon={item.country ? countryIcon(item.country) : undefined}
+          fallback={messages.sheet.notReported}
+        />
         <Field
           label={messages.common.problem}
           value={item.primary_problem?.name}
+          icon={item.primary_problem ? problemIcon(item.primary_problem) : undefined}
           fallback={messages.sheet.notReported}
         />
       </dl>
@@ -116,12 +129,25 @@ export function EvidenceSheet({
   );
 }
 
-function Field({ label, value, fallback }: { label: string; value?: string | null; fallback: string }) {
+function Field({
+  label,
+  value,
+  icon,
+  fallback
+}: {
+  label: string;
+  value?: string | null;
+  icon?: string;
+  fallback: string;
+}) {
   return (
     <div className="min-w-0">
       <dt className="text-caption uppercase tracking-wide text-muted-foreground">{label}</dt>
-      <dd className={["mt-1 truncate", value ? "font-semibold text-foreground" : "text-muted-foreground"].join(" ")}>
-        {value || fallback}
+      <dd className="mt-1 flex items-center gap-1.5">
+        {value && icon ? <Emoji symbol={icon} /> : null}
+        <span className={["truncate", value ? "font-semibold text-foreground" : "text-muted-foreground"].join(" ")}>
+          {value || fallback}
+        </span>
       </dd>
     </div>
   );
