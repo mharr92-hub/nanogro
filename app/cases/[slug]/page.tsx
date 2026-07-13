@@ -64,8 +64,16 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
   const assets = item.evidence_assets ?? [];
   const photos = assets.filter((asset) => asset.asset_type === "photo");
   const documents = assets.filter((asset) => asset.asset_type !== "photo" && asset.asset_type !== "video");
-  // El informe de campo del que sale este caso. Siempre visible arriba.
-  const sourceDocuments = documents;
+  /*
+   * Los archivos fuente del caso, SIEMPRE descargables.
+   *
+   * El informe de Cuba son siete paginas escaneadas en JPEG. El codigo las clasificaba como
+   * "fotos", asi que ese caso se quedaba sin boton de descarga: su informe original existia,
+   * se servia correctamente, pero no habia forma de llegar a el desde la pagina. Cuando un
+   * caso no tiene ningun documento ofimatico, sus imagenes SON el informe, y hay que
+   * ofrecerlas.
+   */
+  const sourceDocuments = documents.length ? documents : assets;
   // Quien firma o supervisa el informe original (lib/team.ts).
   const signers = signersOfCase(rawItem.id);
   const pair = findBeforeAfterPair(photos);
@@ -128,24 +136,38 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
                 debajo de la ficha, no enterrado tras la galeria.
               */}
               {sourceDocuments.length ? (
-                <div className="card mt-4 flex flex-wrap items-center justify-between gap-3 p-4">
-                  <div className="min-w-0">
-                    <p className="text-label font-semibold uppercase tracking-wide text-muted-foreground">
-                      {messages.caseDetail.sourceTitle}
-                    </p>
-                    <p className="mt-1 truncate text-body text-foreground">
-                      {sourceDocuments.map((asset) => asset.file_name || publicEvidenceLabel(asset, locale)).join(" · ")}
-                    </p>
-                  </div>
-                  <a
-                    className="btn btn-download"
-                    href={sourceDocuments[0].file_url}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    {messages.cases.downloadOriginalReport}
-                  </a>
-                </div>
+                <section className="card mt-4 p-4">
+                  <p className="text-label font-semibold uppercase tracking-wide text-muted-foreground">
+                    {messages.caseDetail.sourceTitle}
+                  </p>
+                  {/*
+                    CADA archivo con su propio enlace. Antes solo se enlazaba el primero, asi
+                    que en los casos con varios documentos (o con un informe repartido en
+                    siete paginas escaneadas) el resto era inalcanzable.
+                    `download` fuerza la descarga en vez de dejar que el navegador intente
+                    abrir un .docx que no sabe mostrar.
+                  */}
+                  <ul className="mt-3 grid gap-2">
+                    {sourceDocuments.map((asset) => (
+                      <li key={asset.id}>
+                        <a
+                          className="flex min-h-[44px] items-center justify-between gap-3 rounded border border-border px-4 hover:bg-muted"
+                          href={asset.file_url}
+                          download
+                          rel="noopener noreferrer"
+                          target="_blank"
+                        >
+                          <span className="min-w-0 break-words text-body text-foreground">
+                            {asset.file_name || publicEvidenceLabel(asset, locale)}
+                          </span>
+                          <span className="flex-none text-caption font-semibold text-data">
+                            {messages.cases.downloadOriginalReport} ↓
+                          </span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
               ) : null}
 
               {/*
