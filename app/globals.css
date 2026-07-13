@@ -83,8 +83,26 @@
   --grid-line: rgba(236, 238, 232, 0.06);
 }
 
+/*
+ * Fondo de la pagina: papel de laboratorio.
+ *
+ * Una retícula muy tenue de 32px, como el papel milimetrado de un cuaderno de campo, mas
+ * dos halos suaves (verde hoja arriba a la izquierda, azul laboratorio arriba a la derecha).
+ * Todo con gradientes CSS: cero imagenes que descargar, asi que no cuesta ni un kilobyte
+ * ni un milisegundo en el movil de un agricultor con mala conexion.
+ *
+ * `background-attachment: fixed` deja los halos quietos mientras el contenido pasa por
+ * encima: da profundidad sin distraer. Y no toca el contraste del texto.
+ */
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image:
+    radial-gradient(70rem 30rem at -5% -5%, color-mix(in srgb, var(--primary) 7%, transparent), transparent),
+    radial-gradient(55rem 26rem at 105% 0%, color-mix(in srgb, var(--data) 6%, transparent), transparent),
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: auto, auto, 100% 32px, 32px 100%;
+  background-attachment: fixed, fixed, scroll, scroll;
   color: var(--foreground);
   font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
 }

@@ -7,7 +7,7 @@ import { WhatsAppFab } from "@/components/WhatsAppFab";
 import { EmptyState, EvidenceSheet } from "@/components/ui";
 import { trackEvent } from "@/lib/analytics";
 import { applyCaseFilters, getFacetCounts } from "@/lib/case-filters";
-import { getPublishedCases, getTaxonomy } from "@/lib/data";
+import { getPublicTaxonomy, getPublishedCases } from "@/lib/data";
 import { formatMessage, getLocale, getMessages, localizedHref } from "@/lib/i18n";
 import { localizeCases, localizeTaxonomy } from "@/lib/localized-content";
 
@@ -38,7 +38,7 @@ export default async function CasesPage({
   await trackEvent("page_view", { page_path: "/cases", metadata: params });
   if (Object.keys(params).length > 0) await trackEvent("filter_used", { page_path: "/cases", metadata: params });
 
-  const [taxonomy, rawCases] = await Promise.all([getTaxonomy(), getPublishedCases()]);
+  const [taxonomy, rawCases] = await Promise.all([getPublicTaxonomy(), getPublishedCases()]);
   const allCases = localizeCases(rawCases, locale);
   const cases = applyCaseFilters(allCases, filters);
   const counts = getFacetCounts(allCases, filters);

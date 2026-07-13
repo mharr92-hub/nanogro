@@ -57,7 +57,13 @@ export function EvidenceSheet({
 
   return (
     <article
-      className="sheet flex h-full flex-col p-5"
+      /*
+       * `h-full` SOLO en la variante compacta: ahi la ficha es una tarjeta dentro de una
+       * grilla y debe igualar la altura de sus hermanas. En la variante `full` del detalle
+       * de caso, `h-full` la estiraba hasta la altura del panel lateral y dejaba un enorme
+       * bloque vacio con la reticula a la vista.
+       */
+      className={["sheet flex flex-col p-5", variant === "compact" ? "h-full" : ""].filter(Boolean).join(" ")}
       style={{ "--sheet-accent": accentVar[level] } as CSSProperties}
     >
       <header className="flex flex-wrap items-center justify-between gap-2">

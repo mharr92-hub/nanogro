@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { RoiCalculator } from "@/components/RoiCalculator";
 import { trackEvent } from "@/lib/analytics";
-import { getPublishedCases, getTaxonomy } from "@/lib/data";
+import { getPublicTaxonomy, getPublishedCases } from "@/lib/data";
 import { getLocale, getMessages, localizedHref } from "@/lib/i18n";
 import { localizeCases, localizeTaxonomy } from "@/lib/localized-content";
 
@@ -31,7 +31,7 @@ export default async function RoiCalculatorPage({
 
   await trackEvent("page_view", { page_path: "/roi-calculator", metadata: params });
 
-  const [taxonomy, rawCases] = await Promise.all([getTaxonomy(), getPublishedCases()]);
+  const [taxonomy, rawCases] = await Promise.all([getPublicTaxonomy(), getPublishedCases()]);
 
   return (
     <section className="section">

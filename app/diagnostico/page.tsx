@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { DiagnosticWizard } from "@/components/DiagnosticWizard";
 import { trackEvent } from "@/lib/analytics";
-import { getTaxonomy } from "@/lib/data";
+import { getPublicTaxonomy } from "@/lib/data";
 import { getLocale, getMessages, localizedHref } from "@/lib/i18n";
 import { localizeTaxonomy } from "@/lib/localized-content";
 
@@ -31,7 +31,7 @@ export default async function DiagnosticPage({
 
   await trackEvent("diagnostic_started", { page_path: "/diagnostico", metadata: params });
 
-  const taxonomy = await getTaxonomy();
+  const taxonomy = await getPublicTaxonomy();
 
   return (
     <section className="section">

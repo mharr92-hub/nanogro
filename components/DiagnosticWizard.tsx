@@ -49,8 +49,26 @@ export function DiagnosticWizard({
   // para poder avanzar es la forma mas rapida de ensuciar los datos.
   const optional: StepId[] = ["production", "email"];
   const canAdvance = optional.includes(current) || values[current].trim().length > 0;
+  // Pasos donde la respuesta es un toque, no texto: avanzan solos.
+  const isChoiceStep = current === "country" || current === "crop" || current === "problem" || current === "objective";
 
   const set = (id: StepId, value: string) => setValues((previous) => ({ ...previous, [id]: value }));
+
+  /**
+   * Elegir una opcion avanza sola: en los pasos de seleccion (pais, cultivo, problema,
+   * objetivo) el toque en la tarjeta ES la respuesta, y pedir despues un segundo toque en
+   * "Siguiente" solo anade friccion. En los pasos de escritura (hectareas, produccion,
+   * WhatsApp, email) NO se autoavanza, porque el usuario aun esta tecleando.
+   *
+   * El pequeno retardo deja ver la tarjeta marcada antes de pasar de pantalla: sin el, el
+   * salto es tan brusco que el usuario no sabe si registro su respuesta.
+   */
+  const selectAndAdvance = (id: StepId, value: string) => {
+    set(id, value);
+    if (step < STEPS.length - 1) {
+      window.setTimeout(() => setStep((current) => (current === step ? current + 1 : current)), 180);
+    }
+  };
 
   const cropName = crops.find((item) => item.slug === values.crop)?.name ?? "";
   const countryName = countries.find((item) => item.slug === values.country)?.name ?? "";
@@ -71,12 +89,17 @@ export function DiagnosticWizard({
             name="__country"
             items={countries}
             value={values.country}
-            onSelect={(value) => set("country", value)}
+            onSelect={(value) => selectAndAdvance("country", value)}
           />
         ) : null}
 
         {current === "crop" ? (
-          <Choices name="__crop" items={crops} value={values.crop} onSelect={(value) => set("crop", value)} />
+          <Choices
+            name="__crop"
+            items={crops}
+            value={values.crop}
+            onSelect={(value) => selectAndAdvance("crop", value)}
+          />
         ) : null}
 
         {current === "problem" ? (
@@ -84,7 +107,7 @@ export function DiagnosticWizard({
             name="__problem"
             items={problems}
             value={values.problem}
-            onSelect={(value) => set("problem", value)}
+            onSelect={(value) => selectAndAdvance("problem", value)}
           />
         ) : null}
 
@@ -113,7 +136,7 @@ export function DiagnosticWizard({
               <ChoiceButton
                 key={objective}
                 selected={values.objective === objective}
-                onClick={() => set("objective", objective)}
+                onClick={() => selectAndAdvance("objective", objective)}
               >
                 {objective}
               </ChoiceButton>
@@ -168,16 +191,24 @@ export function DiagnosticWizard({
       <input type="hidden" name="problem_slug" value={values.problem} />
 
       <div className="mt-6 flex flex-wrap gap-3">
-        {step > 0 ? (
-          <button className="btn btn-secondary" type="button" onClick={() => setStep((value) => value - 1)}>
-            {messages.diagnosticFlow.back}
-          </button>
-        ) : null}
+        {/* "Atras" se puede pulsar siempre, tambien en el ultimo paso: si el usuario se
+            equivoco de cultivo en el paso 2, tiene que poder volver sin reiniciar. */}
+        <button
+          className="btn btn-secondary"
+          type="button"
+          disabled={step === 0}
+          onClick={() => setStep((value) => Math.max(0, value - 1))}
+        >
+          {messages.diagnosticFlow.back}
+        </button>
 
         {isLast ? (
           <button className="btn btn-primary flex-1" type="submit">
             {messages.diagnosticFlow.submit}
           </button>
+        ) : isChoiceStep ? (
+          // En los pasos de seleccion no hay boton "Siguiente": elegir ya avanza.
+          null
         ) : (
           <button
             className="btn btn-primary flex-1"
@@ -190,7 +221,7 @@ export function DiagnosticWizard({
         )}
       </div>
 
-      {!canAdvance ? (
+      {!isChoiceStep && !canAdvance ? (
         <p className="mt-3 text-caption text-muted-foreground">{messages.diagnosticFlow.required}</p>
       ) : null}
     </form>

@@ -376,7 +376,10 @@
     "distributorEyebrow": "Distributors",
     "distributorTitle": "Sell with evidence, not promises",
     "distributorBody": "If you distribute agricultural inputs, this case database is your sales material: documented results by crop, country, and problem.",
-    "distributorCta": "Talk on WhatsApp"
+    "distributorCta": "Talk on WhatsApp",
+    "productsTitle": "Our products",
+    "productsBody": "All the evidence in this database comes from field application of Nano-Gro and Tierra Fértil products. Their technical sheets, with recommended dose and protocol, are published and available.",
+    "productsCta": "View the technical sheets"
   },
   "facets": {
     "title": "Filter",
@@ -430,7 +433,13 @@
     "beforeAfterHint": "Drag to compare",
     "before": "Before",
     "after": "After",
-    "stickyCta": "Free diagnostic"
+    "stickyCta": "Free diagnostic",
+    "sourceTitle": "Original technical document",
+    "productTitle": "Product applied",
+    "productName": "Nano-Gro",
+    "dosageFromSheet": "The original report did not record the exact dose. Check the recommended dose in the product technical sheet.",
+    "confirmWithTeam": "Any dose must be confirmed with the technical team before application: it depends on the crop, the stage, and your field conditions.",
+    "viewSheets": "View technical sheets"
   },
   "gallery": {
     "metadataTitle": "Before and after gallery",

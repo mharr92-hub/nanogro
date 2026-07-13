@@ -63,6 +63,8 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
   const assets = item.evidence_assets ?? [];
   const photos = assets.filter((asset) => asset.asset_type === "photo");
   const documents = assets.filter((asset) => asset.asset_type !== "photo" && asset.asset_type !== "video");
+  // El informe de campo del que sale este caso. Siempre visible arriba.
+  const sourceDocuments = documents;
   const pair = findBeforeAfterPair(photos);
   const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
@@ -116,11 +118,74 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
               {/* La Ficha de Evidencia a tamano completo, arriba del fold. */}
               <EvidenceSheet item={item} locale={locale} messages={messages} variant="full" headingLevel="h2" />
 
+              {/*
+                La fuente, siempre a la vista y arriba.
+                Un sistema de evidencia que esconde el documento original al fondo de la
+                pagina esta pidiendo que le crean por la cara. El informe de campo va justo
+                debajo de la ficha, no enterrado tras la galeria.
+              */}
+              {sourceDocuments.length ? (
+                <div className="card mt-4 flex flex-wrap items-center justify-between gap-3 p-4">
+                  <div className="min-w-0">
+                    <p className="text-label font-semibold uppercase tracking-wide text-muted-foreground">
+                      {messages.caseDetail.sourceTitle}
+                    </p>
+                    <p className="mt-1 truncate text-body text-foreground">
+                      {sourceDocuments.map((asset) => asset.file_name || publicEvidenceLabel(asset, locale)).join(" · ")}
+                    </p>
+                  </div>
+                  <a
+                    className="btn btn-download"
+                    href={sourceDocuments[0].file_url}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    {messages.cases.downloadOriginalReport}
+                  </a>
+                </div>
+              ) : null}
+
               {report.disclaimer ? (
                 <p className="card mt-4 border-warning/40 p-4 text-body text-warning">{report.disclaimer}</p>
               ) : null}
 
               {/* Los anclajes salen de las secciones que EXISTEN, no de una lista fija. */}
+              {/*
+                Producto aplicado y dosis.
+                En todos los casos el producto aplicado es Nano-Gro: lo dice cada informe.
+                La dosis se muestra SOLO si el informe la registro; cuando no, se remite a la
+                dosis recomendada de la ficha tecnica y se pide confirmar con el equipo
+                tecnico. No se afirma una dosis que el documento no respalda, ni se da por
+                aplicado un producto que el informe no menciona.
+              */}
+              <section className="card mt-4 p-5">
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div className="min-w-0">
+                    <p className="text-label font-semibold uppercase tracking-wide text-muted-foreground">
+                      {messages.caseDetail.productTitle}
+                    </p>
+                    <p className="mt-1 flex items-center gap-2 text-h4 text-foreground">
+                      <Emoji symbol="🧪" />
+                      {messages.caseDetail.productName}
+                    </p>
+                    <p className="mt-2 max-w-prose text-body text-muted-foreground">
+                      {item.dosage ? (
+                        <>
+                          <span className="font-semibold text-foreground">{messages.cases.dosage}:</span>{" "}
+                          {item.dosage}
+                        </>
+                      ) : (
+                        messages.caseDetail.dosageFromSheet
+                      )}
+                    </p>
+                    <p className="mt-2 text-caption text-muted-foreground">{messages.caseDetail.confirmWithTeam}</p>
+                  </div>
+                  <Link className="btn btn-secondary" href={localizedHref(locale, "/fichas")}>
+                    {messages.caseDetail.viewSheets}
+                  </Link>
+                </div>
+              </section>
+
               <nav aria-label={messages.caseDetail.onThisPage} className="mt-6 flex flex-wrap gap-2">
                 {[
                   ...report.sections.map((section) => ({

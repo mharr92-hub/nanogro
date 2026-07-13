@@ -28,6 +28,12 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
 
   const { internalPath } = internalPathFromLocalized(pathname ?? "/");
 
+  /*
+   * El diagnostico NO va en esta lista: ya es el boton primario verde de la derecha.
+   * Tenerlo en los dos sitios lo duplicaba en pantalla y, al no caber, partia las etiquetas
+   * en dos lineas ("Antes / Despues", "Calculadora de ROI"), que era lo que ensuciaba la
+   * cabecera. Menos enlaces y `whitespace-nowrap`: cada seccion ocupa una sola linea.
+   */
   const links = [
     { href: "/problems", label: messages.nav.problems },
     { href: "/cases", label: messages.nav.cases },
@@ -35,9 +41,6 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
     { href: "/countries", label: messages.nav.countries },
     { href: "/before-after", label: messages.nav.beforeAfter },
     { href: "/roi-calculator", label: messages.nav.roiCalculator },
-    // El diagnostico es ademas el boton primario, pero tambien tiene que estar en el menu:
-    // un usuario que busca la seccion con la vista no deberia depender de reconocer el CTA.
-    { href: "/diagnostico", label: messages.nav.diagnostic },
     { href: "/fichas", label: messages.nav.sheets }
   ];
 
@@ -46,19 +49,22 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
   return (
     <>
       <header className="theme-surface sticky top-0 z-50 border-b">
-        <div className="container flex min-h-16 items-center justify-between gap-4">
-          <Link className="font-display text-h4 text-primary" href={localizedHref(locale, "/")}>
+        <div className="container flex min-h-16 items-center justify-between gap-6">
+          <Link
+            className="font-display whitespace-nowrap text-h4 text-primary"
+            href={localizedHref(locale, "/")}
+          >
             {messages.common.brand}
           </Link>
 
-          <nav aria-label={messages.nav.menu} className="hidden items-center gap-5 lg:flex">
+          <nav aria-label={messages.nav.menu} className="hidden items-center gap-6 xl:flex">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={localizedHref(locale, link.href)}
                 aria-current={isActive(link.href) ? "page" : undefined}
                 className={[
-                  "text-body font-medium",
+                  "whitespace-nowrap text-body font-medium transition-colors",
                   isActive(link.href) ? "text-primary" : "text-muted-foreground hover:text-foreground"
                 ].join(" ")}
               >
@@ -68,13 +74,16 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
           </nav>
 
           <div className="flex items-center gap-2">
-            <Link className="btn btn-primary hidden sm:inline-flex" href={localizedHref(locale, "/diagnostico")}>
+            <Link
+              className="btn btn-primary hidden whitespace-nowrap sm:inline-flex"
+              href={localizedHref(locale, "/diagnostico")}
+            >
               {messages.nav.primaryCta}
             </Link>
             <LanguageSwitcher />
             <ThemeToggle />
             <button
-              className="btn btn-secondary lg:hidden"
+              className="btn btn-secondary xl:hidden"
               type="button"
               aria-expanded={open}
               aria-controls="mobile-nav"
@@ -86,7 +95,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
         </div>
 
         {open ? (
-          <nav id="mobile-nav" aria-label={messages.nav.menu} className="border-t border-border lg:hidden">
+          <nav id="mobile-nav" aria-label={messages.nav.menu} className="border-t border-border xl:hidden">
             <div className="container grid gap-1 py-3">
               {links.map((link) => (
                 <Link

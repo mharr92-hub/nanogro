@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { EmptyState, EvidenceSheet } from "@/components/ui";
 import { trackEvent } from "@/lib/analytics";
-import { getPublishedCases, getTaxonomy } from "@/lib/data";
+import { getPublicTaxonomy, getPublishedCases } from "@/lib/data";
 import { getPreliminaryRecommendation, matchCases } from "@/lib/diagnostic-match";
 import { getLocale, getMessages, localizedHref } from "@/lib/i18n";
 import { formatMessage } from "@/lib/i18n-shared";
@@ -34,7 +34,7 @@ export default async function DiagnosticResultPage({
 
   await trackEvent("diagnostic_completed", { page_path: "/diagnostico/resultado", metadata: params });
 
-  const [taxonomy, rawCases] = await Promise.all([getTaxonomy(), getPublishedCases()]);
+  const [taxonomy, rawCases] = await Promise.all([getPublicTaxonomy(), getPublishedCases()]);
   const cases = localizeCases(rawCases, locale);
 
   const problems = localizeTaxonomy(taxonomy.problems, locale);

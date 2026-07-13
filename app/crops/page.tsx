@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { TaxonomyIndex } from "@/components/TaxonomyHub";
 import { trackEvent } from "@/lib/analytics";
-import { getPublishedCases, getTaxonomy } from "@/lib/data";
+import { getPublicTaxonomy, getPublishedCases } from "@/lib/data";
 import { getLocale, getMessages, localizedHref } from "@/lib/i18n";
 import { localizeCases, localizeTaxonomy } from "@/lib/localized-content";
 
@@ -20,7 +20,7 @@ export default async function CropsPage() {
   const messages = await getMessages(locale);
   await trackEvent("page_view", { page_path: "/crops" });
 
-  const [taxonomy, rawCases] = await Promise.all([getTaxonomy(), getPublishedCases()]);
+  const [taxonomy, rawCases] = await Promise.all([getPublicTaxonomy(), getPublishedCases()]);
 
   return (
     <TaxonomyIndex

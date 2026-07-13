@@ -7,7 +7,7 @@ import { WhatsAppFab } from "@/components/WhatsAppFab";
 import { Badge, EmptyState } from "@/components/ui";
 import { isVerified } from "@/lib/aggregate";
 import { trackEvent } from "@/lib/analytics";
-import { getPublishedCases, getTaxonomy } from "@/lib/data";
+import { getPublicTaxonomy, getPublishedCases } from "@/lib/data";
 import { getLocale, getMessages, localizedHref } from "@/lib/i18n";
 import { localizeCases, localizeTaxonomy } from "@/lib/localized-content";
 import type { CaseStudy, EvidenceAsset } from "@/lib/types";
@@ -48,7 +48,7 @@ export default async function BeforeAfterPage({
 
   await trackEvent("page_view", { page_path: "/before-after", metadata: params });
 
-  const [taxonomy, rawCases] = await Promise.all([getTaxonomy(), getPublishedCases()]);
+  const [taxonomy, rawCases] = await Promise.all([getPublicTaxonomy(), getPublishedCases()]);
   const cases = localizeCases(rawCases, locale);
 
   const entries = cases

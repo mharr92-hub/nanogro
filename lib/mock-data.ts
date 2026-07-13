@@ -21,9 +21,23 @@ const starterProblems: TaxonomyItem[] = [
   { id: "problem-poor-flowering", name: "Poor flowering", slug: "poor-flowering", category: "flowering" }
 ];
 
-export const mockCrops: TaxonomyItem[] = uniqueBySlug([...starterCrops, ...realCrops]);
-export const mockCountries: Country[] = uniqueBySlug([...starterCountries, ...realCountries]);
-export const mockProblems: TaxonomyItem[] = uniqueBySlug([...starterProblems, ...realProblems]);
+/*
+ * La taxonomia de demo (Cacao, Panama, Colombia, Peru, Cafe, Arroz) se queda FUERA.
+ *
+ * Sus casos ya se habian eliminado por inventados, pero los terminos seguian alimentando
+ * los desplegables: el buscador ofrecia "Cacao" y "Panama" y, al pulsar, no salia ni un
+ * caso. Un filtro que lleva a una pagina vacia es peor que no tener filtro.
+ *
+ * Ademas, la web publica pasa por getPublicTaxonomy(), que solo deja pasar terminos con al
+ * menos un caso publicado. Doble red: aunque la base de datos tenga terminos sin casos, el
+ * agricultor nunca los ve.
+ */
+export const mockCrops: TaxonomyItem[] = uniqueBySlug([...realCrops]);
+export const mockCountries: Country[] = uniqueBySlug([...realCountries]);
+export const mockProblems: TaxonomyItem[] = uniqueBySlug([...realProblems]);
+
+/** La taxonomia de demo se conserva exportada por si algun dia se quiere un modo demo. */
+export const demoOnlyTaxonomy = { crops: starterCrops, countries: starterCountries, problems: starterProblems };
 
 /*
  * NO HAY EVIDENCIA DE DEMO.

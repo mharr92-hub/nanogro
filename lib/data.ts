@@ -54,6 +54,33 @@ export const getPublishedCases = cache(async (filters?: {
   return filterCases(((data ?? []) as CaseStudy[]).filter(canPublishCase), filters);
 });
 
+/**
+ * Taxonomia PUBLICA: solo cultivos, paises y problemas que tienen al menos un caso
+ * publicado.
+ *
+ * Un filtro que ofrece "Cacao" o "Panama" cuando no existe ni un caso de cacao ni uno de
+ * Panama no es un filtro, es una trampa: el agricultor elige, pulsa buscar y aterriza en
+ * una pagina vacia. La taxonomia completa sigue estando disponible en el admin (getTaxonomy),
+ * porque ahi si hace falta para clasificar casos nuevos; pero la web publica solo ofrece
+ * lo que puede entregar.
+ *
+ * Se calcula desde los casos publicados, asi que se mantiene sola: en cuanto se publique
+ * el primer caso de cacao, "Cacao" aparece en los filtros sin tocar una linea de codigo.
+ */
+export const getPublicTaxonomy = cache(async () => {
+  const [taxonomy, cases] = await Promise.all([getTaxonomy(), getPublishedCases()]);
+
+  const cropSlugs = new Set(cases.map((item) => item.crop?.slug).filter(Boolean));
+  const countrySlugs = new Set(cases.map((item) => item.country?.slug).filter(Boolean));
+  const problemSlugs = new Set(cases.map((item) => item.primary_problem?.slug).filter(Boolean));
+
+  return {
+    crops: taxonomy.crops.filter((item) => cropSlugs.has(item.slug)),
+    countries: taxonomy.countries.filter((item) => countrySlugs.has(item.slug)),
+    problems: taxonomy.problems.filter((item) => problemSlugs.has(item.slug))
+  };
+});
+
 export const getAdminCases = cache(async () => {
   const supabase = getSupabaseAdmin();
   if (!supabase) return mockCases;

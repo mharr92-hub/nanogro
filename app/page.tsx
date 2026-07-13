@@ -6,7 +6,7 @@ import { WhatsAppFab } from "@/components/WhatsAppFab";
 import { Emoji, EvidenceSheet, IconBadge, MetricStat } from "@/components/ui";
 import { formatAggregate, getAggregateResults } from "@/lib/aggregate";
 import { trackEvent } from "@/lib/analytics";
-import { getPublishedCases, getTaxonomy } from "@/lib/data";
+import { getPublicTaxonomy, getPublishedCases } from "@/lib/data";
 import { getFeaturedCases } from "@/lib/featured";
 import { countryIcon, problemIcon } from "@/lib/icons";
 import { getLocale, getMessages, localizedHref } from "@/lib/i18n";
@@ -19,7 +19,7 @@ export default async function HomePage() {
   const messages = await getMessages(locale);
   await trackEvent("page_view", { page_path: "/" });
 
-  const [taxonomy, rawCases] = await Promise.all([getTaxonomy(), getPublishedCases()]);
+  const [taxonomy, rawCases] = await Promise.all([getPublicTaxonomy(), getPublishedCases()]);
   const cases = localizeCases(rawCases, locale);
   const aggregate = getAggregateResults(cases);
   const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
@@ -259,6 +259,26 @@ export default async function HomePage() {
           >
             {messages.homeSections.diagnosticCta}
           </Link>
+        </div>
+      </section>
+
+      {/* Que producto genero esta evidencia: Nano-Gro y Tierra Fertil, con sus fichas. */}
+      <section className="section border-b border-border">
+        <div className="container">
+          <div className="card flex flex-col items-start gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-start gap-3">
+              <IconBadge symbol="🧪" tone="data" />
+              <div>
+                <h2 className="text-h2 text-foreground">{messages.homeSections.productsTitle}</h2>
+                <p className="mt-2 max-w-prose text-body text-muted-foreground">
+                  {messages.homeSections.productsBody}
+                </p>
+              </div>
+            </div>
+            <Link className="btn btn-primary whitespace-nowrap" href={localizedHref(locale, "/fichas")}>
+              {messages.homeSections.productsCta}
+            </Link>
+          </div>
         </div>
       </section>
 
