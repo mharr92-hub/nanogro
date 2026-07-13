@@ -16,6 +16,7 @@ import { formatMessage } from "@/lib/i18n-shared";
 import { localizeCase } from "@/lib/localized-content";
 import { getEvidenceProfile } from "@/lib/publication-quality";
 import { getRelatedCases } from "@/lib/related";
+import { signersOfCase } from "@/lib/team";
 import type { EvidenceAsset } from "@/lib/types";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -65,6 +66,8 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
   const documents = assets.filter((asset) => asset.asset_type !== "photo" && asset.asset_type !== "video");
   // El informe de campo del que sale este caso. Siempre visible arriba.
   const sourceDocuments = documents;
+  // Quien firma o supervisa el informe original (lib/team.ts).
+  const signers = signersOfCase(rawItem.id);
   const pair = findBeforeAfterPair(photos);
   const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
@@ -142,6 +145,24 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
                   >
                     {messages.cases.downloadOriginalReport}
                   </a>
+                </div>
+              ) : null}
+
+              {/*
+                Quien firma el informe. Es la pieza que convierte un PDF en evidencia: un
+                agronomo o un distribuidor puede abrir el documento original y comprobar que
+                el nombre coincide.
+              */}
+              {signers.length ? (
+                <div className="card mt-4 flex flex-wrap items-center gap-3 p-4">
+                  <Emoji symbol="✍️" className="text-h4" />
+                  <p className="text-body text-muted-foreground">
+                    <span className="font-semibold text-foreground">{messages.team.supervisedBy}:</span>{" "}
+                    {signers.map((member) => member.name).join(" · ")}
+                  </p>
+                  <Link className="btn btn-ghost ml-auto" href={localizedHref(locale, "/equipo")}>
+                    {messages.nav.team}
+                  </Link>
                 </div>
               ) : null}
 

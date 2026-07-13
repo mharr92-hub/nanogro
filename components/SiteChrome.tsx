@@ -42,7 +42,8 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
     { href: "/countries", label: messages.nav.countries },
     { href: "/before-after", label: messages.nav.beforeAfter },
     { href: "/roi-calculator", label: messages.nav.roiCalculator },
-    { href: "/fichas", label: messages.nav.sheets }
+    { href: "/fichas", label: messages.nav.sheets },
+    { href: "/equipo", label: messages.nav.team }
   ];
 
   const isActive = (href: string) => internalPath === href || internalPath.startsWith(`${href}/`);

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { EvidenceImage } from "@/components/EvidenceImage";
 import { HeroSearch } from "@/components/HeroSearch";
+import { TeamCard } from "@/components/TeamCard";
 import { JsonLd } from "@/components/JsonLd";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
 import { Emoji, EvidenceSheet, IconBadge, MetricStat } from "@/components/ui";
@@ -12,6 +13,7 @@ import { countryIcon, problemIcon } from "@/lib/icons";
 import { getLocale, getMessages, localizedHref } from "@/lib/i18n";
 import { formatMessage } from "@/lib/i18n-shared";
 import { localizeCases, localizeTaxonomy } from "@/lib/localized-content";
+import { team } from "@/lib/team";
 import type { CaseStudy } from "@/lib/types";
 
 export default async function HomePage() {
@@ -293,6 +295,34 @@ export default async function HomePage() {
             href={localizedHref(locale, "/diagnostico")}
           >
             {messages.homeSections.diagnosticCta}
+          </Link>
+        </div>
+      </section>
+
+      {/* Quien firma la evidencia. El nombre y las credenciales, no un eslogan. */}
+      <section className="section border-b border-border">
+        <div className="container">
+          <div className="flex items-center gap-3">
+            <IconBadge symbol="✍️" tone="data" />
+            <div>
+              <p className="text-label font-semibold uppercase tracking-wide text-data">{messages.team.eyebrow}</p>
+              <h2 className="mt-1 text-h2 text-foreground">{messages.team.title}</h2>
+            </div>
+          </div>
+          <div className="mt-6 grid gap-5">
+            {team.map((member) => (
+              <TeamCard
+                key={member.id}
+                member={member}
+                cases={cases}
+                locale={locale}
+                messages={messages}
+                showCases={false}
+              />
+            ))}
+          </div>
+          <Link className="btn btn-secondary mt-6" href={localizedHref(locale, "/equipo")}>
+            {messages.team.signedTitle}
           </Link>
         </div>
       </section>

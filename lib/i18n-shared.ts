@@ -36,7 +36,8 @@ const esSegments: Record<string, string> = {
   "before-after": "antes-despues",
   compare: "comparar",
   diagnostico: "diagnostico",
-  fichas: "fichas"
+  fichas: "fichas",
+  equipo: "equipo"
 };
 
 export function localizedHref(locale: Locale, path: string) {
@@ -48,7 +49,9 @@ export function localizedHref(locale: Locale, path: string) {
   const tailPath = tail.length ? `/${tail.join("/")}` : "";
 
   if (locale === "en") {
-    const enSection = sectionName === "diagnostico" ? "diagnostic" : sectionName;
+    // Rutas internas cuyo nombre esta en espanol y en ingles se sirven traducidas.
+    const enSegments: Record<string, string> = { diagnostico: "diagnostic", equipo: "team" };
+    const enSection = enSegments[sectionName] ?? sectionName;
     return `/en/${enSection}${query}${tailPath}`;
   }
   const esSection = esSegments[sectionName] ?? sectionName;
@@ -83,6 +86,6 @@ export function internalPathFromLocalized(pathname: string) {
     };
     return { locale, internalPath: `/${map[section] ?? section}${tailPath}` };
   }
-  const enMap: Record<string, string> = { diagnostic: "diagnostico" };
+  const enMap: Record<string, string> = { diagnostic: "diagnostico", team: "equipo" };
   return { locale, internalPath: `/${enMap[section] ?? section}${tailPath}` };
 }

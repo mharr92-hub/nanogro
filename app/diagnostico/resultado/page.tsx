@@ -77,6 +77,30 @@ export default async function DiagnosticResultPage({
         <h1 className="mt-3 text-h1 text-foreground">{messages.diagnosticFlow.resultTitle}</h1>
         <p className="mt-3 max-w-prose text-body-lg text-muted-foreground">{messages.diagnosticFlow.resultIntro}</p>
 
+        {/*
+          Mientras no haya base de datos, WhatsApp ES el destino del lead: si el agricultor
+          no pulsa aqui, ese contacto no queda registrado en ningun sitio. Por eso el boton
+          sube arriba del todo, con el mensaje ya relleno con TODAS sus respuestas.
+          Cuando Supabase este conectado, el lead se guardara solo y este boton podra volver
+          a ser un canal alternativo en vez del principal.
+        */}
+        {whatsappHref ? (
+          <div className="card mt-6 border-2 border-primary/30 p-5">
+            <p className="text-body font-semibold text-foreground">{messages.diagnosticFlow.sendToTeamTitle}</p>
+            <p className="mt-1 max-w-prose text-body text-muted-foreground">
+              {messages.diagnosticFlow.sendToTeamBody}
+            </p>
+            <a
+              className="btn btn-whatsapp mt-4 w-full text-body-lg sm:w-auto"
+              href={whatsappHref}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              {messages.diagnosticFlow.whatsappCta}
+            </a>
+          </div>
+        ) : null}
+
         {matches.length ? (
           <>
             <div className="mt-8 grid gap-5 sm:grid-cols-2">

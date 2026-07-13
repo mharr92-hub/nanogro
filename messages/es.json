@@ -325,7 +325,8 @@
     "diagnostic": "Diagnóstico gratuito",
     "sheets": "Fichas técnicas",
     "menu": "Menu",
-    "primaryCta": "Diagnóstico gratuito"
+    "primaryCta": "Diagnóstico gratuito",
+    "team": "Equipo"
   },
   "hero": {
     "title": "Encuentra resultados de Nano-Gro por cultivo, país y problema",
@@ -553,7 +554,9 @@
     "noMatchesBody": "No vamos a inventarte un resultado. Un técnico revisara tu caso y te contactara con lo que si podemos respaldar.",
     "whatsappCta": "Continuar por WhatsApp",
     "browseCta": "Mientras tanto, mira todos los casos",
-    "disclaimer": "Diagnóstico preliminar basado en casos documentados comparables. No sustituye una visita técnica ni garantiza resultados."
+    "disclaimer": "Diagnóstico preliminar basado en casos documentados comparables. No sustituye una visita técnica ni garantiza resultados.",
+    "sendToTeamTitle": "Envía tu diagnóstico al equipo técnico",
+    "sendToTeamBody": "Tus respuestas ya van dentro del mensaje. El equipo lo recibe completo y te contesta por WhatsApp."
   },
   "hub": {
     "casesPublished": "Casos publicados",
@@ -650,5 +653,19 @@
     "defaultTitle": "Inteligencia de Casos Nano-Gro",
     "defaultDescription": "Busca casos agrícolas documentados de Nano-Gro por problema, cultivo, país, evidencia y ROI.",
     "ogDescription": "Resultados Nano-Gro documentados, evidencia y captura de diagnósticos."
+  },
+  "team": {
+    "metadataTitle": "Equipo técnico Nano-Gro",
+    "metadataDescription": "El equipo técnico que firma y supervisa los informes de campo de Nano-Gro.",
+    "eyebrow": "Quién firma la evidencia",
+    "title": "Equipo técnico",
+    "subtitle": "Detrás de cada informe de esta base hay un técnico que lo firma. Estos son sus nombres, sus credenciales y los casos concretos que supervisaron.",
+    "roles": {
+      "internationalTechnicalManager": "Gerente Técnico Internacional"
+    },
+    "signedCount": "{count} informes de campo con su firma",
+    "signedTitle": "Casos que supervisó",
+    "signedBody": "Su nombre aparece firmando o supervisando el informe original de cada uno de estos casos. El documento es descargable desde la página del caso.",
+    "supervisedBy": "Informe supervisado por"
   }
 }

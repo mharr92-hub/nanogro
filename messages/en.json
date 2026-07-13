@@ -325,7 +325,8 @@
     "diagnostic": "Free diagnostic",
     "sheets": "Technical sheets",
     "menu": "Menu",
-    "primaryCta": "Free diagnostic"
+    "primaryCta": "Free diagnostic",
+    "team": "Team"
   },
   "hero": {
     "title": "Find Nano-Gro results by crop, country, and problem",
@@ -553,7 +554,9 @@
     "noMatchesBody": "We are not going to invent a result for you. A technician will review your case and get back to you with what we can actually back up.",
     "whatsappCta": "Continue on WhatsApp",
     "browseCta": "Meanwhile, browse all cases",
-    "disclaimer": "Preliminary diagnostic based on comparable documented cases. It does not replace a technical visit and does not guarantee results."
+    "disclaimer": "Preliminary diagnostic based on comparable documented cases. It does not replace a technical visit and does not guarantee results.",
+    "sendToTeamTitle": "Send your diagnostic to the technical team",
+    "sendToTeamBody": "Your answers are already inside the message. The team receives it complete and replies on WhatsApp."
   },
   "hub": {
     "casesPublished": "Published cases",
@@ -650,5 +653,19 @@
     "defaultTitle": "Nano-Gro Case Intelligence",
     "defaultDescription": "Search documented Nano-Gro agricultural cases by problem, crop, country, evidence, and ROI.",
     "ogDescription": "Documented Nano-Gro results, evidence, and diagnostic lead capture."
+  },
+  "team": {
+    "metadataTitle": "Nano-Gro technical team",
+    "metadataDescription": "The technical team that signs and supervises Nano-Gro field reports.",
+    "eyebrow": "Who signs the evidence",
+    "title": "Technical team",
+    "subtitle": "Behind every report in this database there is a technician who signs it. These are their names, their credentials, and the specific cases they supervised.",
+    "roles": {
+      "internationalTechnicalManager": "International Technical Manager"
+    },
+    "signedCount": "{count} field reports bearing their signature",
+    "signedTitle": "Cases they supervised",
+    "signedBody": "Their name appears signing or supervising the original report of each of these cases. The document is downloadable from the case page.",
+    "supervisedBy": "Report supervised by"
   }
 }
