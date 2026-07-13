@@ -64,9 +64,33 @@ export function TeamCard({
               </li>
             ))}
           </ul>
+          {member.countries?.length ? (
+            <p className="mt-2 text-body text-muted-foreground">{member.countries.join(" · ")}</p>
+          ) : null}
+
           {signed.length ? (
             <p className="tabular mt-3 text-body text-foreground">
               {formatMessage(messages.team.signedCount, { count: signed.length })}
+            </p>
+          ) : null}
+
+          {/* La autoria es comprobable: el documento esta a un clic. */}
+          {member.authored ? (
+            <p className="mt-3 text-body text-muted-foreground">
+              {member.authored[locale]}
+              {member.authoredUrl ? (
+                <>
+                  {" "}
+                  <a
+                    className="font-semibold text-primary underline"
+                    href={member.authoredUrl}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    {messages.cases.downloadOriginalReport}
+                  </a>
+                </>
+              ) : null}
             </p>
           ) : null}
         </div>

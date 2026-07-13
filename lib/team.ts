@@ -18,6 +18,12 @@ export type TeamMember = {
   roleKey: "internationalTechnicalManager";
   /** Credenciales tal y como aparecen en los informes originales. */
   credentials: string[];
+  /** Documento tecnico del que es autor. */
+  authored?: { es: string; en: string };
+  /** Enlace al documento, para que se pueda comprobar la autoria. */
+  authoredUrl?: string;
+  /** Paises donde consta su trabajo en la documentacion. */
+  countries?: string[];
   /** Ids de casos cuyo informe original firma o supervisa. */
   signedCaseIds: string[];
 };
@@ -28,7 +34,20 @@ export const team: TeamMember[] = [
     name: "Ing. Pedro Pablo Rivero Hayes",
     photo: "/team/pedro-pablo-rivero-hayes.png",
     roleKey: "internationalTechnicalManager",
+    /*
+     * Solo lo que consta en los documentos del repo. El apellido es "Rivero Hayes" (no
+     * "Rivera"): asi firma en el dossier tecnico y en los seis informes de campo.
+     *
+     * PENDIENTE de que Mark aporte, y que NO se inventa: titulo(s) y universidad, anos de
+     * experiencia, certificaciones y una biografia. Los campos vacios no se pintan.
+     */
     credentials: ["Director de Desarrollo del INIFAT", "La Habana, Cuba"],
+    authored: {
+      es: "Autor del dossier técnico «Producto Orgánico de Nanotecnología Aplicado a la Agricultura» (54 páginas)",
+      en: "Author of the technical dossier “Organic Nanotechnology Product Applied to Agriculture” (54 pages)"
+    },
+    authoredUrl: "/source-data/fichas/04-pedro-rivero-hayes-nano-gro-mexico.pdf",
+    countries: ["El Salvador", "Cuba", "Guatemala", "México"],
     signedCaseIds: [
       "real-001", // Caña de azúcar, El Salvador — "Supervisado por: Ing. Pedro Pablo Rivero Hayes"
       "real-002", // Chile en campo, El Salvador

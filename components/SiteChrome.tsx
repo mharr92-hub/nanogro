@@ -43,6 +43,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
     { href: "/before-after", label: messages.nav.beforeAfter },
     { href: "/roi-calculator", label: messages.nav.roiCalculator },
     { href: "/fichas", label: messages.nav.sheets },
+    { href: "/tecnologia", label: messages.nav.technology },
     { href: "/equipo", label: messages.nav.team }
   ];
 

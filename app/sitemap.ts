@@ -23,7 +23,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/before-after",
     "/roi-calculator",
     "/diagnostico",
-    "/fichas"
+    "/fichas",
+    "/tecnologia",
+    "/equipo"
   ];
 
   const casePaths = cases.map((item) => `/cases/${item.slug}`);

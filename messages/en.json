@@ -326,7 +326,8 @@
     "sheets": "Technical sheets",
     "menu": "Menu",
     "primaryCta": "Free diagnostic",
-    "team": "Team"
+    "team": "Team",
+    "technology": "Technology"
   },
   "hero": {
     "title": "Find Nano-Gro results by crop, country, and problem",
@@ -667,5 +668,18 @@
     "signedTitle": "Cases they supervised",
     "signedBody": "Their name appears signing or supervising the original report of each of these cases. The document is downloadable from the case page.",
     "supervisedBy": "Report supervised by"
+  },
+  "technology": {
+    "metadataTitle": "Nano-Gro technology and Tierra Fértil Minerals",
+    "metadataDescription": "What Nano-Gro is, how it works, field-measured results, institutional validations, and certifications. With downloadable technical sheets.",
+    "eyebrow": "Product and technical evidence",
+    "title": "Technology",
+    "claimsTitle": "What the manufacturer claims",
+    "claimsNote": "These are NG Caribbean's claims about what the product does. They are a commercial proposition, not guaranteed results nor figures measured on your farm.",
+    "resultsTitle": "What was measured in the field",
+    "resultsNote": "Every figure comes from a report with its crop, its place, and its date. Click any of them to see the full case and download the original document.",
+    "certificationsTitle": "Certifications",
+    "factsTitle": "Quick facts",
+    "downloadDatasheet": "Download full technical sheet (PDF)"
   }
 }
