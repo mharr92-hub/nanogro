@@ -152,17 +152,24 @@ function Field({
   fallback: string;
 }) {
   return (
-    <div className="min-w-0">
-      <dt className="text-caption uppercase tracking-wide text-muted-foreground">{label}</dt>
-      {/* Nada de `truncate`: un "El Salva..." no informa de nada. El texto se ajusta en
-          varias lineas con cuerpo pequeno y se lee entero. */}
-      <dd className="mt-1 flex items-start gap-1.5">
-        {value && icon ? <Emoji symbol={icon} className="mt-0.5" /> : null}
+    /*
+     * Rejilla de dos filas de altura fija.
+     *
+     * Sin esto, "Problema: Presion de enfermedades" ocupaba tres lineas y "Cultivo: Tomate"
+     * una sola, asi que los valores de la misma fila arrancaban a alturas distintas y la
+     * ficha parecia descuadrada. Ahora la etiqueta siempre ocupa una linea y el valor
+     * siempre reserva dos: todo cuadra, columna con columna y ficha con ficha.
+     */
+    <div className="grid min-w-0 grid-rows-[1.1rem_2.6rem] gap-1">
+      <dt className="truncate text-caption uppercase leading-none tracking-wide text-muted-foreground">{label}</dt>
+      <dd className="flex items-start gap-1.5 overflow-hidden">
+        {value && icon ? <Emoji symbol={icon} className="mt-px flex-none" /> : null}
         <span
           className={[
-            "hyphens-auto break-words text-caption leading-snug",
+            "line-clamp-2 break-words text-caption leading-tight",
             value ? "font-semibold text-foreground" : "text-muted-foreground"
           ].join(" ")}
+          title={value || fallback}
         >
           {value || fallback}
         </span>
@@ -193,11 +200,19 @@ function Figure({
   const size = length <= 7 ? "text-metric" : length <= 12 ? "text-h3" : "text-h5";
 
   return (
-    <div className="min-w-0">
-      <dt className="text-caption uppercase leading-tight tracking-wide text-muted-foreground">{label}</dt>
+    /*
+     * Misma disciplina que en los campos: la etiqueta reserva DOS lineas y la cifra reserva
+     * su altura. Con etiquetas tan dispares ("ROI" frente a "PESO DE ELOTE (PIONEER 30F96)")
+     * la unica forma de que las tres cifras de una ficha compartan linea base, y de que la
+     * ficha de al lado tambien la comparta, es reservar el hueco por adelantado.
+     */
+    <div className="grid min-w-0 grid-rows-[2.2rem_2.8rem] gap-1">
+      <dt className="line-clamp-2 text-caption uppercase leading-tight tracking-wide text-muted-foreground">
+        {label}
+      </dt>
       <dd
         className={[
-          "tabular mt-1 break-words leading-tight",
+          "tabular flex items-start break-words leading-tight",
           value ? `${size} ${tone}` : "text-caption text-muted-foreground"
         ].join(" ")}
       >

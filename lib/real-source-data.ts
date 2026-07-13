@@ -232,9 +232,9 @@ export const realCases: CaseStudy[] = [
     application: "Nano-Gro evaluated in maize trial conditions.",
     results: "Corn-ear yield across 4 hybrids: PIONEER 30F96 more than doubled ear weight (234.69 vs 108.26 qq/mz). CENTA H-59 rose 4% in ear count. DEKALB 390 fell 8% with the product. Germination was 100% across all four hybrids.",
     metrics: [
-      { label: "Peso de elote (PIONEER 30F96)", value: 234.69, unit: "qq/mz", context: "Sin Nano-Gro: 108.26 qq/mz" },
-      { label: "Elotes (CENTA H-59)", value: 4, unit: "%", context: "43.509 con Nano-Gro frente a 42.175" },
-      { label: "Elotes (DEKALB 390)", value: -8, unit: "%", context: "El único híbrido con resultado negativo" }
+      { label: "Peso de elote", value: 234.69, unit: "qq/mz", context: "Sin Nano-Gro: 108.26 qq/mz" },
+      { label: "Elotes", value: 4, unit: "%", context: "43.509 con Nano-Gro frente a 42.175" },
+      { label: "Elotes DEKALB", value: -8, unit: "%", context: "El único híbrido con resultado negativo" }
     ],
     completeness: 86,
     evidence: ["Maiz. Ensayos en ALBA Alimentos.docx"]
