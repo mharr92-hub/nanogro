@@ -392,22 +392,35 @@ export async function submitLead(formData: FormData) {
     relatedViewedCount: recommended.length,
     requestedDiagnostic: true
   });
-  const whatsappMessage = `Hola equipo Nano-Gro,
-
-Solicito una recomendación para mi cultivo.
-
-Nombre: ${name}
-País: ${countryText}
-Cultivo: ${cropText}
-Área: ${areaText}
-Problema principal: ${problemText}
-
-Información adicional:
-${comments}
-
-Me gustaría conocer casos similares y una posible recomendación.
-
-Gracias.`;
+  /*
+   * El mensaje de WhatsApp lleva TODAS las respuestas del diagnostico.
+   *
+   * Es el punto donde el lead cambia de manos: si el equipo comercial recibe un "hola,
+   * quiero informacion", tiene que empezar preguntando lo que el agricultor ya contesto.
+   * Las lineas vacias se omiten para que el mensaje no llegue con campos en blanco.
+   */
+  const whatsappMessage = [
+    "Hola equipo Nano-Gro,",
+    "",
+    "Completé el diagnóstico gratuito en la web y estos son mis datos:",
+    "",
+    name && `Nombre: ${name}`,
+    countryText && `País: ${countryText}`,
+    cropText && `Cultivo: ${cropText}`,
+    areaText && `Área: ${areaText} ha`,
+    problemText && `Problema principal: ${problemText}`,
+    currentProduction && `Producción actual: ${currentProduction}`,
+    objective && `Objetivo: ${objective}`,
+    whatsapp && `WhatsApp: ${whatsapp}`,
+    email && `Email: ${email}`,
+    comments && `\nInformación adicional:\n${comments}`,
+    "",
+    "Quisiera revisar los casos similares y una recomendación para mi cultivo.",
+    "",
+    "Gracias."
+  ]
+    .filter((line): line is string => Boolean(line) || line === "")
+    .join("\n");
 
   if (supabase) {
     await supabase.from("leads").insert({
@@ -451,6 +464,9 @@ Gracias.`;
   if (countryText) params.set("countryName", countryText);
   if (problemText) params.set("problemName", problemText);
   if (hectares) params.set("hectares", String(hectares));
+  // El mensaje completo de WhatsApp viaja a la pagina de resultado para que el boton lleve
+  // TODAS las respuestas del formulario al equipo, no un saludo generico.
+  params.set("wa", whatsappMessage);
 
   redirect(`/diagnostico/resultado?${params.toString()}`);
 }

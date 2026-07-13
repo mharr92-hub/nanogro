@@ -48,12 +48,18 @@ export default async function DiagnosticResultPage({
 
   const cropName = params.cropName ?? "";
   const countryName = params.countryName ?? "";
+  /*
+   * `wa` trae el mensaje completo que armo submitLead con TODAS las respuestas del
+   * formulario. Si por lo que sea no llega (enlace compartido, parametro perdido), se cae a
+   * un mensaje con el contexto que si tengamos: nunca se manda un WhatsApp vacio.
+   */
   const whatsappHref = buildWhatsAppUrl(
-    formatMessage(messages.whatsapp.caseMessage, {
-      title: problem?.name ?? messages.diagnosticFlow.title,
-      crop: cropName,
-      country: countryName
-    })
+    params.wa ||
+      formatMessage(messages.whatsapp.caseMessage, {
+        title: problem?.name ?? messages.diagnosticFlow.title,
+        crop: cropName,
+        country: countryName
+      })
   );
 
   return (
