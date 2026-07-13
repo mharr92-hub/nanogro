@@ -47,6 +47,36 @@ const caseText: Record<string, Record<Locale, LocalizedCaseText>> = {
   "real-024": pair("Cuba results image report", "Six-page Cuba results image packet imported as visual evidence.", undefined, "Images require OCR/manual review before structured metrics can be verified.", "Informe de resultados de Cuba en imágenes", "Paquete de seis páginas de resultados de Cuba importado como evidencia visual.", undefined, "Las imágenes requieren OCR o revisión manual antes de verificar métricas estructuradas."),
   "real-025": pair("Vegetable protocol source", "Legacy horticulture source imported for later conversion.", undefined, "Legacy .doc requires conversion before crop-specific cases can be split.", "Fuente de protocolo para hortalizas", "Fuente heredada de horticultura importada para conversión posterior.", undefined, "El archivo .doc requiere conversión antes de dividir casos por cultivo."),
   "real-026": pair("Hybrid evaluation protocol with and without Nano-Gro", "Protocol PDF for evaluating four hybrids with and without Nano-Gro.", undefined, "Protocol has been preserved and linked for trial design review.", "Protocolo de evaluación de hibridos con y sin Nano-Gro", "PDF de protocolo para evaluar cuatro hibridos con y sin Nano-Gro.", undefined, "El protocolo fue preservado y enlazado para revisión del diseno del ensayo."),
+  "real-027": pair(
+    "Sugarcane ratoon at Ingenio La Cabaña with 37.9% more stalks",
+    "Application on sugarcane ratoon at Servicios Agroindustriales La Cabaña, with treated plot and control followed for 197 days.",
+    "Foliar application on ratoon; treated plot compared against an adjacent untreated control.",
+    "At the 197-day sampling the treated plot reached 40 canes per linear metre versus 29 in the control (+37.9% in primary stalks), 3 m versus 2.80 m in height, 18 cm versus 15 cm internode, 11 cm versus 9 cm thickness (+22%), and an average Brix of 13.3 versus 12.5.",
+    "Caña de azúcar en tocón en el Ingenio La Cabaña con 37.9% más tallos",
+    "Aplicación en tocón de caña de azúcar en Servicios Agroindustriales La Cabaña, con parcela tratada y testigo seguidos durante 197 días.",
+    "Aplicación foliar en tocón; parcela tratada comparada con un testigo contiguo sin tratar.",
+    "En el muestreo de los 197 días la parcela tratada alcanzó 40 cañas por metro lineal frente a 29 del testigo (+37.9% en tallos primarios), 3 m frente a 2.80 m de altura, 18 cm frente a 15 cm de entrenudo, 11 cm frente a 9 cm de grosor (+22%), y un Brix promedio de 13.3 frente a 12.5."
+  ),
+  "real-028": pair(
+    "Sugarcane stools recovering from severe drought (Tecnoverde)",
+    "Sugarcane stools dying from intense drought at Hacienda Marinés, Zacatecoluca. Before/after photographic record.",
+    "Foliar application on stools already dying from drought.",
+    "New buds began to emerge 15 days after application, with no rainfall. Sampling at 25 days documented the recovery.",
+    "Macollas de caña recuperadas tras sequía severa (Tecnoverde)",
+    "Macollas de caña de azúcar en proceso de muerte por sequía intensa en la Hacienda Marinés, Zacatecoluca. Registro fotográfico de antes y después.",
+    "Aplicación foliar sobre macollas que ya estaban muriendo por la sequía.",
+    "A los 15 días de la aplicación comenzaron a emerger nuevas yemas, sin lluvias. El muestreo a los 25 días documentó la recuperación."
+  ),
+  "real-029": pair(
+    "Sugarcane new plantings with stronger regrowth (Tecnoverde)",
+    "Foliar application on new sugarcane plantings at Hacienda Marinés, Zacatecoluca.",
+    "Foliar application on new plantings.",
+    "New buds emerged 15 days after application, and with greater vigour. Sampling at 26 days recorded the number of regrowths.",
+    "Caña en siembras nuevas con mayor rebrote (Tecnoverde)",
+    "Aplicación foliar en siembras nuevas de caña de azúcar en la Hacienda Marinés, Zacatecoluca.",
+    "Aplicación foliar en siembras nuevas.",
+    "A los 15 días de la aplicación emergieron nuevas yemas, y con mayor vigorosidad. El muestreo a los 26 días registró la cantidad de rebrotes."
+  ),
   "case-1": pair("Cacao in Panama with 27% production increase", "Documented field case for cacao under low-production conditions.", "Foliar application during vegetative and flowering stages.", "Production increased 27% compared with baseline.", "Cacao en Panamá con 27% más producción", "Caso de campo documentado para cacao bajo condiciones de baja producción.", "Aplicación foliar durante etapas vegetativas y de floración.", "La producción aumento 27% frente a la linea base."),
   "case-2": pair("Banana in Colombia under water stress", "Field evidence for banana recovery under water stress.", "Foliar application.", "Improved field recovery and production stability.", "Banano en Colombia bajo estrés hídrico", "Evidencia de campo para recuperación de banano bajo estrés hídrico.", "Aplicación foliar.", "Mejoro la recuperación de campo y la estabilidad productiva."),
   "case-3": pair("Coffee in Peru with flowering improvement", "Documented coffee case with measured improvement and some protocol details pending.", "Application protocol pending technical confirmation.", "Flowering uniformity improved and harvest volume increased.", "Café en Perú con mejora de floración", "Caso documentado de café con mejora medida y algunos detalles de protocolo pendientes.", "Protocolo de aplicación pendiente de confirmación técnica.", "Mejoro la uniformidad de floración y aumento el volumen de cosecha.")

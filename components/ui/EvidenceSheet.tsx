@@ -196,25 +196,39 @@ function Figure({
    * el dato: un numero a medias no es un numero. Asi que las cifras largas bajan de cuerpo y
    * se ajustan en dos lineas, pero se leen ENTERAS. Nunca se corta un dato.
    */
-  const length = (value ?? "").length;
-  const size = length <= 7 ? "text-metric" : length <= 12 ? "text-h3" : "text-h5";
+  /*
+   * El cuerpo de la cifra se adapta a lo larga que sea, y NUNCA se sale de su columna.
+   *
+   * "Documentado" se pintaba con cuerpo de cifra grande, no cabia en su tercio de ficha y se
+   * montaba encima del "35/100" de al lado: dos textos superpuestos, ilegibles. Dos reglas lo
+   * impiden:
+   *
+   *   1. Un valor sin digitos no es una cifra, es una palabra: va en cuerpo de texto normal.
+   *   2. `overflow-hidden` en la celda. Aunque algun dia entre un valor larguisimo, se
+   *      recortara dentro de SU hueco en vez de invadir el del vecino. Una cifra cortada es
+   *      mala; una cifra encima de otra es peor, porque no se puede leer ninguna de las dos.
+   */
+  const text = value ?? "";
+  const isNumeric = /\d/.test(text);
+  const size = !isNumeric
+    ? "text-body font-semibold"
+    : text.length <= 7
+      ? "text-metric"
+      : text.length <= 12
+        ? "text-h3"
+        : "text-h5";
 
   return (
-    /*
-     * Misma disciplina que en los campos: la etiqueta reserva DOS lineas y la cifra reserva
-     * su altura. Con etiquetas tan dispares ("ROI" frente a "PESO DE ELOTE (PIONEER 30F96)")
-     * la unica forma de que las tres cifras de una ficha compartan linea base, y de que la
-     * ficha de al lado tambien la comparta, es reservar el hueco por adelantado.
-     */
-    <div className="grid min-w-0 grid-rows-[2.2rem_2.8rem] gap-1">
-      <dt className="line-clamp-2 text-caption uppercase leading-tight tracking-wide text-muted-foreground">
+    <div className="grid min-w-0 grid-rows-[2.2rem_2.8rem] gap-1 overflow-hidden">
+      <dt className="line-clamp-2 overflow-hidden text-caption uppercase leading-tight tracking-wide text-muted-foreground">
         {label}
       </dt>
       <dd
         className={[
-          "tabular flex items-start break-words leading-tight",
+          "tabular line-clamp-2 overflow-hidden break-words leading-tight",
           value ? `${size} ${tone}` : "text-caption text-muted-foreground"
         ].join(" ")}
+        title={value ?? fallback}
       >
         {value ?? fallback}
       </dd>

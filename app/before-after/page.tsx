@@ -11,11 +11,12 @@ import { getPublicTaxonomy, getPublishedCases } from "@/lib/data";
 import { getLocale, getMessages, localizedHref } from "@/lib/i18n";
 import { localizeCases, localizeTaxonomy } from "@/lib/localized-content";
 import type { CaseStudy, EvidenceAsset } from "@/lib/types";
+import { SITE_URL } from "@/lib/site";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
   const messages = await getMessages(locale);
-  const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const site = SITE_URL;
   return {
     title: messages.gallery.metadataTitle,
     description: messages.gallery.metadataDescription,
@@ -51,9 +52,22 @@ export default async function BeforeAfterPage({
   const [taxonomy, rawCases] = await Promise.all([getPublicTaxonomy(), getPublishedCases()]);
   const cases = localizeCases(rawCases, locale);
 
+  /*
+   * Esta galeria es de FOTOGRAFIA DE CAMPO, no de documentos.
+   *
+   * El informe de Cuba son siete paginas escaneadas guardadas como JPEG. Al filtrar solo por
+   * asset_type === "photo", esas siete paginas se colaban aqui y llenaban la galeria de
+   * escaneos de un papel, encima de un caso con 30/100 de confianza. Un escaneo no es una
+   * foto de "antes y despues": es un documento, y su sitio es el bloque de descarga del caso.
+   *
+   * Se exigen las etapas de campo (antes / durante / despues). Los escaneos entran como
+   * "final" o "supporting" y se quedan fuera.
+   */
+  const fieldStages = new Set(["before", "during", "after"]);
+
   const entries = cases
     .flatMap((item) => (item.evidence_assets ?? []).map((asset) => ({ item, asset })))
-    .filter(({ asset }) => asset.asset_type === "photo")
+    .filter(({ asset }) => asset.asset_type === "photo" && fieldStages.has(asset.evidence_stage ?? ""))
     .filter(({ item, asset }) => {
       if (params.crop && item.crop?.slug !== params.crop) return false;
       if (params.country && item.country?.slug !== params.country) return false;
@@ -68,7 +82,7 @@ export default async function BeforeAfterPage({
     countries: localizeTaxonomy(taxonomy.countries, locale),
     problems: localizeTaxonomy(taxonomy.problems, locale)
   };
-  const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const site = SITE_URL;
 
   return (
     <section className="section">

@@ -108,9 +108,9 @@
       "Seguimiento y evidencia"
     ],
     "extracted": "Registro técnico revisado",
-    "needs_conversion": "Revisión técnica pendiente",
-    "needs_ocr": "Revisión técnica pendiente",
-    "needs_unpacking": "Revisión técnica pendiente"
+    "needs_conversion": "Documento original disponible",
+    "needs_ocr": "Documento original disponible",
+    "needs_unpacking": "Documento original disponible"
   },
   "caseReport": {
     "summary": "Resumen",
@@ -359,7 +359,7 @@
     "subtitle": "No necesitas conocer el producto. Elige el problema que ves en campo."
   },
   "homeSections": {
-    "featuredEyebrow": "Evidencia verificada",
+    "featuredEyebrow": "Evidencia más completa",
     "featuredTitle": "Casos con la evidencia más completa",
     "allCases": "Ver todos los casos",
     "galleryEyebrow": "Prueba visual",
@@ -564,7 +564,7 @@
     "topProblems": "Problemas más documentados",
     "topCrops": "Cultivos más documentados",
     "topCountries": "Países con más casos",
-    "bestCases": "Mejores casos verificados",
+    "bestCases": "Casos con más evidencia",
     "allCases": "Ver todos los casos de {name}",
     "emptyTitle": "Todavia no hay casos publicados de {name}",
     "emptyBody": "A medida que se documenten y revisen nuevos casos, apareceran aquí. Mientras tanto, puedes ver la evidencia de condiciones parecidas.",
@@ -602,7 +602,7 @@
     "documented": "Documentado",
     "completeness": "Evidencia",
     "sourceStatus": "Informe original",
-    "pendingExtraction": "Adjunto, pendiente de extraer"
+    "pendingExtraction": "Documento disponible"
   },
   "evidenceLevels": {
     "short": "Nivel {level}",

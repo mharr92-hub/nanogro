@@ -10,11 +10,12 @@ import { applyCaseFilters, getFacetCounts } from "@/lib/case-filters";
 import { getPublicTaxonomy, getPublishedCases } from "@/lib/data";
 import { formatMessage, getLocale, getMessages, localizedHref } from "@/lib/i18n";
 import { localizeCases, localizeTaxonomy } from "@/lib/localized-content";
+import { SITE_URL } from "@/lib/site";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
   const messages = await getMessages(locale);
-  const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const site = SITE_URL;
   return {
     title: messages.cases.metadataTitle,
     description: messages.cases.metadataDescription,

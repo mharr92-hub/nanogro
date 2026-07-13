@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getPublishedCases, getTaxonomy } from "@/lib/data";
 import { localizedHref, locales } from "@/lib/i18n-shared";
+import { SITE_URL } from "@/lib/site";
 
 /**
  * Sitemap dinamico con hreflang.
@@ -11,7 +12,7 @@ import { localizedHref, locales } from "@/lib/i18n-shared";
  * tienen casos publicados: una URL vacia indexada es una pagina que Google penaliza.
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const site = SITE_URL;
   const [cases, taxonomy] = await Promise.all([getPublishedCases(), getTaxonomy()]);
 
   const staticPaths = [

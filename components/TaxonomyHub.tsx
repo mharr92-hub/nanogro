@@ -5,8 +5,10 @@ import { JsonLd } from "@/components/JsonLd";
 import { Emoji, EmptyState, EvidenceSheet, MetricStat } from "@/components/ui";
 import { formatAggregate, getAggregateResults } from "@/lib/aggregate";
 import { taxonomyIcon } from "@/lib/icons";
+import { isFieldPhoto } from "@/lib/photos";
 import { formatMessage, localizedHref, type Locale, type Messages } from "@/lib/i18n-shared";
 import type { CaseStudy, TaxonomyItem } from "@/lib/types";
+import { SITE_URL } from "@/lib/site";
 
 export type HubKind = "crop" | "country" | "problem";
 
@@ -37,7 +39,7 @@ export function TaxonomyHub({
   messages: Messages;
 }) {
   const aggregate = getAggregateResults(cases);
-  const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const site = SITE_URL;
   const indexHref = { crop: "/crops", country: "/countries", problem: "/problems" }[kind];
   const indexLabel = { crop: messages.nav.crops, country: messages.nav.countries, problem: messages.nav.problems }[
     kind
@@ -49,7 +51,7 @@ export function TaxonomyHub({
 
   const photos = cases
     .flatMap((item) => (item.evidence_assets ?? []).map((asset) => ({ item, asset })))
-    .filter(({ asset }) => asset.asset_type === "photo")
+    .filter(({ asset }) => isFieldPhoto(asset))
     .slice(0, 4);
 
   const diagnosticHref = `${localizedHref(locale, "/diagnostico")}?${new URLSearchParams({

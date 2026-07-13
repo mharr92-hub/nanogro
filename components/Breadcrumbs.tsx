@@ -1,6 +1,7 @@
 ﻿import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { localizedHref, type Locale, type Messages } from "@/lib/i18n-shared";
+import { SITE_URL } from "@/lib/site";
 
 export type Crumb = { label: string; href?: string };
 
@@ -17,7 +18,7 @@ export function Breadcrumbs({
   locale: Locale;
   messages: Messages;
 }) {
-  const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const site = SITE_URL;
   const all: Crumb[] = [{ label: messages.breadcrumbs.home, href: "/" }, ...crumbs];
 
   return (

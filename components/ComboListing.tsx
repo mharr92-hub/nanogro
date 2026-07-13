@@ -5,6 +5,7 @@ import { EmptyState, EvidenceSheet, MetricStat } from "@/components/ui";
 import { formatAggregate, getAggregateResults } from "@/lib/aggregate";
 import { localizedHref, type Locale, type Messages } from "@/lib/i18n-shared";
 import type { CaseStudy } from "@/lib/types";
+import { SITE_URL } from "@/lib/site";
 
 /**
  * Paginas de SEO programatico de dos niveles (spec, seccion 14):
@@ -35,7 +36,7 @@ export function ComboListing({
   messages: Messages;
 }) {
   const aggregate = getAggregateResults(cases);
-  const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const site = SITE_URL;
 
   return (
     <section className="section">

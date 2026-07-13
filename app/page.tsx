@@ -11,10 +11,12 @@ import { getPublicTaxonomy, getPublishedCases } from "@/lib/data";
 import { getFeaturedCases } from "@/lib/featured";
 import { countryIcon, problemIcon } from "@/lib/icons";
 import { getLocale, getMessages, localizedHref } from "@/lib/i18n";
+import { isFieldPhoto } from "@/lib/photos";
 import { formatMessage } from "@/lib/i18n-shared";
 import { localizeCases, localizeTaxonomy } from "@/lib/localized-content";
 import { team } from "@/lib/team";
 import type { CaseStudy } from "@/lib/types";
+import { SITE_URL } from "@/lib/site";
 
 export default async function HomePage() {
   const locale = await getLocale();
@@ -24,7 +26,7 @@ export default async function HomePage() {
   const [taxonomy, rawCases] = await Promise.all([getPublicTaxonomy(), getPublishedCases()]);
   const cases = localizeCases(rawCases, locale);
   const aggregate = getAggregateResults(cases);
-  const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const site = SITE_URL;
 
   const localizedTaxonomy = {
     crops: localizeTaxonomy(taxonomy.crops, locale),
@@ -34,9 +36,7 @@ export default async function HomePage() {
 
   // No los tres primeros del listado: los tres mas creibles. Ver lib/featured.ts.
   const featured = getFeaturedCases(cases, 3);
-  const casesWithPhotos = cases.filter((item) =>
-    (item.evidence_assets ?? []).some((asset) => asset.asset_type === "photo")
-  ).length;
+  const casesWithPhotos = cases.filter((item) => (item.evidence_assets ?? []).some(isFieldPhoto)).length;
 
   /*
    * Solo las metricas que la evidencia puede sostener. Las que no tienen muestra se caen
@@ -395,7 +395,7 @@ export default async function HomePage() {
 function pickGalleryPhotos(cases: CaseStudy[], limit: number) {
   const picked: { item: CaseStudy; asset: NonNullable<CaseStudy["evidence_assets"]>[number] }[] = [];
   for (const item of cases) {
-    const photo = (item.evidence_assets ?? []).find((asset) => asset.asset_type === "photo");
+    const photo = (item.evidence_assets ?? []).find(isFieldPhoto);
     if (photo) picked.push({ item, asset: photo });
     if (picked.length === limit) break;
   }

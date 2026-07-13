@@ -108,9 +108,9 @@
       "Follow-up and evidence"
     ],
     "extracted": "Technical record reviewed",
-    "needs_conversion": "Technical review pending",
-    "needs_ocr": "Technical review pending",
-    "needs_unpacking": "Technical review pending"
+    "needs_conversion": "Original document available",
+    "needs_ocr": "Original document available",
+    "needs_unpacking": "Original document available"
   },
   "caseReport": {
     "summary": "Summary",
@@ -359,7 +359,7 @@
     "subtitle": "You do not need to know the product. Pick the problem you are seeing."
   },
   "homeSections": {
-    "featuredEyebrow": "Verified evidence",
+    "featuredEyebrow": "Most complete evidence",
     "featuredTitle": "Cases with the most complete evidence",
     "allCases": "View all cases",
     "galleryEyebrow": "Visual proof",
@@ -564,7 +564,7 @@
     "topProblems": "Most documented problems",
     "topCrops": "Most documented crops",
     "topCountries": "Countries with most cases",
-    "bestCases": "Best verified cases",
+    "bestCases": "Cases with most evidence",
     "allCases": "View all {name} cases",
     "emptyTitle": "No published cases for {name} yet",
     "emptyBody": "As new cases are documented and reviewed, they will appear here. In the meantime, you can look at evidence from similar conditions.",
@@ -602,7 +602,7 @@
     "documented": "Documented",
     "completeness": "Evidence",
     "sourceStatus": "Original report",
-    "pendingExtraction": "Attached, pending extraction"
+    "pendingExtraction": "Document available"
   },
   "evidenceLevels": {
     "short": "Level {level}",

@@ -5,6 +5,7 @@ import { SiteChrome } from "@/components/SiteChrome";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { getLocale, getMessages, localizedHref } from "@/lib/i18n";
 import "./globals.css";
+import { SITE_URL } from "@/lib/site";
 
 // Display: caracter, solo en titulares y en la firma de la Ficha de Evidencia.
 const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-display", display: "swap" });
@@ -30,7 +31,7 @@ const themeInitScript = `
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
   const messages = await getMessages(locale);
-  const site = process.env.NEXT_PUBLIC_SITE_URL || "https://nanogro.lat";
+  const site = SITE_URL;
   return {
     /*
      * `metadataBase` es obligatorio para que la imagen de previsualizacion salga con URL

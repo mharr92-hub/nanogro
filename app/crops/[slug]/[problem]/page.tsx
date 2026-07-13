@@ -6,6 +6,7 @@ import { trackEvent } from "@/lib/analytics";
 import { getPublishedCases, getTaxonomy } from "@/lib/data";
 import { formatMessage, getLocale, getMessages, localizedHref } from "@/lib/i18n";
 import { localizeCases, localizeTaxonomy } from "@/lib/localized-content";
+import { SITE_URL } from "@/lib/site";
 
 type Params = Promise<{ slug: string; problem: string }>;
 
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const messages = await getMessages(locale);
   const { crop, problem, slug, problemSlug } = await resolve(params, locale);
   if (!crop || !problem) return {};
-  const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const site = SITE_URL;
   return {
     title: formatMessage(messages.combo.cropProblem, { crop: crop.name, problem: problem.name }),
     description: formatMessage(messages.combo.description, { a: crop.name, b: problem.name }),

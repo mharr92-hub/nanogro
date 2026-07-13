@@ -8,6 +8,7 @@ import { countByTerm } from "@/lib/hub";
 import { cropIcon, problemIcon } from "@/lib/icons";
 import { formatMessage, getLocale, getMessages, localizedHref } from "@/lib/i18n";
 import { localizeCases, localizeTaxonomy } from "@/lib/localized-content";
+import { SITE_URL } from "@/lib/site";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -15,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const messages = await getMessages(locale);
   const { countries } = await getTaxonomy();
   const country = localizeTaxonomy(countries, locale).find((item) => item.slug === slug);
-  const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const site = SITE_URL;
   if (!country) return { title: messages.countries.metadataFallback };
   return {
     title: formatMessage(messages.countries.metadataTitle, { name: country.name }),

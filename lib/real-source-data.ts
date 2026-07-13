@@ -1,5 +1,6 @@
 import type { CaseStudy, Country, EvidenceAsset, ExtractedMetric, FieldStatus, TaxonomyItem } from "@/lib/types";
 import { publicEvidenceLabel } from "@/lib/evidence-labels";
+import casePhotos from "@/lib/case-photos.json";
 
 type SourceDocument = {
   group: "informes" | "fichas";
@@ -111,6 +112,9 @@ export const sourceDocuments: SourceDocument[] = [
   doc("informes", "tabaco nano gro.docx", "/source-data/informes/tabaco-nano-gro.docx", "docx", "extracted"),
   doc("informes", "Testimonial Maíz en China.docx", "/source-data/informes/testimonial-maiz-en-china.docx", "docx", "extracted"),
   doc("informes", "TOMATES ANTES DEL TRANSPLANTE(1).docx", "/source-data/informes/tomates-antes-del-transplante-1-.docx", "docx", "extracted"),
+  doc("informes", "INGENIO La Cabaña.docx", "/source-data/informes/ingenio-la-cabana.docx", "docx", "extracted"),
+  doc("informes", "TECNOVERDE Macolla.docx", "/source-data/informes/tecnoverde-macolla.docx", "docx", "extracted"),
+  doc("informes", "TECNOVERDE SiembrasNuevas.docx", "/source-data/informes/tecnoverde-siembras-nuevas.docx", "docx", "extracted"),
   doc("fichas", "04-Pedro-Rivero-Hayes-NANO-GRO-México.pdf", "/source-data/fichas/04-pedro-rivero-hayes-nano-gro-mexico.pdf", "pdf", "needs_conversion"),
   doc("fichas", "FICHA TECNICA DE MINERALES TIERRA FERTIL actualizada según MAG-1.pdf", "/source-data/fichas/ficha-tecnica-de-minerales-tierra-fertil-actualizada-segun-mag-1.pdf", "pdf", "needs_conversion"),
   doc("fichas", "FICHA TECNICA NANOGRO PANAMA 2026 8 pag.pdf", "/source-data/fichas/ficha-tecnica-nanogro-panama-2026-8-pag.pdf", "pdf", "needs_conversion"),
@@ -162,7 +166,7 @@ export const realCases: CaseStudy[] = [
     application: "Nano-Gro field application with visual comparison against adjacent untreated planting.",
     results: "Harvest began 41 days after sowing, reported as 25 days earlier, with considerable production increase.",
     metrics: [
-      { label: "Adelanto de cosecha", value: 25, unit: "días", context: "Frente a siembra vecina sin tratar" },
+      { label: "Cosecha antes", value: 25, unit: "días", context: "Frente a siembra vecina sin tratar" },
       { label: "Inicio de cosecha", value: 41, unit: "días tras siembra" }
     ],
     completeness: 74,
@@ -182,9 +186,9 @@ export const realCases: CaseStudy[] = [
      * campo ROI se queda vacio porque el informe no calcula ROI.
      */
     metrics: [
-      { label: "Rendimiento medio", value: 1.23, unit: "t/ha", context: "Tecnología del productor: 0.91 t/ha" },
-      { label: "Sobre la tecnología del productor", value: 35.1, unit: "%" },
-      { label: "Tasa de Retorno Marginal (CIMMYT)", value: 0.54, context: "No es un ROI. Diferencia no significativa al 10%" }
+      { label: "Rendimiento", value: 1.23, unit: "t/ha", context: "Tecnología del productor: 0.91 t/ha" },
+      { label: "Sobre el testigo", value: 35.1, unit: "%" },
+      { label: "TRM (CIMMYT)", value: 0.54, context: "No es un ROI. Diferencia no significativa al 10%" }
     ],
     completeness: 92,
     evidence: ["Doc 2. Inf. Carlos Reyes.docx", "Doc. 1 Info. Dir CENTA.docx"]
@@ -195,8 +199,8 @@ export const realCases: CaseStudy[] = [
     dosage: "1 pellet/5 L; backpack sprayer coverage noted at 0.125 ha",
     results: "Across weeks 39-46 the treated lots averaged 326 more boxes per hectare per year than the control, with a reported net gain of 1,630 USD/ha/year. The effect came from finger weight, not finger count.",
     metrics: [
-      { label: "Cajas adicionales", value: 326, unit: "cajas/ha/año", context: "Promedio semanas 39-46 frente al testigo" },
-      { label: "Ganancia neta reportada", value: "1.630", unit: "USD/ha/año" }
+      { label: "Cajas extra", value: 326, unit: "cajas/ha/año", context: "Promedio semanas 39-46 frente al testigo" },
+      { label: "Ganancia neta", value: "1.630", unit: "USD/ha/año" }
     ],
     completeness: 78,
     evidence: ["Evaluaciones en Bananos Guatemala.docx", "PLANTILLA de Bananos en Guatemala.xlsx"]
@@ -209,7 +213,7 @@ export const realCases: CaseStudy[] = [
     quality: 4,
     metrics: [
       { label: "Germinación", value: 100, unit: "%", context: "Testigo sin tratar: 96%" },
-      { label: "Adelanto de germinación", value: 2, unit: "días" }
+      { label: "Germina antes", value: 2, unit: "días" }
     ],
     completeness: 68,
     evidence: ["FRIJOL _ GERMINACIÓN(1).docx"]
@@ -221,7 +225,7 @@ export const realCases: CaseStudy[] = [
     results: "Weekly production rose from 240 lb/week before treatment to 580 lb/week from day 10, and to 720 lb/week from day 45. Flowers were reported larger and more abundant.",
     yield: 200,
     metrics: [
-      { label: "Producción semanal", value: 720, unit: "lb/semana", context: "Antes de la aplicación: 240 lb/semana" },
+      { label: "Producción", value: 720, unit: "lb/semana", context: "Antes de la aplicación: 240 lb/semana" },
       { label: "A los 10 días", value: 580, unit: "lb/semana" }
     ],
     completeness: 66,
@@ -247,8 +251,8 @@ export const realCases: CaseStudy[] = [
     yield: 30,
     quality: 45,
     metrics: [
-      { label: "Altura y grosor de tallo", value: 45, unit: "%", context: "Bajo estrés hídrico severo" },
-      { label: "Adelanto de floración", value: 13, unit: "días" },
+      { label: "Altura y tallo", value: 45, unit: "%", context: "Bajo estrés hídrico severo" },
+      { label: "Floración antes", value: 13, unit: "días" },
       { label: "Tamaño y peso de mazorca", value: 30, unit: "%" }
     ],
     completeness: 67,
@@ -275,8 +279,8 @@ export const realCases: CaseStudy[] = [
     results: "Reported transplant survival reached 98% for 1 tablet/L and 1 tablet/2 L treatments, versus 90% untreated reference.",
     quality: 8,
     metrics: [
-      { label: "Supervivencia al trasplante", value: 98, unit: "%", context: "Testigo sin tratar: 90%" },
-      { label: "Germinación a los 10 días", value: 72, unit: "%", context: "Testigo: 56%. Inmersión óptima de 1-1.5 minutos" }
+      { label: "Supervivencia", value: 98, unit: "%", context: "Testigo sin tratar: 90%" },
+      { label: "Germinación", value: 72, unit: "%", context: "Testigo: 56%. Inmersión óptima de 1-1.5 minutos" }
     ],
     completeness: 88,
     evidence: ["Nano Gro Papaya.docx"]
@@ -295,8 +299,8 @@ export const realCases: CaseStudy[] = [
     results: "Heads grew larger and firmer while keeping the variety's flavour and consistency. Harvest came 25 days earlier and flowering 30 days earlier.",
     quality: 25,
     metrics: [
-      { label: "Adelanto de cosecha", value: 25, unit: "días" },
-      { label: "Adelanto de floración", value: 30, unit: "días" }
+      { label: "Cosecha antes", value: 25, unit: "días" },
+      { label: "Floración antes", value: 30, unit: "días" }
     ],
     completeness: 63,
     evidence: ["REPOLLO EN SEMILLAS.docx"]
@@ -309,8 +313,8 @@ export const realCases: CaseStudy[] = [
     yield: 100,
     quality: 30,
     metrics: [
-      { label: "Más hojas por planta", value: 30, unit: "%" },
-      { label: "Brotación anticipada", value: 11, unit: "días" }
+      { label: "Más hojas", value: 30, unit: "%" },
+      { label: "Brota antes", value: 11, unit: "días" }
     ],
     completeness: 91,
     evidence: ["tabaco nano gro.docx"]
@@ -321,9 +325,9 @@ export const realCases: CaseStudy[] = [
     results: "Table reports increases including 10.41%, 20.60%, 15.25% and 10.30% across measured weight indicators.",
     yield: 10.3,
     metrics: [
-      { label: "Aumento de peso fresco", value: 20.6, unit: "%" },
-      { label: "Aumento de peso seco", value: 15.25, unit: "%" },
-      { label: "Aumento de peso total", value: 10.41, unit: "%" }
+      { label: "Peso fresco", value: 20.6, unit: "%" },
+      { label: "Peso seco", value: 15.25, unit: "%" },
+      { label: "Peso total", value: 10.41, unit: "%" }
     ],
     completeness: 74,
     evidence: ["Testimonial Maíz en China.docx", "Chinese corn results.doc"]
@@ -335,7 +339,7 @@ export const realCases: CaseStudy[] = [
     results: "Disease was reported as eliminated, production reached 1,000 boxes of 50 lb from 2,500 plants, and survival was 98% versus 75-80% in controls.",
     quality: 23,
     metrics: [
-      { label: "Supervivencia al trasplante", value: 98, unit: "%", context: "Testigos: 75-80%" },
+      { label: "Supervivencia", value: 98, unit: "%", context: "Testigos: 75-80%" },
       { label: "Producción", value: "1.000", unit: "cajas de 50 lb", context: "De 2.500 plantas" }
     ],
     completeness: 90,
@@ -408,6 +412,62 @@ export const realCases: CaseStudy[] = [
     results: "Protocol has been preserved and linked for trial design review.",
     completeness: 33,
     evidence: ["protocolo para la evaluacion de 4 hibridos evaluados con y sin NANO GRO nuevo.pdf"]
+  }),
+
+  /*
+   * Los tres informes de caña de azúcar de El Salvador.
+   *
+   * El de La Cabaña es la fuente de las cifras que ya se publicaban en la pagina de
+   * Tecnologia (+37.9% en tallos, +22% de grosor, +0.8 Brix) y no tenia caso propio: los
+   * numeros salian en la web sin un caso al que enlazar. Ahora la evidencia esta completa y
+   * la pagina de Tecnologia apunta a su caso.
+   *
+   * Todas las cifras estan transcritas literalmente del informe. El seguimiento de La Cabaña
+   * llega a los 197 dias, que es la serie temporal mas larga de toda la base.
+   */
+  caseItem("real-027", "Sugarcane ratoon at Ingenio La Cabaña with 37.9% more stalks", "sugarcane", "el-salvador", "low-production", "A", {
+    summary: "Application on sugarcane ratoon at Servicios Agroindustriales La Cabaña, with treated plot and control followed for 197 days.",
+    application: "Foliar application on ratoon; treated plot compared against an adjacent untreated control.",
+    dosage: "2 cápsulas por bombada",
+    results:
+      "At the 197-day sampling the treated plot reached 40 canes per linear metre versus 29 in the control (+37.9% in primary stalks), 3 m versus 2.80 m in height, 18 cm versus 15 cm internode, 11 cm versus 9 cm thickness (+22%), and an average Brix of 13.3 versus 12.5 (+0.8 points).",
+    yield: 37.9,
+    quality: 22,
+    metrics: [
+      { label: "Más tallos", value: 37.9, unit: "%", context: "40 cañas/m lineal frente a 29 del testigo" },
+      { label: "Grosor de tallo", value: 22, unit: "%", context: "11 cm frente a 9 cm" },
+      { label: "Grados Brix", value: 13.3, context: "Testigo: 12.5 (+0.8 puntos)" },
+      { label: "Altura", value: 3, unit: "m", context: "Testigo: 2.80 m" },
+      { label: "Seguimiento", value: 197, unit: "días", context: "Dos muestreos: 32 y 197 días" }
+    ],
+    completeness: 93,
+    evidence: ["INGENIO La Cabaña.docx"]
+  }),
+
+  caseItem("real-028", "Sugarcane stools recovering from severe drought (Tecnoverde)", "sugarcane", "el-salvador", "water-stress", "B", {
+    summary: "Sugarcane stools dying from intense drought at Hacienda Marinés, Zacatecoluca. Before/after photographic record.",
+    application: "Foliar application on stools already dying from drought.",
+    dosage: "8 cápsulas por manzana, a razón de 2 cápsulas por bomba (4 bombas/mz)",
+    results: "New buds began to emerge 15 days after application, with no rainfall. Sampling at 25 days documented the recovery.",
+    metrics: [
+      { label: "Brotes nuevos", value: 15, unit: "días", context: "Sin lluvias en ese periodo" },
+      { label: "Muestreo", value: 25, unit: "días", context: "Tras la aplicación" }
+    ],
+    completeness: 74,
+    evidence: ["TECNOVERDE Macolla.docx"]
+  }),
+
+  caseItem("real-029", "Sugarcane new plantings with stronger regrowth (Tecnoverde)", "sugarcane", "el-salvador", "nutrition-and-vigor", "B", {
+    summary: "Foliar application on new sugarcane plantings at Hacienda Marinés, Zacatecoluca.",
+    application: "Foliar application on new plantings.",
+    dosage: "10 cápsulas por manzana disueltas en 200 litros de agua limpia",
+    results: "New buds emerged 15 days after application, and with greater vigour. Sampling at 26 days recorded the number of regrowths.",
+    metrics: [
+      { label: "Brotes nuevos", value: 15, unit: "días", context: "Con mayor vigorosidad" },
+      { label: "Muestreo", value: 26, unit: "días", context: "Tras la aplicación" }
+    ],
+    completeness: 72,
+    evidence: ["TECNOVERDE SiembrasNuevas.docx"]
   })
 ];
 
@@ -551,8 +611,58 @@ function caseItem(
     crop,
     country,
     primary_problem: problem,
-    evidence_assets: input.evidence.map((name, index) => evidenceAsset(id, name, index))
+    evidence_assets: [
+      ...input.evidence.map((name, index) => evidenceAsset(id, name, index)),
+      ...fieldPhotos(id, input.evidence)
+    ]
   };
+}
+
+/**
+ * Las fotografias de campo que estaban dentro de los .docx.
+ *
+ * 61 fotos reales de campo vivian embebidas en los informes de Word: la galeria "Antes y
+ * despues" estaba vacia y ningun caso tenia una sola imagen, mientras las fotos existian
+ * desde el primer dia. `scripts/extract-docx-photos.mjs` las saca y genera este manifiesto.
+ *
+ * La etapa (antes / despues) se deduce del ORDEN en que aparecen en el documento, porque asi
+ * es como narran los informes: primero el campo el dia de la aplicacion, despues el muestreo
+ * posterior. La primera mitad se marca "before" y la segunda "after". Es una inferencia, no
+ * un dato del documento, asi que estas fotos NO suben el nivel de evidencia de ningun caso:
+ * solo se muestran. El nivel lo sigue decidiendo `publicEvidenceLevel`, que solo cuenta lo
+ * que se puede probar.
+ */
+function fieldPhotos(caseId: string, evidenceNames: string[]): EvidenceAsset[] {
+  const folders = evidenceNames
+    .map((name) => findSource(name).publicPath.split("/").pop()?.replace(/\.docx$/i, ""))
+    .filter((folder): folder is string => Boolean(folder));
+
+  const photos: EvidenceAsset[] = [];
+
+  for (const folder of folders) {
+    const files = (casePhotos as Record<string, string[]>)[folder] ?? [];
+    const half = Math.ceil(files.length / 2);
+
+    files.forEach((file, index) => {
+      photos.push({
+        id: `${caseId}-photo-${photos.length + 1}`,
+        case_id: caseId,
+        asset_type: "photo",
+        evidence_stage: files.length > 1 && index >= half ? "after" : "before",
+        file_url: file,
+        storage_key: file,
+        file_name: file.split("/").pop() ?? file,
+        title: "Registro fotográfico de campo",
+        caption: "Fotografía incluida en el informe original de campo.",
+        alt_text: "Fotografía de campo del informe original de Nano-Gro",
+        verification_status: "approved",
+        consent_status: "approved",
+        display_order: photos.length
+      });
+    });
+  }
+
+  return photos;
 }
 
 function evidenceAsset(caseId: string, originalName: string, index: number): EvidenceAsset {

@@ -3,11 +3,12 @@ import Link from "next/link";
 import { technicalSheets } from "@/lib/real-source-data";
 import { getLocale, getMessages, localizedHref } from "@/lib/i18n";
 import { getLocalizedTechnicalSheet, getTechnicalSheetRouteId } from "@/lib/technical-sheet-content";
+import { SITE_URL } from "@/lib/site";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
   const messages = await getMessages(locale);
-  const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const site = SITE_URL;
   return {
     title: messages.technicalSheets.metadataTitle,
     description: messages.technicalSheets.metadataDescription,

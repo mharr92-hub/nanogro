@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getLocale, getMessages, localizedHref } from "@/lib/i18n";
 import { getTechnicalSheetByRouteId, getTechnicalSheetRouteId } from "@/lib/technical-sheet-content";
 import { technicalSheets } from "@/lib/real-source-data";
+import { SITE_URL } from "@/lib/site";
 
 type PageProps = {
   params: Promise<{ id: string }>;
@@ -18,7 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const locale = await getLocale();
   const sheet = getTechnicalSheetByRouteId(id, locale);
   if (!sheet) return {};
-  const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const site = SITE_URL;
   const routeId = getTechnicalSheetRouteId(sheet);
   return {
     title: sheet.title,

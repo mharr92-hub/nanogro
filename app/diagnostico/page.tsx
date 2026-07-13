@@ -5,11 +5,12 @@ import { trackEvent } from "@/lib/analytics";
 import { getPublicTaxonomy } from "@/lib/data";
 import { getLocale, getMessages, localizedHref } from "@/lib/i18n";
 import { localizeTaxonomy } from "@/lib/localized-content";
+import { SITE_URL } from "@/lib/site";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
   const messages = await getMessages(locale);
-  const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const site = SITE_URL;
   return {
     title: messages.diagnosticFlow.metadataTitle,
     description: messages.diagnosticFlow.metadataDescription,

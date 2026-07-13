@@ -18,6 +18,7 @@ import { getEvidenceProfile } from "@/lib/publication-quality";
 import { getRelatedCases } from "@/lib/related";
 import { signersOfCase } from "@/lib/team";
 import type { EvidenceAsset } from "@/lib/types";
+import { SITE_URL } from "@/lib/site";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const rawItem = await getCaseBySlug(slug);
   if (!rawItem) return {};
   const item = localizeCase(rawItem, locale);
-  const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const site = SITE_URL;
   const title = publicContentText(item.seo_title || item.title, messages.sheet.untitledCase);
   const description = publicContentText(
     item.seo_description || item.summary || item.results_summary,
@@ -77,7 +78,7 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
   // Quien firma o supervisa el informe original (lib/team.ts).
   const signers = signersOfCase(rawItem.id);
   const pair = findBeforeAfterPair(photos);
-  const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const site = SITE_URL;
 
   const diagnosticHref = `${localizedHref(locale, "/diagnostico")}?${new URLSearchParams({
     ...(item.crop?.slug ? { crop: item.crop.slug } : {}),

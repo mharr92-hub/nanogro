@@ -8,11 +8,12 @@ import { pick, technology } from "@/content/technology";
 import { trackEvent } from "@/lib/analytics";
 import { getPublishedCases } from "@/lib/data";
 import { getLocale, getMessages, localizedHref } from "@/lib/i18n";
+import { SITE_URL } from "@/lib/site";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
   const messages = await getMessages(locale);
-  const site = process.env.NEXT_PUBLIC_SITE_URL || "https://nanogro.lat";
+  const site = SITE_URL;
   return {
     title: messages.technology.metadataTitle,
     description: messages.technology.metadataDescription,
@@ -42,7 +43,7 @@ export default async function TechnologyPage() {
 
   const cases = await getPublishedCases();
   const publishedSlugs = new Set(cases.map((item) => item.slug));
-  const site = process.env.NEXT_PUBLIC_SITE_URL || "https://nanogro.lat";
+  const site = SITE_URL;
 
   return (
     <section className="section">

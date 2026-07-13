@@ -29,18 +29,25 @@ export const technology = {
   intro: {
     title: t("Qué es Nano-Gro", "What Nano-Gro is"),
     body: t(
-      "Una cápsula de azúcar de grado farmacéutico que contiene nano-sulfatos minerales en concentración 10⁻⁹. Se disuelve en agua limpia y se aplica a la semilla o a la planta. Según su fabricante, NG Caribbean, actúa como regulador del crecimiento y potenciador de la inmunidad de la planta, reactivando las vías de comunicación electroquímica que los suelos sobreexplotados han ido perdiendo.",
-      "A pharmaceutical-grade sugar capsule containing mineral nano-sulfates at a 10⁻⁹ concentration. It dissolves in clean water and is applied to the seed or the plant. According to its manufacturer, NG Caribbean, it acts as a growth regulator and plant immunity enhancer, reactivating the electrochemical communication pathways that over-exploited soils have gradually lost."
+      "Un bioestimulante 100% orgánico. Una cápsula de azúcar de grado farmacéutico que contiene nano-sulfatos minerales en concentración 10⁻⁹: se disuelve en agua limpia y se aplica a la semilla o a la planta. Actúa como regulador del crecimiento y potenciador de la inmunidad, reactivando las vías de comunicación electroquímica que los suelos sobreexplotados han ido perdiendo. No aporta carga nutricional: no sustituye a un fertilizante, hace que la planta aproveche mejor el que ya recibe.",
+      "A 100% organic biostimulant. A pharmaceutical-grade sugar capsule containing mineral nano-sulfates at a 10⁻⁹ concentration: it dissolves in clean water and is applied to the seed or the plant. It acts as a growth regulator and immunity enhancer, reactivating the electrochemical communication pathways that over-exploited soils have gradually lost. It carries no nutritional load: it does not replace a fertiliser, it helps the plant make better use of the one it already receives."
     ),
     /*
-     * Matiz importante: la ficha tecnica oficial clasifica el producto como "Fertilizante
-     * organico. Potenciador de la inmunidad de las plantas". Se usa esa formulacion literal
-     * en vez de la de "no es fertilizante" que circula en los materiales comerciales, porque
-     * lo que aguanta una revision es el documento, no el folleto.
+     * La ficha tecnica oficial registra el producto bajo la categoria regulatoria
+     * "Fertilizante organico. Potenciador de la inmunidad de las plantas".
+     *
+     * Comercialmente se presenta como bioestimulante, que es lo que describe su modo de
+     * accion (regulador de crecimiento e inmunidad, sin aporte nutricional). Las dos cosas
+     * son ciertas y no se contradicen: una es la categoria de registro, la otra es la
+     * funcion agronomica.
+     *
+     * Esta nota se queda a proposito. El PDF es descargable desde esta misma pagina, asi que
+     * cualquier agronomo va a ver la palabra "fertilizante" en el documento. Que se la
+     * encuentre explicada aqui suma credibilidad; que se la encuentre escondida, la resta.
      */
     classification: t(
-      "Clasificación en la ficha técnica oficial: «Fertilizante orgánico. Potenciador de la inmunidad de las plantas». Fabricante: NG Caribbean.",
-      "Classification in the official technical sheet: “Organic fertilizer. Plant immunity enhancer.” Manufacturer: NG Caribbean."
+      "Categoría de registro en la ficha técnica oficial: «Fertilizante orgánico. Potenciador de la inmunidad de las plantas». Es la clasificación regulatoria del producto; su función agronómica es la de un bioestimulante. Fabricante: NG Caribbean.",
+      "Registration category in the official technical sheet: “Organic fertilizer. Plant immunity enhancer.” That is the product's regulatory classification; its agronomic function is that of a biostimulant. Manufacturer: NG Caribbean."
     )
   },
 
@@ -107,7 +114,8 @@ export const technology = {
         "Tallos primarios frente al testigo. Además: +22% de grosor de tallo y +0.8 puntos Brix. Parcela vs testigo: 40 vs 29 cañas por metro lineal; Brix 13.3 vs 12.5.",
         "Primary stalks versus the control. Also: +22% stalk thickness and +0.8 Brix points. Treated vs control plot: 40 vs 29 canes per linear metre; Brix 13.3 vs 12.5."
       ),
-      caseSlug: "sugarcane-in-el-salvador-under-severe-drought"
+      // Este es el informe del que salen estas cifras: Ingenio La Cabaña, seguimiento 197 días.
+      caseSlug: "sugarcane-ratoon-at-ingenio-la-cabana-with-37-9-more-stalks"
     },
     {
       crop: t("Banano / musáceas", "Banana / musaceae"),

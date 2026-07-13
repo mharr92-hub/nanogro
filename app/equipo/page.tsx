@@ -7,11 +7,12 @@ import { getPublishedCases } from "@/lib/data";
 import { getLocale, getMessages, localizedHref } from "@/lib/i18n";
 import { localizeCases } from "@/lib/localized-content";
 import { team } from "@/lib/team";
+import { SITE_URL } from "@/lib/site";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
   const messages = await getMessages(locale);
-  const site = process.env.NEXT_PUBLIC_SITE_URL || "https://nanogro.lat";
+  const site = SITE_URL;
   return {
     title: messages.team.metadataTitle,
     description: messages.team.metadataDescription,

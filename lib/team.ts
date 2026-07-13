@@ -54,7 +54,8 @@ export const team: TeamMember[] = [
       "real-007", // Ensayos de maíz, ALBA Alimentos
       "real-008", // Maíz foliar, El Salvador
       "real-011", // Papaya Maradol, Cuba — informe de su autoría
-      "real-016" // Tomate, recuperación de Rhizoctonia — supervisado por él
+      "real-016", // Tomate, recuperación de Rhizoctonia — supervisado por él
+      "real-027" // Caña, Ingenio La Cabaña — "Supervisado por: Ing. Pedro Pablo Rivero Hayes"
     ]
   }
 ];
