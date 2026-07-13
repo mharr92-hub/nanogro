@@ -1,6 +1,7 @@
 ﻿import Link from "next/link";
 import type { CSSProperties } from "react";
-import { evidenceLevelOf } from "@/lib/evidence-checklist";
+import { getPrimaryResult } from "@/lib/case-metrics";
+import { publicEvidenceLevel } from "@/lib/evidence-checklist";
 import { publicContentText } from "@/lib/evidence-labels";
 import { countryIcon, cropIcon, problemIcon } from "@/lib/icons";
 import { Emoji } from "./Emoji";
@@ -46,10 +47,13 @@ export function EvidenceSheet({
   reasons?: string[];
   headingLevel?: "h2" | "h3";
 }) {
-  const level = evidenceLevelOf(item);
+  // El nivel publicado nunca supera al que la evidencia sostiene. Ver lib/evidence-checklist.ts.
+  const level = publicEvidenceLevel(item);
   const href = localizedHref(locale, `/cases/${item.slug}`);
   const title = publicContentText(item.title, messages.sheet.untitledCase);
   const Heading = headingLevel;
+  // El resultado no siempre es un % de rendimiento: puede ser dias de adelanto o vigor.
+  const primary = getPrimaryResult(item, messages);
 
   return (
     <article
@@ -91,8 +95,8 @@ export function EvidenceSheet({
 
       <dl className="sheet-rule mt-4 grid grid-cols-3 gap-3 pt-4">
         <Figure
-          label={messages.sheet.result}
-          value={formatPercent(item.yield_increase_percent)}
+          label={primary?.label ?? messages.sheet.result}
+          value={primary?.value ?? null}
           fallback={messages.sheet.notReported}
           tone="text-primary"
         />
@@ -178,7 +182,3 @@ function Figure({
   );
 }
 
-function formatPercent(value?: number | null) {
-  if (typeof value !== "number") return null;
-  return `${value > 0 ? "+" : ""}${value}%`;
-}

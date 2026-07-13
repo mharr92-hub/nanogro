@@ -7,6 +7,7 @@ import { Emoji, EvidenceSheet, IconBadge, MetricStat } from "@/components/ui";
 import { formatAggregate, getAggregateResults } from "@/lib/aggregate";
 import { trackEvent } from "@/lib/analytics";
 import { getPublishedCases, getTaxonomy } from "@/lib/data";
+import { getFeaturedCases } from "@/lib/featured";
 import { countryIcon, problemIcon } from "@/lib/icons";
 import { getLocale, getMessages, localizedHref } from "@/lib/i18n";
 import { formatMessage } from "@/lib/i18n-shared";
@@ -29,7 +30,8 @@ export default async function HomePage() {
     problems: localizeTaxonomy(taxonomy.problems, locale)
   };
 
-  const featured = cases.slice(0, 3);
+  // No los tres primeros del listado: los tres mas creibles. Ver lib/featured.ts.
+  const featured = getFeaturedCases(cases, 3);
   const galleryPreview = pickGalleryPhotos(cases, 4);
   const countriesWithCases = localizedTaxonomy.countries
     .map((country) => ({

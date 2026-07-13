@@ -35,6 +35,9 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
     { href: "/countries", label: messages.nav.countries },
     { href: "/before-after", label: messages.nav.beforeAfter },
     { href: "/roi-calculator", label: messages.nav.roiCalculator },
+    // El diagnostico es ademas el boton primario, pero tambien tiene que estar en el menu:
+    // un usuario que busca la seccion con la vista no deberia depender de reconocer el CTA.
+    { href: "/diagnostico", label: messages.nav.diagnostic },
     { href: "/fichas", label: messages.nav.sheets }
   ];
 

@@ -21,8 +21,8 @@
     "submit": "Submit",
     "login": "Login",
     "logout": "Logout",
-    "view": "View"
-    ,"footer": "Results are documented case evidence, not guaranteed outcomes."
+    "view": "View",
+    "footer": "Results are documented case evidence, not guaranteed outcomes."
   },
   "navigation": {
     "cases": "Cases",
@@ -580,9 +580,12 @@
     "eyebrow": "Evidence sheet",
     "untitledCase": "Documented Nano-Gro case",
     "result": "Result",
+    "quality": "Quality",
+    "diseaseReduction": "Less disease",
     "roi": "ROI",
     "confidence": "Confidence",
-    "notReported": "Not reported"
+    "notReported": "Not reported",
+    "documented": "Documented"
   },
   "evidenceLevels": {
     "short": "Level {level}",

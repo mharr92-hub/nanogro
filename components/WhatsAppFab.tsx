@@ -9,10 +9,14 @@ import { buildWhatsAppUrl } from "@/lib/whatsapp";
  * En movil se aparta del CTA principal fijo (`bottom-20`) para no taparlo.
  */
 export function WhatsAppFab({ message, messages }: { message: string; messages: Messages }) {
+  const href = buildWhatsAppUrl(message);
+  // Sin numero configurado no hay boton: un wa.me sin destinatario se traga el lead.
+  if (!href) return null;
+
   return (
     <a
       className="btn btn-whatsapp fixed bottom-20 right-4 z-40 shadow-soft md:bottom-6"
-      href={buildWhatsAppUrl(message)}
+      href={href}
       rel="noopener noreferrer"
       target="_blank"
       aria-label={messages.whatsapp.float}

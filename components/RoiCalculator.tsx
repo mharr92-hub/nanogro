@@ -63,6 +63,7 @@ export function RoiCalculator({
 
   const cropName = crops.find((item) => item.slug === crop)?.name ?? "";
   const countryName = countries.find((item) => item.slug === country)?.name ?? "";
+  const whatsappHref = buildWhatsAppUrl(formatMessage(messages.whatsapp.roiMessage, { crop: cropName }));
 
   return (
     <div className="grid gap-6 lg:grid-cols-[380px_1fr]">
@@ -228,14 +229,11 @@ export function RoiCalculator({
                 <button className="btn btn-primary" type="submit">
                   {messages.roi.leadTitle}
                 </button>
-                <a
-                  className="btn btn-whatsapp"
-                  href={buildWhatsAppUrl(formatMessage(messages.whatsapp.roiMessage, { crop: cropName }))}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  {messages.whatsapp.float}
-                </a>
+                {whatsappHref ? (
+                  <a className="btn btn-whatsapp" href={whatsappHref} rel="noopener noreferrer" target="_blank">
+                    {messages.whatsapp.float}
+                  </a>
+                ) : null}
               </div>
             </form>
           </>

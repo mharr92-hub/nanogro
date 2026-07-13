@@ -25,22 +25,19 @@ export const mockCrops: TaxonomyItem[] = uniqueBySlug([...starterCrops, ...realC
 export const mockCountries: Country[] = uniqueBySlug([...starterCountries, ...realCountries]);
 export const mockProblems: TaxonomyItem[] = uniqueBySlug([...starterProblems, ...realProblems]);
 
-export const mockEvidence: EvidenceAsset[] = [
-  {
-    id: "ev-1",
-    case_id: "case-1",
-    asset_type: "photo",
-    evidence_stage: "after",
-    file_url: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
-    storage_key: "mock/cacao-after.jpg",
-    title: "After application",
-    caption: "Field condition after treatment.",
-    alt_text: "Healthy cacao field after Nano-Gro treatment",
-    verification_status: "approved",
-    consent_status: "approved",
-    display_order: 1
-  }
-];
+/*
+ * NO HAY EVIDENCIA DE DEMO.
+ *
+ * Aqui vivia una foto de Unsplash publicada con el pie "Registro fotografico de campo" y
+ * el alt "Healthy cacao field after Nano-Gro treatment", colgada del caso de cacao. En una
+ * plataforma cuyo valor entero es la credibilidad de la evidencia, una foto de stock
+ * presentada como registro de campo es el peor fallo posible: una busqueda inversa de
+ * imagen por parte de un agronomo o un distribuidor destruye la confianza de todo el sitio.
+ *
+ * Regla: la biblioteca de evidencia solo contiene archivos reales subidos desde el admin.
+ * Si no hay foto, no hay foto.
+ */
+export const mockEvidence: EvidenceAsset[] = [];
 
 const starterCases: CaseStudy[] = [
   {
@@ -183,7 +180,22 @@ const starterCases: CaseStudy[] = [
   }
 ];
 
-export const mockCases: CaseStudy[] = [...realCases, ...starterCases];
+/*
+ * Solo casos con origen real (lib/real-source-data.ts, extraidos de los informes de campo).
+ *
+ * `starterCases` eran datos de demo: cacao en Panama +27% ROI 5.3x, banano en Colombia,
+ * cafe en Peru. Inventados, con nivel de evidencia A pero sin una sola foto que lo
+ * respaldara, y con placeholders internos ("Protocol pending final technical review")
+ * visibles en la pagina publica. Se quedan fuera del conjunto publicable: un sistema de
+ * evidencia no puede tener casos de mentira mezclados con casos de verdad, porque el
+ * visitante no puede distinguirlos.
+ *
+ * Se conservan exportados abajo unicamente por si alguna vez se quiere un modo demo
+ * explicito; hoy nada los consume.
+ */
+export const mockCases: CaseStudy[] = [...realCases];
+
+export const demoOnlyCases: CaseStudy[] = starterCases;
 
 function uniqueBySlug<T extends { slug: string }>(items: T[]) {
   const seen = new Set<string>();

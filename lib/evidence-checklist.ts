@@ -64,7 +64,45 @@ export function isEvidenceLevel(value: string | null | undefined): value is Evid
   return value === "A" || value === "B" || value === "C" || value === "D";
 }
 
-/** Nivel de evidencia normalizado: nunca inventa un nivel mejor del que hay. */
+/** Nivel de evidencia tal y como esta guardado en la base. */
 export function evidenceLevelOf(item: CaseStudy): EvidenceLevel {
   return isEvidenceLevel(item.evidence_level) ? item.evidence_level : "D";
+}
+
+const LEVEL_ORDER: EvidenceLevel[] = ["A", "B", "C", "D"];
+
+/**
+ * El nivel que la evidencia REALMENTE sostiene, segun las definiciones de la spec:
+ *
+ *   A  datos productivos completos + fotos antes/despues + validacion tecnica
+ *   B  datos productivos parciales + evidencia visual
+ *   C  testimonio o documento tecnico de soporte
+ *   D  el resto
+ */
+export function supportedEvidenceLevel(item: CaseStudy): EvidenceLevel {
+  const checklist = getEvidenceChecklist(item);
+  const has = (key: EvidenceChecklistKey) => checklist.find((entry) => entry.key === key)?.met ?? false;
+
+  const productiveData = has("productiveData");
+  const visual = has("fieldPhotos") || has("video");
+
+  if (productiveData && has("beforeAfterPhotos") && has("technicalValidation")) return "A";
+  if (productiveData && visual) return "B";
+  if (has("testimonial") || has("technicalDocument")) return "C";
+  return "D";
+}
+
+/**
+ * El nivel que se PUBLICA: el peor entre el declarado y el que la evidencia sostiene.
+ *
+ * Habia casos marcados como Nivel A cuyo propio checklist decia "Fotografias de antes y
+ * despues: no documentado". Las dos cosas no pueden ser ciertas, y en un sistema de
+ * evidencia el que gana es el checklist, porque se deriva de los archivos que existen de
+ * verdad. Nunca se muestra al visitante un nivel mejor del que los datos aguantan; si el
+ * equipo quiere el nivel A, tiene que subir las fotos, no cambiar la etiqueta.
+ */
+export function publicEvidenceLevel(item: CaseStudy): EvidenceLevel {
+  const declared = evidenceLevelOf(item);
+  const supported = supportedEvidenceLevel(item);
+  return LEVEL_ORDER.indexOf(declared) >= LEVEL_ORDER.indexOf(supported) ? declared : supported;
 }

@@ -120,14 +120,17 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
                 <p className="card mt-4 border-warning/40 p-4 text-body text-warning">{report.disclaimer}</p>
               ) : null}
 
+              {/* Los anclajes salen de las secciones que EXISTEN, no de una lista fija. */}
               <nav aria-label={messages.caseDetail.onThisPage} className="mt-6 flex flex-wrap gap-2">
                 {[
-                  { id: "context", label: messages.caseDetail.context, icon: "📍" },
-                  { id: "protocol", label: messages.caseDetail.protocol, icon: "🧪" },
-                  { id: "results", label: messages.caseDetail.results, icon: "📈" },
+                  ...report.sections.map((section) => ({
+                    id: section.id,
+                    label: section.title,
+                    icon: SECTION_ICONS[section.id] ?? "📄"
+                  })),
                   ...(photos.length ? [{ id: "media", label: messages.caseDetail.media, icon: "📸" }] : []),
                   ...(documents.length ? [{ id: "documents", label: messages.caseDetail.documents, icon: "📄" }] : []),
-                  { id: "related", label: messages.caseDetail.relatedTitle, icon: "🔗" }
+                  ...(related.length ? [{ id: "related", label: messages.caseDetail.relatedTitle, icon: "🔗" }] : [])
                 ].map((entry) => (
                   <a
                     key={entry.id}
@@ -141,14 +144,14 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
               </nav>
 
               <div className="mt-8 grid gap-6">
-                {report.sections.map((section, index) => (
+                {report.sections.map((section) => (
                   <section
-                    key={section.title}
-                    id={sectionId(index)}
+                    key={section.id}
+                    id={section.id}
                     className="scroll-mt-24"
-                    aria-labelledby={`${sectionId(index)}-heading`}
+                    aria-labelledby={`${section.id}-heading`}
                   >
-                    <h2 id={`${sectionId(index)}-heading`} className="text-h3 text-foreground">
+                    <h2 id={`${section.id}-heading`} className="text-h3 text-foreground">
                       {section.title}
                     </h2>
                     <p className="mt-2 max-w-prose text-body leading-7 text-muted-foreground">{section.body}</p>
@@ -312,11 +315,15 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
   );
 }
 
-const SECTION_IDS = ["context", "problem", "protocol", "results", "evidence", "notes", "related-note"];
-
-function sectionId(index: number) {
-  return SECTION_IDS[index] ?? `section-${index}`;
-}
+const SECTION_ICONS: Record<string, string> = {
+  context: "📍",
+  location: "🗺️",
+  problem: "⚠️",
+  protocol: "🧪",
+  results: "📈",
+  evidence: "🗂️",
+  notes: "📝"
+};
 
 /**
  * Par antes/despues para el comparador. Se emparejan por `display_order` cuando existe;

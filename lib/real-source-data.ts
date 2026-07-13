@@ -1,4 +1,4 @@
-import type { CaseStudy, Country, EvidenceAsset, FieldStatus, TaxonomyItem } from "@/lib/types";
+import type { CaseStudy, Country, EvidenceAsset, ExtractedMetric, FieldStatus, TaxonomyItem } from "@/lib/types";
 import { publicEvidenceLabel } from "@/lib/evidence-labels";
 
 type SourceDocument = {
@@ -161,6 +161,10 @@ export const realCases: CaseStudy[] = [
     summary: "Field protocol for Natalie pepper comparing Nano-Gro rows with nearby untreated rows.",
     application: "Nano-Gro field application with visual comparison against adjacent untreated planting.",
     results: "Harvest began 41 days after sowing, reported as 25 days earlier, with considerable production increase.",
+    metrics: [
+      { label: "Adelanto de cosecha", value: 25, unit: "días", context: "Frente a siembra vecina sin tratar" },
+      { label: "Inicio de cosecha", value: 41, unit: "días tras siembra" }
+    ],
     completeness: 74,
     evidence: ["CHILE EN CAMPO.docx"]
   }),
@@ -230,6 +234,9 @@ export const realCases: CaseStudy[] = [
     dosage: "1 tablet/L for seed soak; 10 ml solution per plant at transplant",
     results: "Reported transplant survival reached 98% for 1 tablet/L and 1 tablet/2 L treatments, versus 90% untreated reference.",
     quality: 8,
+    metrics: [
+      { label: "Supervivencia al trasplante", value: 98, unit: "%", context: "Testigo sin tratar: 90%" }
+    ],
     completeness: 88,
     evidence: ["Nano Gro Papaya.docx"]
   }),
@@ -254,6 +261,10 @@ export const realCases: CaseStudy[] = [
     results: "Reported tobacco yield was 100% higher than the control; treated plants produced about 30% more leaves and sprouted 11 days earlier.",
     yield: 100,
     quality: 30,
+    metrics: [
+      { label: "Más hojas por planta", value: 30, unit: "%" },
+      { label: "Brotación anticipada", value: 11, unit: "días" }
+    ],
     completeness: 91,
     evidence: ["tabaco nano gro.docx"]
   }),
@@ -262,6 +273,11 @@ export const realCases: CaseStudy[] = [
     application: "Nano-Gro treatment documented in testimonial.",
     results: "Table reports increases including 10.41%, 20.60%, 15.25% and 10.30% across measured weight indicators.",
     yield: 10.3,
+    metrics: [
+      { label: "Aumento de peso fresco", value: 20.6, unit: "%" },
+      { label: "Aumento de peso seco", value: 15.25, unit: "%" },
+      { label: "Aumento de peso total", value: 10.41, unit: "%" }
+    ],
     completeness: 74,
     evidence: ["Testimonial Maíz en China.docx", "Chinese corn results.doc"]
   }),
@@ -271,6 +287,10 @@ export const realCases: CaseStudy[] = [
     dosage: "1 capsule/L root dip; 1 capsule/16 L drench or foliar",
     results: "Disease was reported as eliminated, production reached 1,000 boxes of 50 lb from 2,500 plants, and survival was 98% versus 75-80% in controls.",
     quality: 23,
+    metrics: [
+      { label: "Supervivencia al trasplante", value: 98, unit: "%", context: "Testigos: 75-80%" },
+      { label: "Producción", value: "1.000", unit: "cajas de 50 lb", context: "De 2.500 plantas" }
+    ],
     completeness: 90,
     evidence: ["TOMATES ANTES DEL TRANSPLANTE(1).docx"]
   }),
@@ -375,6 +395,16 @@ function caseItem(
     yield?: number;
     quality?: number;
     roi?: number;
+    /**
+     * Metricas transcritas LITERALMENTE de la narrativa del informe original.
+     *
+     * No son estimaciones ni aproximaciones: son cifras que ya estaban escritas en el
+     * documento fuente y que nadie habia pasado a un campo estructurado, asi que la ficha
+     * publica decia "No reportado" sobre casos que si midieron algo. Transcribir no es
+     * inventar; inventar seria rellenar los huecos de los informes que aun no se han
+     * convertido, y eso no se hace.
+     */
+    metrics?: ExtractedMetric[];
     completeness: number;
     evidence: string[];
   }
@@ -438,12 +468,15 @@ function caseItem(
     country_id: country.id,
     primary_problem_id: problem.id,
     evidence_level: evidenceLevel,
-    nano_gro_application: input.application ?? "Application protocol pending technical confirmation.",
-    dosage: input.dosage ?? "Protocol pending technical confirmation",
+    // Un dato que no existe se queda en null y la pagina lo oculta. No se publica el
+    // aviso interno de que falta ("Protocol pending technical confirmation").
+    nano_gro_application: input.application ?? null,
+    dosage: input.dosage ?? null,
     results_summary: input.results,
     yield_increase_percent: input.yield ?? null,
     quality_improvement_percent: input.quality ?? null,
     roi_value: input.roi ?? null,
+    extracted_metrics: input.metrics?.length ? { source_report: input.metrics } : null,
     case_completeness_score: input.completeness,
     evidence_score: evidenceLevel === "A" ? 85 : evidenceLevel === "B" ? 68 : evidenceLevel === "C" ? 48 : 30,
     confidence_score: Math.max(30, Math.min(95, input.completeness - (hasUnextracted ? 12 : 4))),

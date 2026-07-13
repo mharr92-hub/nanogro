@@ -48,11 +48,13 @@ export default async function DiagnosticResultPage({
 
   const cropName = params.cropName ?? "";
   const countryName = params.countryName ?? "";
-  const whatsappMessage = formatMessage(messages.whatsapp.caseMessage, {
-    title: problem?.name ?? messages.diagnosticFlow.title,
-    crop: cropName,
-    country: countryName
-  });
+  const whatsappHref = buildWhatsAppUrl(
+    formatMessage(messages.whatsapp.caseMessage, {
+      title: problem?.name ?? messages.diagnosticFlow.title,
+      crop: cropName,
+      country: countryName
+    })
+  );
 
   return (
     <section className="section">
@@ -139,14 +141,11 @@ export default async function DiagnosticResultPage({
           <h2 className="text-h3 text-foreground">{messages.caseDetail.ctaTitle}</h2>
           <p className="mt-2 max-w-prose text-body text-muted-foreground">{messages.diagnosticFlow.disclaimer}</p>
           <div className="mt-4 flex flex-wrap gap-3">
-            <a
-              className="btn btn-whatsapp"
-              href={buildWhatsAppUrl(whatsappMessage)}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              {messages.diagnosticFlow.whatsappCta}
-            </a>
+            {whatsappHref ? (
+              <a className="btn btn-whatsapp" href={whatsappHref} rel="noopener noreferrer" target="_blank">
+                {messages.diagnosticFlow.whatsappCta}
+              </a>
+            ) : null}
             <Link className="btn btn-secondary" href={localizedHref(locale, "/roi-calculator")}>
               {messages.homeSections.roiCta}
             </Link>
