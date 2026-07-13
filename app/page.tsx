@@ -1,54 +1,283 @@
 import Link from "next/link";
-import { CaseCard } from "@/components/CaseCard";
-import { SearchFilters } from "@/components/SearchFilters";
+import { EvidenceImage } from "@/components/EvidenceImage";
+import { HeroSearch } from "@/components/HeroSearch";
+import { JsonLd } from "@/components/JsonLd";
+import { WhatsAppFab } from "@/components/WhatsAppFab";
+import { EvidenceSheet, MetricStat } from "@/components/ui";
+import { formatAggregate, getAggregateResults } from "@/lib/aggregate";
+import { trackEvent } from "@/lib/analytics";
 import { getPublishedCases, getTaxonomy } from "@/lib/data";
 import { getLocale, getMessages, localizedHref } from "@/lib/i18n";
+import { formatMessage } from "@/lib/i18n-shared";
 import { localizeCases, localizeTaxonomy } from "@/lib/localized-content";
-import { trackEvent } from "@/lib/analytics";
+import type { CaseStudy } from "@/lib/types";
 
 export default async function HomePage() {
   const locale = await getLocale();
   const messages = await getMessages(locale);
   await trackEvent("page_view", { page_path: "/" });
+
   const [taxonomy, rawCases] = await Promise.all([getTaxonomy(), getPublishedCases()]);
   const cases = localizeCases(rawCases, locale);
+  const aggregate = getAggregateResults(cases);
+  const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
   const localizedTaxonomy = {
     crops: localizeTaxonomy(taxonomy.crops, locale),
     countries: localizeTaxonomy(taxonomy.countries, locale),
     problems: localizeTaxonomy(taxonomy.problems, locale)
   };
+
   const featured = cases.slice(0, 3);
+  const galleryPreview = pickGalleryPhotos(cases, 4);
+  const countriesWithCases = localizedTaxonomy.countries
+    .map((country) => ({
+      ...country,
+      count: cases.filter((item) => item.country?.slug === country.slug).length
+    }))
+    .filter((country) => country.count > 0)
+    .sort((a, b) => b.count - a.count);
+
   return (
     <>
-      <section className="bg-accent py-16">
+      {/* El buscador ES el hero. Sin banner decorativo delante. */}
+      <section className="border-b border-border bg-accent/40 py-10 md:py-16">
         <div className="container">
-          <p className="text-sm font-black uppercase tracking-[0.2em] text-primary">{messages.home.eyebrow}</p>
-          <h1 className="mt-4 max-w-4xl text-5xl font-black leading-tight text-foreground md:text-7xl">
-            {messages.home.headline}
-          </h1>
-          <p className="mt-5 max-w-2xl text-xl leading-8 text-muted-foreground">
-            {messages.home.lede}
-          </p>
-          <div className="mt-8">
-            <SearchFilters {...localizedTaxonomy} locale={locale} messages={messages} />
+          <h1 className="max-w-3xl text-display text-foreground md:text-display-lg">{messages.hero.title}</h1>
+          <p className="mt-4 max-w-prose text-body-lg text-muted-foreground">{messages.hero.subtitle}</p>
+          <div className="mt-7 max-w-4xl">
+            <HeroSearch {...localizedTaxonomy} locale={locale} messages={messages} />
           </div>
         </div>
       </section>
+
+      {/* Franja de metricas agregadas. Cada cifra con su n. Guardrails de la spec. */}
+      <section className="border-b border-border py-8">
+        <div className="container">
+          <h2 className="text-label font-semibold uppercase tracking-wide text-muted-foreground">
+            {messages.aggregate.title}
+          </h2>
+          <div className="mt-5 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-6">
+            <MetricStat
+              label={messages.aggregate.publishedCases}
+              value={String(aggregate.publishedCases)}
+              tone="data"
+              messages={messages}
+            />
+            <MetricStat label={messages.aggregate.crops} value={String(aggregate.crops)} messages={messages} />
+            <MetricStat label={messages.aggregate.countries} value={String(aggregate.countries)} messages={messages} />
+            <MetricStat
+              label={messages.aggregate.averageRoi}
+              value={formatAggregate(aggregate.averageRoi, "x")}
+              sampleSize={aggregate.averageRoi.sample}
+              tone="data"
+              messages={messages}
+            />
+            <MetricStat
+              label={messages.aggregate.averageYield}
+              value={formatAggregate(aggregate.averageYieldIncrease, "%")}
+              sampleSize={aggregate.averageYieldIncrease.sample}
+              tone="data"
+              messages={messages}
+            />
+            <MetricStat
+              label={messages.aggregate.positiveRate}
+              value={formatAggregate(aggregate.positiveImprovementRate, "%", 0)}
+              sampleSize={aggregate.positiveImprovementRate.sample}
+              tone="data"
+              messages={messages}
+            />
+          </div>
+          <p className="mt-5 max-w-prose text-caption leading-5 text-muted-foreground">
+            <span className="font-semibold text-foreground">
+              {formatMessage(messages.aggregate.verifiedSplit, {
+                verified: aggregate.verifiedCases,
+                unverified: aggregate.unverifiedCases
+              })}
+              .
+            </span>{" "}
+            {messages.aggregate.verifiedExplainer} {messages.aggregate.note}
+          </p>
+        </div>
+      </section>
+
+      {/* Navegacion problema-primero: el agricultor no conoce el producto, conoce su problema. */}
+      <section className="section border-b border-border">
+        <div className="container">
+          <h2 className="text-h2 text-foreground">{messages.problemFirst.title}</h2>
+          <p className="mt-2 max-w-prose text-body text-muted-foreground">{messages.problemFirst.subtitle}</p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            {localizedTaxonomy.problems.map((problem) => {
+              const count = cases.filter((item) => item.primary_problem?.slug === problem.slug).length;
+              return (
+                <Link
+                  key={problem.id}
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-pill border border-border bg-card px-4 text-body text-foreground hover:bg-muted"
+                  href={localizedHref(locale, `/problems/${problem.slug}`)}
+                >
+                  {problem.name}
+                  <span className="tabular text-caption text-muted-foreground">{count}</span>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="section border-b border-border">
+        <div className="container">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="text-label font-semibold uppercase tracking-wide text-data">
+                {messages.homeSections.featuredEyebrow}
+              </p>
+              <h2 className="mt-1 text-h2 text-foreground">{messages.homeSections.featuredTitle}</h2>
+            </div>
+            <Link className="btn btn-secondary" href={localizedHref(locale, "/cases")}>
+              {messages.homeSections.allCases}
+            </Link>
+          </div>
+          <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {featured.map((item) => (
+              <EvidenceSheet key={item.id} item={item} locale={locale} messages={messages} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {galleryPreview.length ? (
+        <section className="section border-b border-border">
+          <div className="container">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="text-label font-semibold uppercase tracking-wide text-data">
+                  {messages.homeSections.galleryEyebrow}
+                </p>
+                <h2 className="mt-1 text-h2 text-foreground">{messages.homeSections.galleryTitle}</h2>
+                <p className="mt-2 max-w-prose text-body text-muted-foreground">
+                  {messages.homeSections.galleryBody}
+                </p>
+              </div>
+              <Link className="btn btn-secondary" href={localizedHref(locale, "/before-after")}>
+                {messages.homeSections.galleryCta}
+              </Link>
+            </div>
+            <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
+              {galleryPreview.map(({ item, asset }) => (
+                <Link
+                  key={asset.id}
+                  className="card relative aspect-square overflow-hidden p-0"
+                  href={localizedHref(locale, `/cases/${item.slug}`)}
+                >
+                  <EvidenceImage
+                    asset={asset}
+                    locale={locale}
+                    className="object-cover"
+                    sizes="(max-width: 640px) 50vw, 25vw"
+                  />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      <section className="section border-b border-border">
+        <div className="container grid gap-6 lg:grid-cols-2">
+          <div className="card p-6">
+            <p className="text-label font-semibold uppercase tracking-wide text-data">
+              {messages.homeSections.roiEyebrow}
+            </p>
+            <h2 className="mt-1 text-h2 text-foreground">{messages.homeSections.roiTitle}</h2>
+            <p className="mt-2 max-w-prose text-body text-muted-foreground">{messages.homeSections.roiBody}</p>
+            <Link className="btn btn-primary mt-5" href={localizedHref(locale, "/roi-calculator")}>
+              {messages.homeSections.roiCta}
+            </Link>
+          </div>
+
+          <div className="card p-6">
+            <h2 className="text-h2 text-foreground">{messages.homeSections.mapTitle}</h2>
+            <p className="mt-2 max-w-prose text-body text-muted-foreground">{messages.homeSections.mapBody}</p>
+            <ul className="mt-5 grid gap-2">
+              {countriesWithCases.slice(0, 6).map((country) => (
+                <li key={country.id}>
+                  <Link
+                    className="flex min-h-[44px] items-center justify-between gap-3 rounded border border-border px-3 hover:bg-muted"
+                    href={localizedHref(locale, `/countries/${country.slug}`)}
+                  >
+                    <span className="text-body text-foreground">{country.name}</span>
+                    <span className="tabular text-caption text-muted-foreground">{country.count}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Banda de conversion primaria. Es la unica CTA grande de la home. */}
+      <section className="bg-primary py-12 text-primary-foreground md:py-16">
+        <div className="container">
+          <p className="text-label font-semibold uppercase tracking-wide opacity-80">
+            {messages.homeSections.diagnosticEyebrow}
+          </p>
+          <h2 className="mt-2 max-w-3xl text-display">{messages.homeSections.diagnosticTitle}</h2>
+          <p className="mt-3 max-w-prose text-body-lg opacity-90">{messages.homeSections.diagnosticBody}</p>
+          <Link
+            className="btn btn-secondary mt-6 text-body-lg"
+            href={localizedHref(locale, "/diagnostico")}
+          >
+            {messages.homeSections.diagnosticCta}
+          </Link>
+        </div>
+      </section>
+
       <section className="section">
         <div className="container">
-          <div className="flex items-end justify-between gap-4">
-            <div>
-              <p className="text-sm font-black uppercase tracking-wide text-primary">{messages.home.publishedProof}</p>
-              <h2 className="mt-2 text-3xl font-black">{messages.home.mostComplete}</h2>
-            </div>
-            <Link className="btn btn-secondary" href={localizedHref(locale, "/cases")}>{messages.home.allCases}</Link>
-          </div>
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
-            {featured.map((item) => <CaseCard key={item.id} item={item} locale={locale} messages={messages} />)}
-          </div>
+          <p className="text-label font-semibold uppercase tracking-wide text-muted-foreground">
+            {messages.homeSections.distributorEyebrow}
+          </p>
+          <h2 className="mt-1 text-h2 text-foreground">{messages.homeSections.distributorTitle}</h2>
+          <p className="mt-2 max-w-prose text-body text-muted-foreground">{messages.homeSections.distributorBody}</p>
         </div>
       </section>
+
+      <WhatsAppFab message={messages.whatsapp.genericMessage} messages={messages} />
+
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: messages.common.product,
+          url: site,
+          description: messages.seo.defaultDescription
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Dataset",
+          name: messages.seo.defaultTitle,
+          description: messages.aggregate.note,
+          url: `${site}${localizedHref(locale, "/cases")}`,
+          variableMeasured: [
+            { "@type": "PropertyValue", name: "publishedCases", value: aggregate.publishedCases },
+            { "@type": "PropertyValue", name: "crops", value: aggregate.crops },
+            { "@type": "PropertyValue", name: "countries", value: aggregate.countries }
+          ]
+        }}
+      />
     </>
   );
 }
 
+/** Una foto por caso como maximo: una galeria de cuatro fotos del mismo caso no es una galeria. */
+function pickGalleryPhotos(cases: CaseStudy[], limit: number) {
+  const picked: { item: CaseStudy; asset: NonNullable<CaseStudy["evidence_assets"]>[number] }[] = [];
+  for (const item of cases) {
+    const photo = (item.evidence_assets ?? []).find((asset) => asset.asset_type === "photo");
+    if (photo) picked.push({ item, asset: photo });
+    if (picked.length === limit) break;
+  }
+  return picked;
+}

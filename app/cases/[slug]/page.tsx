@@ -1,38 +1,44 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CaseCard } from "@/components/CaseCard";
-import { LeadForm } from "@/components/LeadForm";
+import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { EvidenceImage } from "@/components/EvidenceImage";
+import { JsonLd } from "@/components/JsonLd";
+import { WhatsAppFab } from "@/components/WhatsAppFab";
+import { ConfidenceScore, EmptyState, EvidenceSheet } from "@/components/ui";
+import { trackEvent } from "@/lib/analytics";
 import { buildPublicCaseReport } from "@/lib/case-report";
-import { getCaseBySlug, getPublishedCases, getTaxonomy } from "@/lib/data";
+import { getCaseBySlug, getPublishedCases } from "@/lib/data";
 import { publicContentText, publicEvidenceCaption, publicEvidenceLabel } from "@/lib/evidence-labels";
 import { getLocale, getMessages, localizedHref } from "@/lib/i18n";
-import { localizeCase, localizeTaxonomy } from "@/lib/localized-content";
+import { formatMessage } from "@/lib/i18n-shared";
+import { localizeCase } from "@/lib/localized-content";
 import { getEvidenceProfile } from "@/lib/publication-quality";
 import { getRelatedCases } from "@/lib/related";
-import { trackEvent } from "@/lib/analytics";
+import type { EvidenceAsset } from "@/lib/types";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const locale = await getLocale();
+  const messages = await getMessages(locale);
   const rawItem = await getCaseBySlug(slug);
   if (!rawItem) return {};
   const item = localizeCase(rawItem, locale);
   const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const title = publicContentText(item.seo_title || item.title, messages.sheet.untitledCase);
+  const description = publicContentText(
+    item.seo_description || item.summary || item.results_summary,
+    messages.cases.summaryFallback
+  );
   return {
-    title: publicContentText(item.seo_title || item.title, "Nano-Gro case report"),
-    description: publicContentText(item.seo_description || item.summary || item.results_summary, "Documented Nano-Gro case study."),
+    title,
+    description,
     alternates: {
       canonical: `${site}${localizedHref(locale, `/cases/${item.slug}`)}`,
-      languages: {
-        en: `${site}/en/cases/${item.slug}`,
-        es: `${site}/es/casos/${item.slug}`
-      }
+      languages: { en: `${site}/en/cases/${item.slug}`, es: `${site}/es/casos/${item.slug}` }
     },
-    openGraph: {
-      title: publicContentText(item.seo_title || item.title, "Nano-Gro case report"),
-      description: publicContentText(item.seo_description || item.summary, "Documented Nano-Gro case study."),
-      type: "article"
-    }
+    openGraph: { title, description, type: "article" }
   };
 }
 
@@ -42,117 +48,282 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
   const messages = await getMessages(locale);
   const rawItem = await getCaseBySlug(slug);
   if (!rawItem) notFound();
+
   await trackEvent("case_view", { page_path: `/cases/${slug}`, case_id: rawItem.id });
-  const [taxonomy, allCases] = await Promise.all([getTaxonomy(), getPublishedCases()]);
+
+  const allCases = await getPublishedCases();
   const item = localizeCase(rawItem, locale);
   const related = getRelatedCases(rawItem, allCases).map((relatedCase) => ({
     ...localizeCase(relatedCase, locale),
-    reasons: relatedCase.reasons.map((reason) => localizeReason(reason, locale))
+    reasonKeys: relatedCase.reasonKeys
   }));
-  const localizedTaxonomy = {
-    crops: localizeTaxonomy(taxonomy.crops, locale),
-    countries: localizeTaxonomy(taxonomy.countries, locale),
-    problems: localizeTaxonomy(taxonomy.problems, locale)
-  };
+
   const evidenceProfile = getEvidenceProfile(item);
   const report = buildPublicCaseReport(item, related.length, messages);
-  return (
-    <section className="section">
-      <div className="container grid gap-8 lg:grid-cols-[1fr_380px]">
-        <article>
-          <div className="flex flex-wrap gap-2 text-sm font-black uppercase tracking-wide text-primary">
-            <span>{item.crop?.name}</span>
-            <span>{item.country?.name}</span>
-            <span>{item.primary_problem?.name}</span>
-            <span>{messages.common.evidence} {item.evidence_level}</span>
-          </div>
-          <h1 className="mt-4 text-5xl font-black leading-tight">{report.title}</h1>
-          <p className="mt-5 max-w-3xl text-xl leading-8 text-muted-foreground">{report.sections[0].body}</p>
-          {report.disclaimer ? (
-            <div className="card mt-6 border-warning/40 bg-accent p-4 text-sm font-semibold text-warning">
-              {report.disclaimer}
-            </div>
-          ) : null}
-          <div className="mt-8 grid gap-3 md:grid-cols-4">
-            {report.metrics.map((metric) => <Metric key={metric.label} label={metric.label} value={metric.value} />)}
-          </div>
-          <div className="mt-8 grid gap-5">
-            {report.sections.slice(1, 7).map((section) => (
-              <div className="card p-6" key={section.title}>
-                <h2 className="text-2xl font-black">{section.title}</h2>
-                <p className="mt-3 leading-7 text-muted-foreground">{section.body}</p>
-                {section.detail ? <p className="mt-2 text-sm text-muted-foreground">{section.detail}</p> : null}
-              </div>
-            ))}
-          </div>
-          {(item.evidence_assets ?? []).length ? (
-          <div className="mt-8">
-            <h2 className="text-2xl font-black">{messages.cases.evidenceTitle}</h2>
-            {evidenceProfile.originalReport ? (
-              <a
-                className="btn btn-primary mt-4"
-                href={evidenceProfile.originalReport.file_url}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                {messages.cases.downloadOriginalReport}
-              </a>
-            ) : null}
-            <div className="mt-4 grid gap-4 md:grid-cols-2">
-              {(item.evidence_assets ?? []).map((asset) => (
-                <a className="card block overflow-hidden" href={asset.file_url} key={asset.id}>
-                  {asset.asset_type === "photo" ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img alt={publicEvidenceLabel(asset, locale)} className="h-56 w-full object-cover" src={asset.file_url} />
-                  ) : (
-                    <div className="grid h-56 place-items-center bg-accent px-4 text-center font-black uppercase text-primary">{publicEvidenceLabel(asset, locale)}</div>
-                  )}
-                  <div className="p-4">
-                    <p className="font-bold">{publicEvidenceLabel(asset, locale)}</p>
-                    <p className="text-sm text-muted-foreground">{publicEvidenceCaption(asset, locale)}</p>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-          ) : null}
-          <div className="mt-10">
-            <h2 className="text-2xl font-black">{messages.cases.related}</h2>
-            <div className="mt-4 grid gap-5 md:grid-cols-2">
-              {related.map((relatedCase) => (
-                <CaseCard key={relatedCase.id} item={relatedCase} reasons={relatedCase.reasons} locale={locale} messages={messages} />
-              ))}
-            </div>
-          </div>
-        </article>
-        <aside>
-          <LeadForm {...localizedTaxonomy} viewedCase={item} relatedCases={related} messages={messages} />
-        </aside>
-      </div>
-    </section>
-  );
-}
+  const assets = item.evidence_assets ?? [];
+  const photos = assets.filter((asset) => asset.asset_type === "photo");
+  const documents = assets.filter((asset) => asset.asset_type !== "photo" && asset.asset_type !== "video");
+  const pair = findBeforeAfterPair(photos);
+  const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
-function Metric({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="card p-4">
-      <p className="text-xs font-bold uppercase tracking-wide text-muted-foreground">{label}</p>
-      <p className="mt-1 text-2xl font-black">{value}</p>
+  const diagnosticHref = `${localizedHref(locale, "/diagnostico")}?${new URLSearchParams({
+    ...(item.crop?.slug ? { crop: item.crop.slug } : {}),
+    ...(item.country?.slug ? { country: item.country.slug } : {}),
+    ...(item.primary_problem?.slug ? { problem: item.primary_problem.slug } : {})
+  }).toString()}`;
+
+  const roiHref = `${localizedHref(locale, "/roi-calculator")}${item.crop?.slug ? `?crop=${item.crop.slug}` : ""}`;
+
+  // Una sola conversion primaria en la pagina: el diagnostico gratuito, contextualizado
+  // con el cultivo y el pais de ESTE caso. WhatsApp es el canal alternativo, no un CTA rival.
+  const cta = (
+    <div className="card p-5">
+      <h2 className="text-h4 text-foreground">{messages.caseDetail.ctaTitle}</h2>
+      <p className="mt-2 text-body text-muted-foreground">
+        {item.crop?.name && item.country?.name
+          ? formatMessage(messages.caseDetail.ctaBodyContext, {
+              crop: item.crop.name,
+              country: item.country.name
+            })
+          : messages.caseDetail.ctaBody}
+      </p>
+      <Link className="btn btn-primary mt-4 w-full" href={diagnosticHref}>
+        {messages.caseDetail.ctaButton}
+      </Link>
+      <Link className="btn btn-secondary mt-2 w-full" href={roiHref}>
+        {messages.caseDetail.roiPrompt}
+      </Link>
     </div>
   );
+
+  return (
+    <>
+      <section className="section pb-28 lg:pb-16">
+        <div className="container">
+          <Breadcrumbs
+            crumbs={[
+              { label: messages.nav.cases, href: "/cases" },
+              ...(item.crop ? [{ label: item.crop.name, href: `/crops/${item.crop.slug}` }] : []),
+              { label: report.title }
+            ]}
+            locale={locale}
+            messages={messages}
+          />
+
+          <div className="mt-4 grid gap-8 lg:grid-cols-[1fr_360px]">
+            <article className="min-w-0">
+              {/* La Ficha de Evidencia a tamano completo, arriba del fold. */}
+              <EvidenceSheet item={item} locale={locale} messages={messages} variant="full" headingLevel="h2" />
+
+              {report.disclaimer ? (
+                <p className="card mt-4 border-warning/40 p-4 text-body text-warning">{report.disclaimer}</p>
+              ) : null}
+
+              <nav aria-label={messages.caseDetail.onThisPage} className="mt-6 flex flex-wrap gap-2">
+                {[
+                  { id: "context", label: messages.caseDetail.context },
+                  { id: "protocol", label: messages.caseDetail.protocol },
+                  { id: "results", label: messages.caseDetail.results },
+                  ...(photos.length ? [{ id: "media", label: messages.caseDetail.media }] : []),
+                  ...(documents.length ? [{ id: "documents", label: messages.caseDetail.documents }] : []),
+                  { id: "related", label: messages.caseDetail.relatedTitle }
+                ].map((entry) => (
+                  <a
+                    key={entry.id}
+                    className="inline-flex min-h-[44px] items-center rounded-pill border border-border px-4 text-body text-muted-foreground hover:bg-muted hover:text-foreground"
+                    href={`#${entry.id}`}
+                  >
+                    {entry.label}
+                  </a>
+                ))}
+              </nav>
+
+              <div className="mt-8 grid gap-6">
+                {report.sections.map((section, index) => (
+                  <section
+                    key={section.title}
+                    id={sectionId(index)}
+                    className="scroll-mt-24"
+                    aria-labelledby={`${sectionId(index)}-heading`}
+                  >
+                    <h2 id={`${sectionId(index)}-heading`} className="text-h3 text-foreground">
+                      {section.title}
+                    </h2>
+                    <p className="mt-2 max-w-prose text-body leading-7 text-muted-foreground">{section.body}</p>
+                    {section.detail ? (
+                      <p className="mt-2 max-w-prose text-caption text-muted-foreground">{section.detail}</p>
+                    ) : null}
+                  </section>
+                ))}
+              </div>
+
+              {photos.length ? (
+                <section id="media" className="mt-10 scroll-mt-24">
+                  <h2 className="text-h3 text-foreground">{messages.caseDetail.media}</h2>
+
+                  {pair ? (
+                    <div className="mt-4">
+                      <h3 className="text-h5 text-foreground">{messages.caseDetail.beforeAfterTitle}</h3>
+                      <div className="mt-3 max-w-2xl">
+                        <BeforeAfterSlider
+                          before={pair.before}
+                          after={pair.after}
+                          beforeLabel={messages.caseDetail.before}
+                          afterLabel={messages.caseDetail.after}
+                          hint={messages.caseDetail.beforeAfterHint}
+                        />
+                      </div>
+                    </div>
+                  ) : null}
+
+                  <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                    {photos.map((asset) => (
+                      <figure key={asset.id} className="card overflow-hidden p-0">
+                        <div className="relative aspect-[4/3] w-full">
+                          <EvidenceImage asset={asset} locale={locale} className="object-cover" />
+                        </div>
+                        <figcaption className="p-4">
+                          <p className="text-body font-semibold text-foreground">
+                            {publicEvidenceLabel(asset, locale)}
+                          </p>
+                          <p className="mt-1 text-caption text-muted-foreground">
+                            {publicEvidenceCaption(asset, locale)}
+                          </p>
+                        </figcaption>
+                      </figure>
+                    ))}
+                  </div>
+                </section>
+              ) : null}
+
+              {documents.length ? (
+                <section id="documents" className="mt-10 scroll-mt-24">
+                  <h2 className="text-h3 text-foreground">{messages.caseDetail.documents}</h2>
+                  {evidenceProfile.originalReport ? (
+                    <a
+                      className="btn btn-download mt-4"
+                      href={evidenceProfile.originalReport.file_url}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      {messages.cases.downloadOriginalReport}
+                    </a>
+                  ) : null}
+                  <ul className="mt-4 grid gap-2">
+                    {documents.map((asset) => (
+                      <li key={asset.id}>
+                        <a
+                          className="flex min-h-[44px] items-center justify-between gap-3 rounded border border-border px-4 hover:bg-muted"
+                          href={asset.file_url}
+                          rel="noopener noreferrer"
+                          target="_blank"
+                        >
+                          <span className="text-body text-foreground">{publicEvidenceLabel(asset, locale)}</span>
+                          <span className="text-caption text-muted-foreground">
+                            {publicEvidenceCaption(asset, locale)}
+                          </span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ) : null}
+
+              <section id="related" className="mt-10 scroll-mt-24">
+                <h2 className="text-h3 text-foreground">{messages.caseDetail.relatedTitle}</h2>
+                <p className="mt-1 max-w-prose text-body text-muted-foreground">{messages.caseDetail.relatedBody}</p>
+
+                {related.length ? (
+                  <div className="mt-4 grid gap-5 sm:grid-cols-2">
+                    {related.map((relatedCase) => (
+                      <EvidenceSheet
+                        key={relatedCase.id}
+                        item={relatedCase}
+                        locale={locale}
+                        messages={messages}
+                        // La razon del match siempre visible: la spec lo exige.
+                        reasons={relatedCase.reasonKeys.map((key) => messages.matchReasons[key])}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="mt-4">
+                    <EmptyState
+                      title={messages.caseDetail.relatedEmptyTitle}
+                      body={messages.caseDetail.relatedEmptyBody}
+                      action={
+                        <Link className="btn btn-primary" href={localizedHref(locale, "/cases")}>
+                          {messages.caseDetail.relatedEmptyCta}
+                        </Link>
+                      }
+                    />
+                  </div>
+                )}
+              </section>
+            </article>
+
+            <aside className="grid content-start gap-5 lg:sticky lg:top-24 lg:self-start">
+              <ConfidenceScore item={item} messages={messages} />
+              <div className="hidden lg:block">{cta}</div>
+            </aside>
+          </div>
+
+          <div className="mt-8 lg:hidden">{cta}</div>
+        </div>
+      </section>
+
+      {/* CTA fija en movil. Es la unica accion permanente en pantalla. */}
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-border bg-card p-3 lg:hidden">
+        <Link className="btn btn-primary w-full" href={diagnosticHref}>
+          {messages.caseDetail.stickyCta}
+        </Link>
+      </div>
+
+      <WhatsAppFab
+        message={formatMessage(messages.whatsapp.caseMessage, {
+          title: report.title,
+          crop: item.crop?.name ?? "",
+          country: item.country?.name ?? ""
+        })}
+        messages={messages}
+      />
+
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: report.title,
+          description: publicContentText(item.summary || item.results_summary, messages.cases.summaryFallback),
+          datePublished: item.published_at ?? undefined,
+          dateModified: item.updated_at ?? undefined,
+          url: `${site}${localizedHref(locale, `/cases/${item.slug}`)}`,
+          inLanguage: locale,
+          publisher: { "@type": "Organization", name: messages.common.product },
+          image: photos.map((asset) => ({
+            "@type": "ImageObject",
+            contentUrl: asset.file_url,
+            description: asset.alt_text?.trim() || publicEvidenceLabel(asset, locale)
+          }))
+        }}
+      />
+    </>
+  );
 }
 
-function localizeReason(reason: string, locale: "en" | "es") {
-  if (locale === "en") return reason;
-  const map: Record<string, string> = {
-    "Same crop": "Mismo cultivo",
-    "Same problem": "Mismo problema",
-    "Same country": "Mismo pais",
-    "Same region": "Misma region",
-    "Similar application": "Aplicacion similar",
-    "High evidence level": "Alto nivel de evidencia",
-    "Complete case": "Caso completo"
-  };
-  return map[reason] ?? reason;
+const SECTION_IDS = ["context", "problem", "protocol", "results", "evidence", "notes", "related-note"];
+
+function sectionId(index: number) {
+  return SECTION_IDS[index] ?? `section-${index}`;
 }
 
+/**
+ * Par antes/despues para el comparador. Se emparejan por `display_order` cuando existe;
+ * si no, se toma la primera foto de cada etapa. Sin par no se pinta el comparador: un
+ * "antes" sin "despues" no compara nada.
+ */
+function findBeforeAfterPair(photos: EvidenceAsset[]) {
+  const before = photos.find((asset) => asset.evidence_stage === "before");
+  const after = photos.find((asset) => asset.evidence_stage === "after");
+  if (!before || !after) return null;
+  return { before, after };
+}

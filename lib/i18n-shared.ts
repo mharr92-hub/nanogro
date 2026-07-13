@@ -20,24 +20,44 @@ export function formatMessage(template: string, values: Record<string, string | 
   return Object.entries(values).reduce((text, [key, value]) => text.replaceAll(`{${key}}`, String(value)), template);
 }
 
+/**
+ * Mapa de slugs localizados. La ruta interna (la que existe en app/) siempre esta en
+ * ingles; el usuario ve la version de su idioma. `internalPathFromLocalized` es su inversa
+ * y las dos deben moverse juntas: si anades una ruta aqui, anade su entrada alli.
+ */
+const esSegments: Record<string, string> = {
+  cases: "casos",
+  problems: "problemas",
+  crops: "cultivos",
+  countries: "paises",
+  results: "resultados",
+  "roi-calculator": "calculadora-roi",
+  "before-after": "antes-despues",
+  compare: "comparar",
+  diagnostico: "diagnostico",
+  fichas: "fichas"
+};
+
 export function localizedHref(locale: Locale, path: string) {
   const clean = path === "/" ? "" : path;
+  if (clean === "") return locale === "en" ? "/en" : "/es";
+
+  const [, section = "", ...tail] = clean.split("/");
+  const [sectionName, query = ""] = splitQuery(section);
+  const tailPath = tail.length ? `/${tail.join("/")}` : "";
+
   if (locale === "en") {
-    if (clean === "") return "/en";
-    if (clean === "/diagnostico") return "/en/diagnostic";
-    return `/en${clean}`;
+    const enSection = sectionName === "diagnostico" ? "diagnostic" : sectionName;
+    return `/en/${enSection}${query}${tailPath}`;
   }
-  if (clean === "") return "/es";
-  if (clean.startsWith("/cases/")) return clean.replace("/cases/", "/es/casos/");
-  if (clean.startsWith("/problems/")) return clean.replace("/problems/", "/es/problemas/");
-  if (clean.startsWith("/crops/")) return clean.replace("/crops/", "/es/cultivos/");
-  if (clean.startsWith("/countries/")) return clean.replace("/countries/", "/es/paises/");
-  if (clean === "/cases") return "/es/casos";
-  if (clean === "/problems") return "/es/problemas";
-  if (clean === "/crops") return "/es/cultivos";
-  if (clean === "/countries") return "/es/paises";
-  if (clean === "/diagnostico") return "/es/diagnostico";
-  return `/es${clean}`;
+  const esSection = esSegments[sectionName] ?? sectionName;
+  return `/es/${esSection}${query}${tailPath}`;
+}
+
+function splitQuery(segment: string): [string, string] {
+  const index = segment.indexOf("?");
+  if (index === -1) return [segment, ""];
+  return [segment.slice(0, index), segment.slice(index)];
 }
 
 export function internalPathFromLocalized(pathname: string) {
@@ -54,6 +74,10 @@ export function internalPathFromLocalized(pathname: string) {
       problemas: "problems",
       cultivos: "crops",
       paises: "countries",
+      resultados: "results",
+      "calculadora-roi": "roi-calculator",
+      "antes-despues": "before-after",
+      comparar: "compare",
       diagnostico: "diagnostico"
     };
     return { locale, internalPath: `/${map[section] ?? section}${tailPath}` };
