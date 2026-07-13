@@ -157,71 +157,89 @@ export function generateTechnicalQuestions(fields: readonly string[]) {
   return [...new Set(fields.map((field) => map[field]).filter(Boolean))];
 }
 
+export type CaseReportSection = {
+  id: string;
+  title: string;
+  body: string;
+  detail?: string;
+};
+
+/**
+ * Palabras que delatan un placeholder interno filtrado al informe publico
+ * ("Protocol pending final technical review", "pendiente de confirmacion"...). Un dato que
+ * no existe se OCULTA; no se publica el aviso de que falta. El agricultor no necesita ver
+ * la contabilidad interna de lo que el equipo aun no ha confirmado.
+ */
+const PLACEHOLDER = /pending (final )?(technical )?(review|confirmation)|pendiente de (confirmaci[oó]n|revisi[oó]n)|not reported|no reportado|^n\/?a$|^-+$/i;
+
+function realContent(value?: string | null): string | null {
+  const text = publicContentText(value ?? undefined, "").trim();
+  if (!text) return null;
+  if (PLACEHOLDER.test(text)) return null;
+  return text;
+}
+
 export function buildPublicCaseReport(item: CaseStudy, relatedCount: number, messages?: Messages) {
-  const assets = item.evidence_assets ?? [];
   const hasMeasuredYield = typeof item.yield_increase_percent === "number";
   const hasRoi = typeof item.roi_value === "number";
-  const hasQualitativeResult = Boolean(item.results_summary);
   const disclaimer = item.public_data_disclaimer || (
     (item.pending_confirmation_fields?.length || item.estimated_fields?.length || item.inferred_fields?.length)
       ? messages?.cases.disclaimer ?? "This report is based on documented field evidence. Some technical details not available in the original report were conservatively estimated by the technical team for guidance purposes and remain subject to confirmation."
       : null
   );
 
+  const sections: CaseReportSection[] = [];
+  const push = (id: string, title: string, body: string | null, detail?: string | null) => {
+    if (!body) return;
+    sections.push({ id, title, body, ...(detail ? { detail } : {}) });
+  };
+
+  push("context", messages?.caseReport?.summary ?? "Summary", realContent(item.summary));
+
+  push(
+    "location",
+    messages?.caseReport?.cropLocation ?? "Crop & Location",
+    realContent([item.crop?.name, item.country?.name, item.region?.name].filter(Boolean).join(" / "))
+  );
+
+  push("problem", messages?.caseReport?.initialChallenge ?? "Initial Challenge", realContent(item.primary_problem?.name));
+
+  const dosage = realContent(item.dosage);
+  push(
+    "protocol",
+    messages?.caseReport?.application ?? "Nano-Gro Application",
+    realContent(item.nano_gro_application),
+    dosage ? `${messages?.caseReport.dosage ?? "Dosage"}: ${dosage}` : null
+  );
+
+  push("results", messages?.caseReport?.observedResults ?? "Observed Results", realContent(item.results_summary));
+
+  // El resumen de evidencia solo aparece si hay evidencia. "Archivos pendientes de
+  // adjuntar" es una nota para el equipo interno, no para el visitante.
+  const assets = item.evidence_assets ?? [];
+  if (assets.length) {
+    push("evidence", messages?.caseReport?.evidenceAvailable ?? "Evidence Available", evidenceSummary(item, messages));
+  }
+
+  push("notes", messages?.caseReport?.technicalNotes ?? "Technical Notes", realContent(item.technical_summary));
+
+  /*
+   * Ya no se emiten las secciones "Casos similares" ni "Solicitar diagnostico": el modulo
+   * de casos relacionados y la tarjeta de CTA ya estan en la pagina, y repetirlos en prosa
+   * era el bloque de CTA duplicado del detalle de caso.
+   */
+  void relatedCount;
+
   return {
-    title: publicContentText(item.title, "Nano-Gro case report"),
+    title: publicContentText(item.title, messages?.sheet.untitledCase ?? "Nano-Gro case report"),
     disclaimer,
     metrics: [
       { label: messages?.cases.yield ?? "Yield increase", value: hasMeasuredYield ? `+${item.yield_increase_percent}%` : messages?.caseReport.yieldNotReported ?? "Yield data not reported." },
       { label: messages?.cases.roi ?? "ROI", value: hasRoi ? `${item.roi_value}x` : messages?.caseReport.roiNotCalculated ?? "ROI not calculated due to incomplete baseline data." },
       { label: messages?.cases.complete ?? "Completeness", value: `${item.case_completeness_score ?? 0}/100` },
-      { label: "Confidence", value: `${item.confidence_score ?? 0}/100` }
+      { label: messages?.sheet.confidence ?? "Confidence", value: `${item.confidence_score ?? 0}/100` }
     ],
-    sections: [
-      {
-        title: messages?.caseReport?.summary ?? "Summary",
-        body: publicContentText(item.summary, messages?.caseReport.summaryFallback || "Documented Nano-Gro field case prepared for technical review.")
-      },
-      {
-        title: messages?.caseReport?.cropLocation ?? "Crop & Location",
-        body: publicContentText([item.crop?.name, item.country?.name, item.region?.name].filter(Boolean).join(" / "), messages?.caseReport.cropLocationFallback || "Crop and location pending confirmation.")
-      },
-      {
-        title: messages?.caseReport?.initialChallenge ?? "Initial Challenge",
-        body: publicContentText(item.primary_problem?.name, messages?.caseReport.challengeFallback || "Agronomic challenge pending technical classification.")
-      },
-      {
-        title: messages?.caseReport?.application ?? "Nano-Gro Application",
-        body: publicContentText(item.nano_gro_application, messages?.caseReport.applicationFallback || "Application protocol pending technical confirmation."),
-        detail: item.dosage ? publicContentText(`${messages?.caseReport.dosage ?? "Dosage"}: ${item.dosage}`) : messages?.caseReport.dosageFallback || "Dosage pending technical confirmation."
-      },
-      {
-        title: messages?.caseReport?.observedResults ?? "Observed Results",
-        body: hasQualitativeResult
-          ? publicContentText(item.results_summary!)
-          : assets.length
-            ? messages?.caseReport.visualOnlyResult ?? "Visual improvement documented. Quantified yield data not reported."
-            : messages?.caseReport.yieldNotReported ?? "Yield data not reported."
-      },
-      {
-        title: messages?.caseReport?.evidenceAvailable ?? "Evidence Available",
-        body: evidenceSummary(item, messages)
-      },
-      {
-        title: messages?.caseReport?.technicalNotes ?? "Technical Notes",
-        body: item.pending_confirmation_fields?.length || item.estimated_fields?.length || item.inferred_fields?.length
-          ? messages?.caseReport.pendingConfirmation ?? "Technical details remain subject to confirmation."
-          : messages?.caseReport.technicalStructured ?? "Technical details are structured for publication."
-      },
-      {
-        title: messages?.caseReport?.similarCases ?? "Similar Cases",
-        body: relatedCount ? `${relatedCount} ${messages?.caseReport.relatedAvailable ?? "related documented cases are available below."}` : messages?.caseReport.relatedFallback ?? "Related case matching will improve as more cases are published."
-      },
-      {
-        title: messages?.caseReport?.requestDiagnosis ?? "Request Diagnosis",
-        body: messages?.caseReport.requestDiagnosisBody ?? "Submit your crop, hectares, problem, and objective to receive a case-based recommendation."
-      }
-    ]
+    sections
   };
 }
 

@@ -28,7 +28,12 @@ export function calculateEvidenceScore(evidence: EvidenceAsset[] = []) {
   if (evidence.some((asset) => asset.asset_type === "video")) score += 20;
   if (evidence.some((asset) => ["pdf", "document"].includes(asset.asset_type))) score += 15;
   if (evidence.some((asset) => asset.asset_type === "lab_report")) score += 15;
-  if (evidence.every((asset) => asset.consent_status === "approved" && asset.verification_status === "approved")) score += 10;
+  // El bono de consentimiento exige que exista evidencia: [].every(...) es true, y un caso
+  // sin una sola foto no puede puntuar por tener el consentimiento en regla.
+  const fullyConsented =
+    evidence.length > 0 &&
+    evidence.every((asset) => asset.consent_status === "approved" && asset.verification_status === "approved");
+  if (fullyConsented) score += 10;
   return Math.min(score, 100);
 }
 

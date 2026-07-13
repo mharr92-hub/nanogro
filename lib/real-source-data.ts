@@ -1,4 +1,4 @@
-import type { CaseStudy, Country, EvidenceAsset, FieldStatus, TaxonomyItem } from "@/lib/types";
+import type { CaseStudy, Country, EvidenceAsset, ExtractedMetric, FieldStatus, TaxonomyItem } from "@/lib/types";
 import { publicEvidenceLabel } from "@/lib/evidence-labels";
 
 type SourceDocument = {
@@ -161,6 +161,10 @@ export const realCases: CaseStudy[] = [
     summary: "Field protocol for Natalie pepper comparing Nano-Gro rows with nearby untreated rows.",
     application: "Nano-Gro field application with visual comparison against adjacent untreated planting.",
     results: "Harvest began 41 days after sowing, reported as 25 days earlier, with considerable production increase.",
+    metrics: [
+      { label: "Adelanto de cosecha", value: 25, unit: "días", context: "Frente a siembra vecina sin tratar" },
+      { label: "Inicio de cosecha", value: 41, unit: "días tras siembra" }
+    ],
     completeness: 74,
     evidence: ["CHILE EN CAMPO.docx"]
   }),
@@ -168,9 +172,20 @@ export const realCases: CaseStudy[] = [
     summary: "CENTA-MAG paired-plot evaluation across farmer locations in El Salvador.",
     application: "Organic technology package including Nano-Gro, minerals, mycorrhizae, Rhizobium and foliar nutrition.",
     dosage: "8 Nano-Gro tablets in the evaluated package",
-    results: "Average yield reached 1.23 t/ha, 35.1% above the producer technology, with TRM of 0.54.",
+    results: "Average yield reached 1.23 t/ha, 35.1% above the producer technology. The CIMMYT marginal rate of return (TRM) was 0.54. The report states the difference was not statistically significant at 10% probability.",
     yield: 35.1,
-    roi: 0.54,
+    /*
+     * OJO: el informe reporta "TRM de 0.54" = Tasa de Retorno Marginal (metodologia CIMMYT).
+     * NO es un ROI. Antes se mapeaba a `roi_value`, asi que la ficha publicaba "ROI 0.54x"
+     * y el caso parecia decir que el programa costo mas de lo que devolvio. Era un error de
+     * etiquetado, no un mal resultado. La TRM se publica ahora con su nombre real, y el
+     * campo ROI se queda vacio porque el informe no calcula ROI.
+     */
+    metrics: [
+      { label: "Rendimiento medio", value: 1.23, unit: "t/ha", context: "Tecnología del productor: 0.91 t/ha" },
+      { label: "Sobre la tecnología del productor", value: 35.1, unit: "%" },
+      { label: "Tasa de Retorno Marginal (CIMMYT)", value: 0.54, context: "No es un ROI. Diferencia no significativa al 10%" }
+    ],
     completeness: 92,
     evidence: ["Doc 2. Inf. Carlos Reyes.docx", "Doc. 1 Info. Dir CENTA.docx"]
   }),
@@ -178,35 +193,64 @@ export const realCases: CaseStudy[] = [
     summary: "Guatemala banana plant biometric evaluation supported by DOCX report and spreadsheet template.",
     application: "Nano-Gro treatment compared with commercial and Potenz plans.",
     dosage: "1 pellet/5 L; backpack sprayer coverage noted at 0.125 ha",
-    results: "Biometric measurements recorded leaves, height and perimeter for treated and comparison plants.",
+    results: "Across weeks 39-46 the treated lots averaged 326 more boxes per hectare per year than the control, with a reported net gain of 1,630 USD/ha/year. The effect came from finger weight, not finger count.",
+    metrics: [
+      { label: "Cajas adicionales", value: 326, unit: "cajas/ha/año", context: "Promedio semanas 39-46 frente al testigo" },
+      { label: "Ganancia neta reportada", value: "1.630", unit: "USD/ha/año" }
+    ],
     completeness: 78,
     evidence: ["Evaluaciones en Bananos Guatemala.docx", "PLANTILLA de Bananos en Guatemala.xlsx"]
   }),
   caseItem("real-005", "Common bean germination protocol in El Salvador", "common-bean", "el-salvador", "germination", "B", {
     summary: "Seed germination and establishment protocol for common bean using Nano-Gro.",
     application: "Seed-stage Nano-Gro protocol documented in source report.",
-    results: "Germination and early vigor observations were documented for technical review.",
+    dosage: "1 cápsula por litro de agua pura; inmersión de la semilla 30 segundos antes de la siembra",
+    results: "Germination rose to 100% in treated seed versus 96% untreated, and total germination came almost two days earlier. Treated seed developed thicker, larger roots.",
+    quality: 4,
+    metrics: [
+      { label: "Germinación", value: 100, unit: "%", context: "Testigo sin tratar: 96%" },
+      { label: "Adelanto de germinación", value: 2, unit: "días" }
+    ],
     completeness: 68,
     evidence: ["FRIJOL _ GERMINACIÓN(1).docx"]
   }),
   caseItem("real-006", "Loroco production protocol in El Salvador", "loroco", "el-salvador", "poor-flowering", "B", {
     summary: "Loroco production report documenting Nano-Gro use in flowering and production context.",
     application: "Nano-Gro application protocol documented in field report.",
-    results: "Production observations are available in the extracted DOCX and need final agronomic normalization.",
+    dosage: "1 cápsula por litro de agua junto a BS-95 a 1 cc/litro, aplicación foliar",
+    results: "Weekly production rose from 240 lb/week before treatment to 580 lb/week from day 10, and to 720 lb/week from day 45. Flowers were reported larger and more abundant.",
+    yield: 200,
+    metrics: [
+      { label: "Producción semanal", value: 720, unit: "lb/semana", context: "Antes de la aplicación: 240 lb/semana" },
+      { label: "A los 10 días", value: 580, unit: "lb/semana" }
+    ],
     completeness: 66,
     evidence: ["LOROCO EN PRODUCCIÓN.docx"]
   }),
   caseItem("real-007", "Corn trials with ALBA Alimentos", "corn", "el-salvador", "low-production", "A", {
     summary: "Large maize trial report from ALBA Alimentos with extracted technical narrative and tables.",
     application: "Nano-Gro evaluated in maize trial conditions.",
-    results: "Report contains detailed trial observations and measurements for maize performance.",
+    results: "Corn-ear yield across 4 hybrids: PIONEER 30F96 more than doubled ear weight (234.69 vs 108.26 qq/mz). CENTA H-59 rose 4% in ear count. DEKALB 390 fell 8% with the product. Germination was 100% across all four hybrids.",
+    metrics: [
+      { label: "Peso de elote (PIONEER 30F96)", value: 234.69, unit: "qq/mz", context: "Sin Nano-Gro: 108.26 qq/mz" },
+      { label: "Elotes (CENTA H-59)", value: 4, unit: "%", context: "43.509 con Nano-Gro frente a 42.175" },
+      { label: "Elotes (DEKALB 390)", value: -8, unit: "%", context: "El único híbrido con resultado negativo" }
+    ],
     completeness: 86,
     evidence: ["Maiz. Ensayos en ALBA Alimentos.docx"]
   }),
   caseItem("real-008", "Foliar maize application in El Salvador", "corn", "el-salvador", "nutrition-and-vigor", "B", {
     summary: "Foliar Nano-Gro maize protocol with field images and treatment notes.",
     application: "Foliar application to maize.",
-    results: "Visual field response documented in the source report.",
+    dosage: "2 cápsulas por bomba de 16 litros, aplicación foliar única a los 25 días",
+    results: "Plant height and stem thickness were 45% greater than the control under severe water stress. Flowering came 13 days earlier, and ear size and weight were 30% higher.",
+    yield: 30,
+    quality: 45,
+    metrics: [
+      { label: "Altura y grosor de tallo", value: 45, unit: "%", context: "Bajo estrés hídrico severo" },
+      { label: "Adelanto de floración", value: 13, unit: "días" },
+      { label: "Tamaño y peso de mazorca", value: 30, unit: "%" }
+    ],
     completeness: 67,
     evidence: ["MAÍZ FOLIAR.docx"]
   }),
@@ -230,6 +274,10 @@ export const realCases: CaseStudy[] = [
     dosage: "1 tablet/L for seed soak; 10 ml solution per plant at transplant",
     results: "Reported transplant survival reached 98% for 1 tablet/L and 1 tablet/2 L treatments, versus 90% untreated reference.",
     quality: 8,
+    metrics: [
+      { label: "Supervivencia al trasplante", value: 98, unit: "%", context: "Testigo sin tratar: 90%" },
+      { label: "Germinación a los 10 días", value: 72, unit: "%", context: "Testigo: 56%. Inmersión óptima de 1-1.5 minutos" }
+    ],
     completeness: 88,
     evidence: ["Nano Gro Papaya.docx"]
   }),
@@ -243,7 +291,13 @@ export const realCases: CaseStudy[] = [
   caseItem("real-013", "Cabbage seed protocol in El Salvador", "cabbage", "el-salvador", "germination", "B", {
     summary: "Cabbage seed application protocol for Marien variety.",
     application: "Nano-Gro seed-stage protocol.",
-    results: "Protocol and photos are preserved for agronomic review.",
+    dosage: "1 cápsula por litro para la inmersión de semilla; 2 cápsulas por bomba de 16 litros en la foliar a los 40 días",
+    results: "Heads grew larger and firmer while keeping the variety's flavour and consistency. Harvest came 25 days earlier and flowering 30 days earlier.",
+    quality: 25,
+    metrics: [
+      { label: "Adelanto de cosecha", value: 25, unit: "días" },
+      { label: "Adelanto de floración", value: 30, unit: "días" }
+    ],
     completeness: 63,
     evidence: ["REPOLLO EN SEMILLAS.docx"]
   }),
@@ -254,6 +308,10 @@ export const realCases: CaseStudy[] = [
     results: "Reported tobacco yield was 100% higher than the control; treated plants produced about 30% more leaves and sprouted 11 days earlier.",
     yield: 100,
     quality: 30,
+    metrics: [
+      { label: "Más hojas por planta", value: 30, unit: "%" },
+      { label: "Brotación anticipada", value: 11, unit: "días" }
+    ],
     completeness: 91,
     evidence: ["tabaco nano gro.docx"]
   }),
@@ -262,6 +320,11 @@ export const realCases: CaseStudy[] = [
     application: "Nano-Gro treatment documented in testimonial.",
     results: "Table reports increases including 10.41%, 20.60%, 15.25% and 10.30% across measured weight indicators.",
     yield: 10.3,
+    metrics: [
+      { label: "Aumento de peso fresco", value: 20.6, unit: "%" },
+      { label: "Aumento de peso seco", value: 15.25, unit: "%" },
+      { label: "Aumento de peso total", value: 10.41, unit: "%" }
+    ],
     completeness: 74,
     evidence: ["Testimonial Maíz en China.docx", "Chinese corn results.doc"]
   }),
@@ -271,6 +334,10 @@ export const realCases: CaseStudy[] = [
     dosage: "1 capsule/L root dip; 1 capsule/16 L drench or foliar",
     results: "Disease was reported as eliminated, production reached 1,000 boxes of 50 lb from 2,500 plants, and survival was 98% versus 75-80% in controls.",
     quality: 23,
+    metrics: [
+      { label: "Supervivencia al trasplante", value: 98, unit: "%", context: "Testigos: 75-80%" },
+      { label: "Producción", value: "1.000", unit: "cajas de 50 lb", context: "De 2.500 plantas" }
+    ],
     completeness: 90,
     evidence: ["TOMATES ANTES DEL TRANSPLANTE(1).docx"]
   }),
@@ -375,6 +442,16 @@ function caseItem(
     yield?: number;
     quality?: number;
     roi?: number;
+    /**
+     * Metricas transcritas LITERALMENTE de la narrativa del informe original.
+     *
+     * No son estimaciones ni aproximaciones: son cifras que ya estaban escritas en el
+     * documento fuente y que nadie habia pasado a un campo estructurado, asi que la ficha
+     * publica decia "No reportado" sobre casos que si midieron algo. Transcribir no es
+     * inventar; inventar seria rellenar los huecos de los informes que aun no se han
+     * convertido, y eso no se hace.
+     */
+    metrics?: ExtractedMetric[];
     completeness: number;
     evidence: string[];
   }
@@ -438,12 +515,15 @@ function caseItem(
     country_id: country.id,
     primary_problem_id: problem.id,
     evidence_level: evidenceLevel,
-    nano_gro_application: input.application ?? "Application protocol pending technical confirmation.",
-    dosage: input.dosage ?? "Protocol pending technical confirmation",
+    // Un dato que no existe se queda en null y la pagina lo oculta. No se publica el
+    // aviso interno de que falta ("Protocol pending technical confirmation").
+    nano_gro_application: input.application ?? null,
+    dosage: input.dosage ?? null,
     results_summary: input.results,
     yield_increase_percent: input.yield ?? null,
     quality_improvement_percent: input.quality ?? null,
     roi_value: input.roi ?? null,
+    extracted_metrics: input.metrics?.length ? { source_report: input.metrics } : null,
     case_completeness_score: input.completeness,
     evidence_score: evidenceLevel === "A" ? 85 : evidenceLevel === "B" ? 68 : evidenceLevel === "C" ? 48 : 30,
     confidence_score: Math.max(30, Math.min(95, input.completeness - (hasUnextracted ? 12 : 4))),

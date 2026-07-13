@@ -11,19 +11,20 @@ const ThemeContext = createContext<{
   setTheme: (theme: Theme) => void;
   toggleTheme: () => void;
 }>({
-  theme: "dark",
+  theme: "light",
   setTheme: () => undefined,
   toggleTheme: () => undefined
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("dark");
+  // Claro por defecto, no la preferencia del sistema. Debe coincidir con el script de
+  // arranque de app/layout.tsx; si divergen, la pagina parpadea al hidratar.
+  const [theme, setThemeState] = useState<Theme>("light");
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const stored = window.localStorage.getItem(storageKey) as Theme | null;
-    const preferred: Theme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-    setThemeState(stored === "light" || stored === "dark" ? stored : preferred);
+    setThemeState(stored === "dark" ? "dark" : "light");
     setReady(true);
   }, []);
 

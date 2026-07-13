@@ -1,11 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
-import { internalPathFromLocalized, isLocale, localeCookie, localeFromAcceptLanguage } from "@/lib/i18n-shared";
+import { defaultLocale, internalPathFromLocalized, isLocale, localeCookie } from "@/lib/i18n-shared";
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const { locale, internalPath } = internalPathFromLocalized(pathname);
   const cookieLocale = request.cookies.get(localeCookie)?.value;
-  const resolvedLocale = locale ?? (isLocale(cookieLocale) ? cookieLocale : localeFromAcceptLanguage(request.headers.get("accept-language")));
+  /*
+   * El idioma por defecto es el espanol, no el del navegador.
+   * El publico de la plataforma es agricultura latinoamericana; antes se leia
+   * Accept-Language y un navegador configurado en ingles recibia el sitio en ingles.
+   * Ahora manda, por este orden: el prefijo de la URL (/en/...), la eleccion guardada
+   * del usuario, y si no hay ninguna de las dos, espanol.
+   */
+  const resolvedLocale = locale ?? (isLocale(cookieLocale) ? cookieLocale : defaultLocale);
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-nano-gro-locale", resolvedLocale);
 

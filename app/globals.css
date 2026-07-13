@@ -2,56 +2,123 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Sistema de diseno Nano-Gro. Ver docs/DESIGN_SYSTEM.md.
+ *
+ * Seis tokens con proposito, tomados del mundo real del producto:
+ *   field  -> --background : el papel sobre el que se lee la evidencia
+ *   sheet  -> --card       : la superficie de la ficha
+ *   soil   -> --foreground : la tinta
+ *   leaf   -> --primary    : la accion (marca, botones, enlaces)
+ *   assay  -> --data       : el dato medido y la verificacion (color de laboratorio)
+ *   husk   -> --warning    : la advertencia; --danger para el error
+ */
+
 :root {
   color-scheme: light;
-  --background: #f7faf5;
-  --foreground: #111913;
+
+  /* Papel blanco. Las superficies se separan del fondo por borde, no por tono. */
+  --background: #ffffff;
+  --foreground: #171a16;
   --card: #ffffff;
-  --card-foreground: #17201a;
-  --border: rgba(23, 32, 26, 0.12);
-  --muted: #edf4e8;
-  --muted-foreground: rgba(23, 32, 26, 0.66);
-  --primary: #2f7d4d;
+  --card-foreground: #171a16;
+  --border: rgba(23, 26, 22, 0.16);
+  --muted: #f2f4f0;
+  --muted-foreground: #5a6057;
+
+  --primary: #14523a;
   --primary-foreground: #ffffff;
-  --accent: #e8f5dc;
-  --accent-foreground: #173b27;
-  --success: #1f9d58;
-  --warning: #c89524;
-  --danger: #c2413d;
-  --glass: rgba(255, 255, 255, 0.72);
-  --shadow-soft: 0 18px 48px rgba(23, 32, 26, 0.1);
+  --accent: #eef4ef;
+  --accent-foreground: #10402d;
+
+  --data: #0a5a73;
+  --data-foreground: #ffffff;
+  --data-tint: #eaf3f6;
+
+  --success: #1b7a4b;
+  --warning: #8a5a00;
+  --danger: #a8261e;
+
+  --level-a: #14523a;
+  --level-b: #0a5a73;
+  --level-c: #8a5a00;
+  --level-d: #575c53;
+
+  --shadow-soft: 0 1px 2px rgba(23, 26, 22, 0.06), 0 8px 24px rgba(23, 26, 22, 0.06);
+  --shadow-sheet: 0 1px 0 rgba(23, 26, 22, 0.08);
+  --grid-line: rgba(23, 26, 22, 0.05);
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --background: #050806;
-  --foreground: #eafff1;
-  --card: rgba(11, 18, 13, 0.74);
-  --card-foreground: #eafff1;
-  --border: rgba(81, 255, 155, 0.18);
-  --muted: rgba(30, 54, 38, 0.72);
-  --muted-foreground: rgba(234, 255, 241, 0.68);
-  --primary: #55ff9a;
-  --primary-foreground: #061009;
-  --accent: rgba(85, 255, 154, 0.11);
-  --accent-foreground: #b8ffd1;
-  --success: #55ff9a;
-  --warning: #ffd166;
-  --danger: #ff6b6b;
-  --glass: rgba(11, 18, 13, 0.68);
-  --shadow-soft: 0 22px 70px rgba(0, 0, 0, 0.5);
+
+  --background: #101311;
+  --foreground: #eceee8;
+  --card: #171b18;
+  --card-foreground: #eceee8;
+  --border: rgba(236, 238, 232, 0.16);
+  --muted: #222722;
+  --muted-foreground: #a6ada2;
+
+  --primary: #6fc79a;
+  --primary-foreground: #08150e;
+  --accent: #1b2a22;
+  --accent-foreground: #a9dfc3;
+
+  --data: #66bcd8;
+  --data-foreground: #07161c;
+  --data-tint: #16262c;
+
+  --success: #6fc79a;
+  --warning: #e0a44a;
+  --danger: #e4837b;
+
+  --level-a: #6fc79a;
+  --level-b: #66bcd8;
+  --level-c: #e0a44a;
+  --level-d: #a6ada2;
+
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.5), 0 12px 32px rgba(0, 0, 0, 0.34);
+  --shadow-sheet: 0 1px 0 rgba(0, 0, 0, 0.4);
+  --grid-line: rgba(236, 238, 232, 0.06);
 }
 
-:root[data-theme="light"] {
-  color-scheme: light;
-}
-
+/*
+ * Fondo de la pagina: papel de laboratorio.
+ *
+ * Una retícula muy tenue de 32px, como el papel milimetrado de un cuaderno de campo, mas
+ * dos halos suaves (verde hoja arriba a la izquierda, azul laboratorio arriba a la derecha).
+ * Todo con gradientes CSS: cero imagenes que descargar, asi que no cuesta ni un kilobyte
+ * ni un milisegundo en el movil de un agricultor con mala conexion.
+ *
+ * `background-attachment: fixed` deja los halos quietos mientras el contenido pasa por
+ * encima: da profundidad sin distraer. Y no toca el contraste del texto.
+ */
 body {
-  background:
-    radial-gradient(circle at top left, color-mix(in srgb, var(--primary) 13%, transparent), transparent 34rem),
-    var(--background);
+  background-color: var(--background);
+  background-image:
+    radial-gradient(70rem 30rem at -5% -5%, color-mix(in srgb, var(--primary) 7%, transparent), transparent),
+    radial-gradient(55rem 26rem at 105% 0%, color-mix(in srgb, var(--data) 6%, transparent), transparent),
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: auto, auto, 100% 32px, 32px 100%;
+  background-attachment: fixed, fixed, scroll, scroll;
   color: var(--foreground);
-  transition: background-color 180ms ease, color 180ms ease;
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Titulares: la fuente display se usa con moderacion, solo en h1/h2 y en la firma. */
+h1,
+h2,
+.font-display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Todo numero se alinea en columna. Es la regla que hace legible una tabla de resultados. */
+.tabular {
+  font-family: var(--font-data), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
 }
 
 a {
@@ -63,53 +130,100 @@ a:hover {
 }
 
 :focus-visible {
-  outline: 2px solid var(--primary);
+  outline: 2px solid var(--data);
   outline-offset: 3px;
+  border-radius: 2px;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- Layout ------------------------------------------------------------- */
+
 .container {
-  width: min(1180px, calc(100% - 32px));
+  width: 100%;
+  max-width: 1180px;
   margin: 0 auto;
+  padding-inline: 16px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-inline: 24px;
+  }
 }
 
 .section {
-  padding: 64px 0;
+  padding-block: 40px;
 }
+
+@media (min-width: 768px) {
+  .section {
+    padding-block: 64px;
+  }
+}
+
+/* --- Formularios -------------------------------------------------------- */
 
 .input {
   width: 100%;
+  min-height: 44px;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 6px;
   background: var(--card);
   color: var(--card-foreground);
   padding: 10px 12px;
+  font-size: 1rem;
 }
 
 .input::placeholder {
   color: var(--muted-foreground);
 }
 
+.input:focus-visible {
+  border-color: var(--data);
+}
+
 .field-label {
   display: grid;
   gap: 6px;
   color: var(--muted-foreground);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
+
+/* --- Botones ------------------------------------------------------------ */
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-weight: 700;
+  gap: 8px;
+  min-height: 44px; /* objetivo tactil AA */
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  transition: filter 140ms ease, background-color 140ms ease;
 }
 
 .btn-primary {
   background: var(--primary);
   color: var(--primary-foreground);
+}
+
+.btn-primary:hover {
+  color: var(--primary-foreground);
+  filter: brightness(1.1);
 }
 
 .btn-secondary {
@@ -118,41 +232,129 @@ a:hover {
   color: var(--card-foreground);
 }
 
+.btn-secondary:hover {
+  background: var(--muted);
+  color: var(--card-foreground);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--foreground);
+}
+
+.btn-ghost:hover {
+  background: var(--muted);
+  color: var(--foreground);
+}
+
+/* WhatsApp: es el canal real de venta agricola, merece su propia variante. */
+.btn-whatsapp {
+  background: #128c7e;
+  color: #ffffff;
+}
+
+.btn-whatsapp:hover {
+  color: #ffffff;
+  filter: brightness(1.08);
+}
+
 .btn-download {
-  border: 1px solid color-mix(in srgb, var(--warning) 72%, var(--foreground));
-  background: var(--warning);
-  color: #111913;
-  box-shadow: 0 10px 26px color-mix(in srgb, var(--warning) 34%, transparent);
+  border: 1px solid var(--border);
+  background: var(--data);
+  color: var(--data-foreground);
 }
 
 .btn-download:hover {
-  color: #111913;
-  filter: brightness(1.04);
+  color: var(--data-foreground);
+  filter: brightness(1.1);
 }
+
+/* --- Superficies -------------------------------------------------------- */
 
 .card {
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 10px;
   background: var(--card);
   color: var(--card-foreground);
   box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(18px);
+}
+
+/*
+ * La firma de la plataforma: la Ficha de Evidencia.
+ * Estetica de documento de laboratorio: esquinas rectas, retícula tenue,
+ * franja de datos superior. Nunca lleva sombra difusa ni bordes redondeados.
+ */
+.sheet {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--card);
+  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px);
+  background-size: 100% 28px;
+  color: var(--card-foreground);
+  box-shadow: var(--shadow-sheet);
+}
+
+.sheet::before {
+  content: "";
+  position: absolute;
+  inset-inline: -1px;
+  top: -1px;
+  height: 3px;
+  border-radius: 4px 4px 0 0;
+  background: var(--sheet-accent, var(--data));
+}
+
+.sheet-rule {
+  border-top: 1px dashed var(--border);
+}
+
+/*
+ * Fondo del hero: dos halos muy suaves (hoja y laboratorio) sobre el papel blanco, mas la
+ * misma reticula de la Ficha de Evidencia a muy baja opacidad. Da profundidad sin meter una
+ * imagen que haya que descargar, y no toca el contraste del texto.
+ */
+.hero-field {
+  background-image:
+    radial-gradient(60rem 22rem at 8% -10%, color-mix(in srgb, var(--primary) 9%, transparent), transparent),
+    radial-gradient(48rem 20rem at 92% 0%, color-mix(in srgb, var(--data) 8%, transparent), transparent),
+    linear-gradient(var(--grid-line) 1px, transparent 1px);
+  background-size: auto, auto, 100% 32px;
 }
 
 .theme-surface {
   border-color: var(--border);
-  background: var(--glass);
+  background: var(--card);
   color: var(--foreground);
-  backdrop-filter: blur(18px);
 }
 
-.theme-glow {
-  box-shadow: 0 0 16px color-mix(in srgb, var(--primary) 60%, transparent);
+/* --- Insignias ---------------------------------------------------------- */
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-foreground);
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* --- Utilidades heredadas ----------------------------------------------- */
+
+.scroll-strip {
+  scrollbar-width: none;
+}
+
+.scroll-strip::-webkit-scrollbar {
+  display: none;
 }
 
 .theme-toggle {
-  height: 40px;
-  width: 40px;
+  height: 44px;
+  width: 44px;
   padding: 0;
 }
 
@@ -167,7 +369,6 @@ a:hover {
   border-radius: 999px;
   background: var(--warning);
   box-shadow:
-    0 0 14px color-mix(in srgb, var(--warning) 70%, transparent),
     0 -10px 0 -7px var(--warning),
     0 10px 0 -7px var(--warning),
     10px 0 0 -7px var(--warning),
@@ -184,20 +385,20 @@ a:hover {
   box-shadow: inset -6px 0 0 var(--card);
 }
 
-.scroll-strip {
-  scrollbar-width: none;
+/* --- Carga -------------------------------------------------------------- */
+
+@keyframes nano-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
 }
 
-.scroll-strip::-webkit-scrollbar {
-  display: none;
-}
-
-.status-badge {
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--accent);
-  color: var(--accent-foreground);
-  padding: 2px 8px;
-  font-size: 0.75rem;
-  font-weight: 800;
+.skeleton {
+  background: var(--muted);
+  border-radius: 6px;
+  animation: nano-pulse 1.6s ease-in-out infinite;
 }

@@ -1,9 +1,9 @@
 import { cookies, headers } from "next/headers";
 import en from "@/messages/en.json";
 import es from "@/messages/es.json";
-import { isLocale, localeCookie, localeFromAcceptLanguage, type Locale, type Messages } from "@/lib/i18n-shared";
+import { defaultLocale, isLocale, localeCookie, type Locale, type Messages } from "@/lib/i18n-shared";
 export type { Locale, Messages } from "@/lib/i18n-shared";
-export { formatMessage, internalPathFromLocalized, isLocale, localeCookie, localeFromAcceptLanguage, localizedHref, locales } from "@/lib/i18n-shared";
+export { defaultLocale, formatMessage, internalPathFromLocalized, isLocale, localeCookie, localizedHref, locales } from "@/lib/i18n-shared";
 
 const dictionaries: Record<Locale, Messages> = { en, es };
 
@@ -14,7 +14,8 @@ export async function getLocale(): Promise<Locale> {
   const cookieStore = await cookies();
   const cookieLocale = cookieStore.get(localeCookie)?.value;
   if (isLocale(cookieLocale)) return cookieLocale;
-  return localeFromAcceptLanguage(requestHeaders.get("accept-language"));
+  // Sin prefijo de idioma ni cookie: espanol. Ya no se lee Accept-Language.
+  return defaultLocale;
 }
 
 export async function getMessages(locale?: Locale) {
