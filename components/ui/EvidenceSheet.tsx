@@ -1,6 +1,6 @@
 ﻿import Link from "next/link";
 import type { CSSProperties } from "react";
-import { getPrimaryResult, getSecondaryResult } from "@/lib/case-metrics";
+import { getCaseFigures } from "@/lib/case-metrics";
 import { publicEvidenceLevel } from "@/lib/evidence-checklist";
 import { publicContentText } from "@/lib/evidence-labels";
 import { countryIcon, cropIcon, problemIcon } from "@/lib/icons";
@@ -53,9 +53,8 @@ export function EvidenceSheet({
   const title = publicContentText(item.title, messages.sheet.untitledCase);
   const Heading = headingLevel;
   // El resultado no siempre es un % de rendimiento: puede ser dias de adelanto o vigor.
-  const primary = getPrimaryResult(item, messages);
-  // Si el caso no calculo ROI, este hueco lo llena otra cifra documentada, no un vacio.
-  const secondary = getSecondaryResult(item, messages);
+  // Lista ordenada y SIN repeticiones: la ficha toma la primera y la segunda.
+  const figures = getCaseFigures(item, messages);
 
   return (
     <article
@@ -103,14 +102,14 @@ export function EvidenceSheet({
 
       <dl className="sheet-rule mt-4 grid grid-cols-3 gap-3 pt-4">
         <Figure
-          label={primary?.label ?? messages.sheet.result}
-          value={primary?.value ?? null}
+          label={figures[0]?.label ?? messages.sheet.result}
+          value={figures[0]?.value ?? null}
           fallback={messages.sheet.notReported}
           tone="text-primary"
         />
         <Figure
-          label={secondary?.label ?? messages.sheet.roi}
-          value={secondary?.value ?? null}
+          label={figures[1]?.label ?? messages.sheet.roi}
+          value={figures[1]?.value ?? null}
           fallback={messages.sheet.notReported}
           tone="text-data"
         />
@@ -155,9 +154,16 @@ function Field({
   return (
     <div className="min-w-0">
       <dt className="text-caption uppercase tracking-wide text-muted-foreground">{label}</dt>
-      <dd className="mt-1 flex items-center gap-1.5">
-        {value && icon ? <Emoji symbol={icon} /> : null}
-        <span className={["truncate", value ? "font-semibold text-foreground" : "text-muted-foreground"].join(" ")}>
+      {/* Nada de `truncate`: un "El Salva..." no informa de nada. El texto se ajusta en
+          varias lineas con cuerpo pequeno y se lee entero. */}
+      <dd className="mt-1 flex items-start gap-1.5">
+        {value && icon ? <Emoji symbol={icon} className="mt-0.5" /> : null}
+        <span
+          className={[
+            "hyphens-auto break-words text-caption leading-snug",
+            value ? "font-semibold text-foreground" : "text-muted-foreground"
+          ].join(" ")}
+        >
           {value || fallback}
         </span>
       </dd>
@@ -176,13 +182,24 @@ function Figure({
   fallback: string;
   tone: string;
 }) {
+  /*
+   * El tamano de la cifra se adapta a lo larga que sea.
+   *
+   * "234.69 qq/mz" no cabe en el mismo cuerpo que "+30%", y recortarlo a "234.6..." destruye
+   * el dato: un numero a medias no es un numero. Asi que las cifras largas bajan de cuerpo y
+   * se ajustan en dos lineas, pero se leen ENTERAS. Nunca se corta un dato.
+   */
+  const length = (value ?? "").length;
+  const size = length <= 7 ? "text-metric" : length <= 12 ? "text-h3" : "text-h5";
+
   return (
     <div className="min-w-0">
-      <dt className="text-caption uppercase tracking-wide text-muted-foreground">{label}</dt>
+      <dt className="text-caption uppercase leading-tight tracking-wide text-muted-foreground">{label}</dt>
       <dd
-        className={["tabular mt-1 truncate", value ? `text-metric ${tone}` : "text-body text-muted-foreground"].join(
-          " "
-        )}
+        className={[
+          "tabular mt-1 break-words leading-tight",
+          value ? `${size} ${tone}` : "text-caption text-muted-foreground"
+        ].join(" ")}
       >
         {value ?? fallback}
       </dd>

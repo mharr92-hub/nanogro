@@ -50,20 +50,30 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
 
   return (
     <>
+      {/*
+        La cabecera es de ancho completo, no del contenedor de 1180px: con nueve secciones,
+        el logotipo y el CTA, el contenido no cabia y el selector de idioma y el boton de
+        tema se salian de la pantalla. Ahora la barra usa todo el ancho disponible, la
+        navegacion puede encoger (`min-w-0`) y el bloque de la derecha nunca se comprime
+        (`flex-none`): lo ultimo que se sacrifica es el acceso al idioma y al tema.
+      */}
       <header className="theme-surface sticky top-0 z-50 border-b">
-        <div className="container flex min-h-16 items-center justify-between gap-6">
-          <Link className="whitespace-nowrap" href={localizedHref(locale, "/")} aria-label={messages.common.brand}>
+        <div className="flex min-h-16 w-full items-center gap-4 px-4 md:px-6">
+          <Link className="flex-none" href={localizedHref(locale, "/")} aria-label={messages.common.brand}>
             <Logo />
           </Link>
 
-          <nav aria-label={messages.nav.menu} className="hidden items-center gap-6 xl:flex">
+          <nav
+            aria-label={messages.nav.menu}
+            className="scroll-strip hidden min-w-0 flex-1 items-center gap-5 overflow-x-auto xl:flex"
+          >
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={localizedHref(locale, link.href)}
                 aria-current={isActive(link.href) ? "page" : undefined}
                 className={[
-                  "whitespace-nowrap text-body font-medium transition-colors",
+                  "whitespace-nowrap text-caption font-medium transition-colors",
                   isActive(link.href) ? "text-primary" : "text-muted-foreground hover:text-foreground"
                 ].join(" ")}
               >
@@ -72,9 +82,9 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="ml-auto flex flex-none items-center gap-2">
             <Link
-              className="btn btn-primary hidden whitespace-nowrap sm:inline-flex"
+              className="btn btn-primary hidden whitespace-nowrap px-3 text-caption sm:inline-flex"
               href={localizedHref(locale, "/diagnostico")}
             >
               {messages.nav.primaryCta}

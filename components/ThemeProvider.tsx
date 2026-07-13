@@ -4,7 +4,16 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 type Theme = "dark" | "light";
 
-const storageKey = "nano-gro-theme";
+/*
+ * La clave lleva version a proposito.
+ *
+ * Cuando el sitio arrancaba en oscuro, todo el que lo visito se llevo un "dark" guardado en
+ * su navegador. Al cambiar el defecto a claro, esa gente seguia viendo el sitio en oscuro:
+ * su preferencia antigua ganaba al nuevo defecto, y parecia que el cambio no habia surtido
+ * efecto. Subir la version de la clave descarta aquellas elecciones y todo el mundo vuelve a
+ * empezar en claro. A partir de ahora, el que elija oscuro lo hace sabiendo lo que hace.
+ */
+const storageKey = "nano-gro-theme-v2";
 
 const ThemeContext = createContext<{
   theme: Theme;
