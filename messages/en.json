@@ -349,7 +349,8 @@
     "positiveRate": "Cases showing positive improvement",
     "verifiedSplit": "{verified} verified and {unverified} unverified",
     "verifiedExplainer": "Verified means agronomist-reviewed, lab-supported, or third-party validated.",
-    "note": "Averages calculated over published cases only. Sample size (n) is shown beside every figure. This is documented evidence, not guaranteed results."
+    "note": "Averages calculated over published cases only. Sample size (n) is shown beside every figure. This is documented evidence, not guaranteed results.",
+    "withPhotos": "Cases with field photo"
   },
   "problemFirst": {
     "title": "Start with what you see in the field",
@@ -594,7 +595,10 @@
     "roi": "ROI",
     "confidence": "Confidence",
     "notReported": "Not reported",
-    "documented": "Documented"
+    "documented": "Documented",
+    "completeness": "Evidence",
+    "sourceStatus": "Original report",
+    "pendingExtraction": "Attached, pending extraction"
   },
   "evidenceLevels": {
     "short": "Level {level}",

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { Logo } from "@/components/Logo";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useLanguage } from "@/components/LanguageProvider";
 import { internalPathFromLocalized, localizedHref } from "@/lib/i18n-shared";
@@ -50,11 +51,8 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
     <>
       <header className="theme-surface sticky top-0 z-50 border-b">
         <div className="container flex min-h-16 items-center justify-between gap-6">
-          <Link
-            className="font-display whitespace-nowrap text-h4 text-primary"
-            href={localizedHref(locale, "/")}
-          >
-            {messages.common.brand}
+          <Link className="whitespace-nowrap" href={localizedHref(locale, "/")} aria-label={messages.common.brand}>
+            <Logo />
           </Link>
 
           <nav aria-label={messages.nav.menu} className="hidden items-center gap-6 xl:flex">

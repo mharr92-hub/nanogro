@@ -1,6 +1,6 @@
 ﻿import Link from "next/link";
 import type { CSSProperties } from "react";
-import { getPrimaryResult } from "@/lib/case-metrics";
+import { getPrimaryResult, getSecondaryResult } from "@/lib/case-metrics";
 import { publicEvidenceLevel } from "@/lib/evidence-checklist";
 import { publicContentText } from "@/lib/evidence-labels";
 import { countryIcon, cropIcon, problemIcon } from "@/lib/icons";
@@ -54,6 +54,8 @@ export function EvidenceSheet({
   const Heading = headingLevel;
   // El resultado no siempre es un % de rendimiento: puede ser dias de adelanto o vigor.
   const primary = getPrimaryResult(item, messages);
+  // Si el caso no calculo ROI, este hueco lo llena otra cifra documentada, no un vacio.
+  const secondary = getSecondaryResult(item, messages);
 
   return (
     <article
@@ -107,8 +109,8 @@ export function EvidenceSheet({
           tone="text-primary"
         />
         <Figure
-          label={messages.sheet.roi}
-          value={item.roi_value ? `${item.roi_value}x` : null}
+          label={secondary?.label ?? messages.sheet.roi}
+          value={secondary?.value ?? null}
           fallback={messages.sheet.notReported}
           tone="text-data"
         />

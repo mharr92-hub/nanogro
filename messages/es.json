@@ -349,7 +349,8 @@
     "positiveRate": "Casos con mejora positiva",
     "verifiedSplit": "{verified} verificados y {unverified} sin verificar",
     "verifiedExplainer": "Verificado significa revisado por un agrónomo, respaldado por laboratorio o validado por un tercero.",
-    "note": "Promedios calculados solo sobre casos publicados. El tamaño de muestra (n) aparece junto a cada cifra. Son evidencia documentada, no resultados garantizados."
+    "note": "Promedios calculados solo sobre casos publicados. El tamaño de muestra (n) aparece junto a cada cifra. Son evidencia documentada, no resultados garantizados.",
+    "withPhotos": "Casos con foto de campo"
   },
   "problemFirst": {
     "title": "Empieza por lo que le pasa a tu cultivo",
@@ -594,7 +595,10 @@
     "roi": "ROI",
     "confidence": "Confianza",
     "notReported": "No reportado",
-    "documented": "Documentado"
+    "documented": "Documentado",
+    "completeness": "Evidencia",
+    "sourceStatus": "Informe original",
+    "pendingExtraction": "Adjunto, pendiente de extraer"
   },
   "evidenceLevels": {
     "short": "Nivel {level}",

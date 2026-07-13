@@ -32,6 +32,41 @@ export default async function HomePage() {
 
   // No los tres primeros del listado: los tres mas creibles. Ver lib/featured.ts.
   const featured = getFeaturedCases(cases, 3);
+  const casesWithPhotos = cases.filter((item) =>
+    (item.evidence_assets ?? []).some((asset) => asset.asset_type === "photo")
+  ).length;
+
+  /*
+   * Solo las metricas que la evidencia puede sostener. Las que no tienen muestra se caen
+   * de la lista en vez de imprimir "Sin datos".
+   */
+  const availableMetrics = [
+    { label: messages.aggregate.publishedCases, value: String(aggregate.publishedCases), sample: undefined },
+    { label: messages.aggregate.crops, value: String(aggregate.crops), sample: undefined },
+    { label: messages.aggregate.countries, value: String(aggregate.countries), sample: undefined },
+    {
+      label: messages.aggregate.averageYield,
+      value: formatAggregate(aggregate.averageYieldIncrease, "%"),
+      sample: aggregate.averageYieldIncrease.sample
+    },
+    {
+      label: messages.aggregate.positiveRate,
+      value: formatAggregate(aggregate.positiveImprovementRate, "%", 0),
+      sample: aggregate.positiveImprovementRate.sample
+    },
+    {
+      label: messages.aggregate.averageRoi,
+      value: formatAggregate(aggregate.averageRoi, "x"),
+      sample: aggregate.averageRoi.sample
+    },
+    // Cuando no hay ROI calculado, este hueco lo llena una metrica que si existe: cuantos
+    // casos traen evidencia visual de campo. Es un dato real y es el que mas convence.
+    {
+      label: messages.aggregate.withPhotos,
+      value: String(casesWithPhotos),
+      sample: undefined
+    }
+  ].filter((metric): metric is { label: string; value: string; sample: number | undefined } => metric.value !== null);
   const galleryPreview = pickGalleryPhotos(cases, 4);
   const countriesWithCases = localizedTaxonomy.countries
     .map((country) => ({
@@ -53,7 +88,18 @@ export default async function HomePage() {
           <h1 className="mt-3 max-w-3xl text-display text-foreground md:text-display-lg">{messages.hero.title}</h1>
           <p className="mt-4 max-w-prose text-body-lg text-muted-foreground">{messages.hero.subtitle}</p>
           <div className="mt-7 max-w-4xl">
-            <HeroSearch {...localizedTaxonomy} locale={locale} messages={messages} />
+            {/* `combos` = las combinaciones cultivo+pais+problema que EXISTEN. El buscador
+                no deja componer ninguna que no tenga casos. */}
+            <HeroSearch
+              {...localizedTaxonomy}
+              combos={cases.map((item) => ({
+                crop: item.crop?.slug,
+                country: item.country?.slug,
+                problem: item.primary_problem?.slug
+              }))}
+              locale={locale}
+              messages={messages}
+            />
           </div>
         </div>
       </section>
@@ -65,36 +111,25 @@ export default async function HomePage() {
             <Emoji symbol="📊" className="text-h4" />
             {messages.aggregate.title}
           </h2>
+          {/*
+            Regla: una metrica que no se puede calcular NO se enseña.
+            La franja mostraba "ROI promedio — Sin datos — n = 0", que es lo peor de los dos
+            mundos: ocupa sitio y ademas confiesa un vacio. La alternativa NO es inventarse
+            un ROI (seria un dato falso en la pagina que un agricultor usa para decidir una
+            compra); es enseñar solo lo que la evidencia sostiene y llenar la franja con las
+            metricas que SI existen. Si mañana se calculan ROIs, el recuadro aparece solo.
+          */}
           <div className="mt-5 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-6">
-            <MetricStat
-              label={messages.aggregate.publishedCases}
-              value={String(aggregate.publishedCases)}
-              tone="data"
-              messages={messages}
-            />
-            <MetricStat label={messages.aggregate.crops} value={String(aggregate.crops)} messages={messages} />
-            <MetricStat label={messages.aggregate.countries} value={String(aggregate.countries)} messages={messages} />
-            <MetricStat
-              label={messages.aggregate.averageRoi}
-              value={formatAggregate(aggregate.averageRoi, "x")}
-              sampleSize={aggregate.averageRoi.sample}
-              tone="data"
-              messages={messages}
-            />
-            <MetricStat
-              label={messages.aggregate.averageYield}
-              value={formatAggregate(aggregate.averageYieldIncrease, "%")}
-              sampleSize={aggregate.averageYieldIncrease.sample}
-              tone="data"
-              messages={messages}
-            />
-            <MetricStat
-              label={messages.aggregate.positiveRate}
-              value={formatAggregate(aggregate.positiveImprovementRate, "%", 0)}
-              sampleSize={aggregate.positiveImprovementRate.sample}
-              tone="data"
-              messages={messages}
-            />
+            {availableMetrics.map((metric) => (
+              <MetricStat
+                key={metric.label}
+                label={metric.label}
+                value={metric.value}
+                sampleSize={metric.sample}
+                tone="data"
+                messages={messages}
+              />
+            ))}
           </div>
           <p className="mt-5 max-w-prose text-caption leading-5 text-muted-foreground">
             <span className="font-semibold text-foreground">

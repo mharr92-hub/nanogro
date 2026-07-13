@@ -30,8 +30,14 @@ const themeInitScript = `
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
   const messages = await getMessages(locale);
-  const site = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const site = process.env.NEXT_PUBLIC_SITE_URL || "https://nanogro.lat";
   return {
+    /*
+     * `metadataBase` es obligatorio para que la imagen de previsualizacion salga con URL
+     * absoluta. Sin el, WhatsApp y Facebook reciben una ruta relativa, no pueden resolverla
+     * y el enlace se comparte sin miniatura.
+     */
+    metadataBase: new URL(site),
     title: {
       default: messages.seo.defaultTitle,
       template: `%s | ${messages.seo.defaultTitle}`
@@ -40,15 +46,25 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: {
       canonical: `${site}${localizedHref(locale, "/")}`,
       languages: {
-        en: `${site}/en`,
-        es: `${site}/es`
+        // El espanol es el idioma por defecto del sitio: x-default apunta a la raiz, que
+        // sirve espanol salvo que el usuario pida /en explicitamente.
+        "x-default": site,
+        es: `${site}/es`,
+        en: `${site}/en`
       }
     },
     openGraph: {
       title: messages.seo.defaultTitle,
       description: messages.seo.ogDescription,
       type: "website",
-      locale
+      url: site,
+      siteName: messages.common.product,
+      locale: locale === "es" ? "es_ES" : "en_US"
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: messages.seo.defaultTitle,
+      description: messages.seo.ogDescription
     }
   };
 }
