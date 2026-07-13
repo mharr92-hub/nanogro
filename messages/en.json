@@ -314,6 +314,60 @@
     "emptyCases": "No cases found.",
     "noErrorDetails": "No error details"
   },
+  "sheet": {
+    "eyebrow": "Evidence sheet",
+    "untitledCase": "Documented Nano-Gro case",
+    "result": "Result",
+    "roi": "ROI",
+    "confidence": "Confidence",
+    "notReported": "Not reported"
+  },
+  "evidenceLevels": {
+    "short": "Level {level}",
+    "a": {
+      "name": "Complete",
+      "description": "Level A: complete productive data, before and after photos, measurements, and agronomist or technical validation."
+    },
+    "b": {
+      "name": "Partial with imagery",
+      "description": "Level B: partial productive data supported by visual evidence."
+    },
+    "c": {
+      "name": "Testimonial",
+      "description": "Level C: documented testimonial with some supporting context."
+    },
+    "d": {
+      "name": "Field note",
+      "description": "Level D: anecdotal case or early field note. Useful as reference, weaker as public proof."
+    }
+  },
+  "confidence": {
+    "title": "Confidence score",
+    "of100": "{score} out of 100",
+    "why": "Why this case scores what it scores",
+    "documentedOf": "{documented} of {total} documented",
+    "met": "Documented",
+    "missing": "Not documented",
+    "disclaimer": "The score reflects the documented evidence available for this case. It is not a guarantee of results.",
+    "checklist": {
+      "productiveData": "Measured productive data (yield, quality, or disease)",
+      "roiDocumented": "ROI calculated from case data",
+      "beforeAfterPhotos": "Before and after photographs",
+      "fieldPhotos": "Field photographic record",
+      "video": "Follow-up video",
+      "technicalDocument": "Technical or lab report",
+      "testimonial": "Testimonial with approved consent",
+      "technicalValidation": "Agronomist review or technical validation"
+    }
+  },
+  "metrics": {
+    "sample": "n = {count}",
+    "noData": "No data",
+    "aggregateDisclaimer": "Averages calculated over published cases only. Sample size is shown beside every figure. These are not guaranteed results."
+  },
+  "stepper": {
+    "stepOf": "Step {current} of {total}"
+  },
   "seo": {
     "defaultTitle": "Nano-Gro Case Intelligence",
     "defaultDescription": "Search documented Nano-Gro agricultural cases by problem, crop, country, evidence, and ROI.",

@@ -314,6 +314,60 @@
     "emptyCases": "No se encontraron casos.",
     "noErrorDetails": "Sin detalles de error"
   },
+  "sheet": {
+    "eyebrow": "Ficha de evidencia",
+    "untitledCase": "Caso Nano-Gro documentado",
+    "result": "Resultado",
+    "roi": "ROI",
+    "confidence": "Confianza",
+    "notReported": "No reportado"
+  },
+  "evidenceLevels": {
+    "short": "Nivel {level}",
+    "a": {
+      "name": "Completo",
+      "description": "Nivel A: datos productivos completos, fotos antes y despues, mediciones y validacion tecnica o agronomica."
+    },
+    "b": {
+      "name": "Parcial con imagen",
+      "description": "Nivel B: datos productivos parciales acompanados de evidencia visual."
+    },
+    "c": {
+      "name": "Testimonial",
+      "description": "Nivel C: testimonio documentado con algo de contexto de soporte."
+    },
+    "d": {
+      "name": "Nota de campo",
+      "description": "Nivel D: caso anecdotico o nota de campo temprana. Util como referencia, mas debil como prueba publica."
+    }
+  },
+  "confidence": {
+    "title": "Score de confianza",
+    "of100": "{score} de 100",
+    "why": "Por que este caso tiene este score",
+    "documentedOf": "{documented} de {total} documentados",
+    "met": "Documentado",
+    "missing": "No documentado",
+    "disclaimer": "El score refleja la evidencia documentada disponible para este caso. No es una garantia de resultado.",
+    "checklist": {
+      "productiveData": "Datos productivos medidos (rendimiento, calidad o enfermedad)",
+      "roiDocumented": "ROI calculado a partir de datos del caso",
+      "beforeAfterPhotos": "Fotografias de antes y despues",
+      "fieldPhotos": "Registro fotografico de campo",
+      "video": "Video de seguimiento",
+      "technicalDocument": "Informe tecnico o de laboratorio",
+      "testimonial": "Testimonio con consentimiento aprobado",
+      "technicalValidation": "Revision agronomica o validacion tecnica"
+    }
+  },
+  "metrics": {
+    "sample": "n = {count}",
+    "noData": "Sin datos",
+    "aggregateDisclaimer": "Promedios calculados solo sobre casos publicados. El tamano de muestra aparece junto a cada cifra. No son resultados garantizados."
+  },
+  "stepper": {
+    "stepOf": "Paso {current} de {total}"
+  },
   "seo": {
     "defaultTitle": "Inteligencia de Casos Nano-Gro",
     "defaultDescription": "Busca casos agricolas documentados de Nano-Gro por problema, cultivo, pais, evidencia y ROI.",
