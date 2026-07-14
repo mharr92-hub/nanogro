@@ -163,14 +163,22 @@ export function EvidenceSheet({
         </p>
       ) : null}
 
+      {/*
+        El acceso al informe es la accion mas importante de la ficha: es donde el visitante
+        pasa de "me lo cuentan" a "lo compruebo". Va en boton primario, a ancho completo y
+        empujado al fondo de la tarjeta (`mt-auto`), asi que en una grilla todos los botones
+        quedan a la misma altura por muy distintos que sean los titulos.
+      */}
       {variant === "compact" ? (
-        <Link
-          className="btn btn-secondary mt-5 w-full"
-          href={href}
-          aria-label={`${messages.cases.viewCase}: ${title}`}
-        >
-          {messages.cases.viewCase}
-        </Link>
+        <div className="mt-auto pt-5">
+          <Link
+            className="btn btn-primary w-full text-body-lg"
+            href={href}
+            aria-label={`${messages.cases.viewCase}: ${title}`}
+          >
+            {messages.cases.viewCase}
+          </Link>
+        </div>
       ) : null}
     </article>
   );
@@ -246,16 +254,25 @@ function Figure({
    */
   const text = value ?? "";
   const isNumeric = /\d/.test(text);
+
+  /*
+   * El cuerpo baja lo suficiente para que la cifra ENTERA quepa en su hueco.
+   *
+   * "1.23 t/ha" se pintaba con cuerpo grande, ocupaba dos lineas que no cabian en la fila y
+   * el navegador la cortaba por la mitad: se leia "1.23... t/ha", con el numero mutilado. Los
+   * escalones son ahora mas agresivos y la fila reserva mas alto. Una cifra a medias no es
+   * una cifra: o se lee entera, o no vale de nada.
+   */
   const size = !isNumeric
     ? "text-body font-semibold"
-    : text.length <= 7
+    : text.length <= 6
       ? "text-metric"
-      : text.length <= 12
+      : text.length <= 9
         ? "text-h3"
         : "text-h5";
 
   return (
-    <div className="grid min-w-0 grid-rows-[2.2rem_2.8rem] gap-1 overflow-hidden">
+    <div className="grid min-w-0 grid-rows-[2.2rem_3.4rem] gap-1 overflow-hidden">
       <dt className="line-clamp-2 overflow-hidden text-caption uppercase leading-tight tracking-wide text-muted-foreground">
         {label}
       </dt>

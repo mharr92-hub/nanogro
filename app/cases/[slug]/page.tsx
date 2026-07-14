@@ -5,6 +5,7 @@ import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { EvidenceImage } from "@/components/EvidenceImage";
 import { JsonLd } from "@/components/JsonLd";
+import { ReportReader } from "@/components/ReportReader";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
 import { ConfidenceScore, Emoji, EmptyState, EvidenceSheet, IconBadge } from "@/components/ui";
 import { trackEvent } from "@/lib/analytics";
@@ -137,37 +138,19 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
                 debajo de la ficha, no enterrado tras la galeria.
               */}
               {sourceDocuments.length ? (
-                <section className="card mt-4 p-4">
-                  <p className="text-label font-semibold uppercase tracking-wide text-muted-foreground">
-                    {messages.caseDetail.sourceTitle}
-                  </p>
-                  {/*
-                    CADA archivo con su propio enlace. Antes solo se enlazaba el primero, asi
-                    que en los casos con varios documentos (o con un informe repartido en
-                    siete paginas escaneadas) el resto era inalcanzable.
-                    `download` fuerza la descarga en vez de dejar que el navegador intente
-                    abrir un .docx que no sabe mostrar.
-                  */}
-                  <ul className="mt-3 grid gap-2">
-                    {sourceDocuments.map((asset) => (
-                      <li key={asset.id}>
-                        <a
-                          className="flex min-h-[44px] items-center justify-between gap-3 rounded border border-border px-4 hover:bg-muted"
-                          href={asset.file_url}
-                          download
-                          rel="noopener noreferrer"
-                          target="_blank"
-                        >
-                          <span className="min-w-0 break-words text-body text-foreground">
-                            {asset.file_name || publicEvidenceLabel(asset, locale)}
-                          </span>
-                          <span className="flex-none text-caption font-semibold text-data">
-                            {messages.cases.downloadOriginalReport} ↓
-                          </span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+                <section className="card mt-4 flex flex-wrap items-center justify-between gap-4 border-2 border-data/30 p-5">
+                  <div className="min-w-0">
+                    <p className="text-label font-semibold uppercase tracking-wide text-data">
+                      {messages.caseDetail.sourceTitle}
+                    </p>
+                    <p className="mt-1 break-words text-body text-foreground">
+                      {sourceDocuments.map((asset) => asset.file_name || publicEvidenceLabel(asset, locale)).join(" · ")}
+                    </p>
+                  </div>
+                  {/* Leer pesa mas que descargar: el boton fuerte lleva al informe, no al archivo. */}
+                  <a className="btn btn-primary text-body-lg" href="#report">
+                    {messages.caseDetail.readReportOpen}
+                  </a>
                 </section>
               ) : null}
 
@@ -239,6 +222,7 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
                   })),
                   ...(photos.length ? [{ id: "media", label: messages.caseDetail.media, icon: "📸" }] : []),
                   ...(documents.length ? [{ id: "documents", label: messages.caseDetail.documents, icon: "📄" }] : []),
+                  ...(sourceDocuments.length ? [{ id: "report", label: messages.caseDetail.readReportTitle, icon: "📖" }] : []),
                   ...(related.length ? [{ id: "related", label: messages.caseDetail.relatedTitle, icon: "🔗" }] : [])
                 ].map((entry) => (
                   <a
@@ -342,6 +326,9 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
                   </ul>
                 </section>
               ) : null}
+
+              {/* El informe original, legible dentro de la web. */}
+              <ReportReader assets={sourceDocuments} messages={messages} />
 
               <section id="related" className="mt-10 scroll-mt-24">
                 <h2 className="text-h3 text-foreground">{messages.caseDetail.relatedTitle}</h2>

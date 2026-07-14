@@ -53,7 +53,7 @@
     "roi": "ROI",
     "complete": "Completo",
     "matchedBy": "Coincide por",
-    "viewCase": "Ver caso",
+    "viewCase": "Ver informe completo",
     "related": "Casos relacionados",
     "evidenceTitle": "Evidencia",
     "downloadOriginalReport": "Descargar informe original",
@@ -442,7 +442,11 @@
     "productName": "Nano-Gro",
     "dosageFromSheet": "El informe original no registró la dosis exacta. Consulta la dosis recomendada en la ficha técnica del producto.",
     "confirmWithTeam": "Toda dosis debe confirmarse con el equipo técnico antes de aplicar: depende del cultivo, la etapa y las condiciones de tu finca.",
-    "viewSheets": "Ver fichas técnicas"
+    "viewSheets": "Ver fichas técnicas",
+    "readReportTitle": "Leer el informe original",
+    "readReportOpen": "Leer el informe",
+    "readReportBody": "El informe de campo, completo y sin salir de esta página. No hace falta descargar nada.",
+    "transcriptNote": "Transcripción del documento original. Las tablas pueden haber perdido su formato. El archivo intacto está descargable más abajo."
   },
   "gallery": {
     "metadataTitle": "Galeria antes y después",
