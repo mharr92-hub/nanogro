@@ -443,10 +443,10 @@
     "dosageFromSheet": "The original report did not record the exact dose. Check the recommended dose in the product technical sheet.",
     "confirmWithTeam": "Any dose must be confirmed with the technical team before application: it depends on the crop, the stage, and your field conditions.",
     "viewSheets": "View technical sheets",
-    "readReportTitle": "Read the original report",
-    "readReportOpen": "Read the report",
-    "readReportBody": "The full field report, without leaving this page. No download needed.",
-    "transcriptNote": "Transcription of the original document. Tables may have lost their formatting. The intact file is downloadable below."
+    "readReportTitle": "Original report",
+    "readReportOpen": "View original report",
+    "readReportBody": "The field document as the technician signed it: its tables, its measurements, and its photos. No download needed.",
+    "transcriptNote": "Document rebuilt from the original Word file. It keeps tables and photographs; exact page formatting may differ. The intact file can be downloaded above."
   },
   "gallery": {
     "metadataTitle": "Before and after gallery",

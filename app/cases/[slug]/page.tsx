@@ -137,6 +137,12 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
                 pagina esta pidiendo que le crean por la cara. El informe de campo va justo
                 debajo de la ficha, no enterrado tras la galeria.
               */}
+              {/*
+                Ver el documento pesa mas que descargarlo.
+                El boton primario lleva al informe original, que se ve dentro de la propia
+                pagina. La descarga baja a enlace discreto: sigue estando para quien quiera el
+                archivo, pero ya no es el unico camino ni el que se ofrece primero.
+              */}
               {sourceDocuments.length ? (
                 <section className="card mt-4 flex flex-wrap items-center justify-between gap-4 border-2 border-data/30 p-5">
                   <div className="min-w-0">
@@ -146,9 +152,17 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
                     <p className="mt-1 break-words text-body text-foreground">
                       {sourceDocuments.map((asset) => asset.file_name || publicEvidenceLabel(asset, locale)).join(" · ")}
                     </p>
+                    <a
+                      className="mt-2 inline-block text-caption font-semibold text-muted-foreground underline hover:text-foreground"
+                      href={sourceDocuments[0].file_url}
+                      download
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      {messages.cases.downloadOriginalReport} ↓
+                    </a>
                   </div>
-                  {/* Leer pesa mas que descargar: el boton fuerte lleva al informe, no al archivo. */}
-                  <a className="btn btn-primary text-body-lg" href="#report">
+                  <a className="btn btn-primary flex-none text-body-lg" href="#report">
                     {messages.caseDetail.readReportOpen}
                   </a>
                 </section>

@@ -1,91 +1,117 @@
-import transcripts from "@/lib/case-transcripts.json";
+import reportIndex from "@/lib/case-reports.json";
 import type { Messages } from "@/lib/i18n-shared";
 import type { EvidenceAsset } from "@/lib/types";
 
 /**
- * Leer el informe original SIN descargarlo.
+ * Ver el INFORME ORIGINAL sin descargar nada.
  *
- * Hasta ahora la unica forma de comprobar la fuente era bajarse un .docx y tener Word. Eso
- * expulsa a media audiencia justo en el momento en que iba a verificar la evidencia — que
- * es, literalmente, la razon de ser de esta plataforma.
+ * Es la pieza que cambia la perspectiva de quien mira. Leer un resumen escrito por la
+ * empresa que vende el producto no convence a nadie; ver el documento de campo, con su
+ * membrete, sus tablas de mediciones y sus fotos, es otra cosa completamente distinta. Por
+ * eso este bloque es la accion destacada de la pagina y la descarga pasa a segundo plano:
+ * quien quiera el archivo lo tiene, pero ya no es el unico camino.
  *
- *   - Los PDF los abre el propio navegador: se muestran incrustados.
- *   - Los .docx no: ningun navegador sabe. Se muestra la TRANSCRIPCION del documento,
- *     generada por scripts/extract-docx-text.mjs.
+ *   - .docx  ->  se muestra el documento reconstruido (scripts/convert-docx-to-html.mjs),
+ *                con sus tablas y sus fotos, dentro de un iframe aislado.
+ *   - .pdf   ->  lo pinta el propio navegador.
+ *   - .jpeg  ->  las paginas escaneadas se muestran como imagenes.
  *
- * La transcripcion se presenta como lo que es. No se disfraza de original: el archivo
- * intacto sigue descargable al lado, y se dice que las tablas pueden haber perdido su
- * formato. Preferimos que el visitante lea el informe con una tabla desordenada a que no lo
- * lea nunca.
+ * El iframe va en `sandbox` sin permisos: el documento se ve, pero no puede ejecutar nada
+ * ni tocar la pagina que lo contiene.
  */
-export function ReportReader({ assets, messages }: { assets: EvidenceAsset[]; messages: Messages }) {
-  const map = transcripts as Record<string, string>;
 
-  const readable = assets
-    .map((asset) => {
+type Viewable = {
+  asset: EvidenceAsset;
+  kind: "document" | "pdf" | "image";
+  src: string;
+};
+
+export function ReportReader({ assets, messages }: { assets: EvidenceAsset[]; messages: Messages }) {
+  const index = reportIndex as Record<string, string>;
+
+  const viewable: Viewable[] = assets
+    .map((asset): Viewable | null => {
       const fileName = asset.file_url.split("/").pop() ?? "";
-      const isPdf = /\.pdf$/i.test(fileName);
-      const transcript = map[fileName];
-      if (isPdf) return { asset, kind: "pdf" as const, text: null };
-      if (transcript) return { asset, kind: "text" as const, text: transcript };
+
+      const rebuilt = index[fileName];
+      if (rebuilt) return { asset, kind: "document", src: rebuilt };
+      if (/\.pdf$/i.test(fileName)) return { asset, kind: "pdf", src: asset.file_url };
+      if (/\.(jpe?g|png)$/i.test(fileName)) return { asset, kind: "image", src: asset.file_url };
       return null;
     })
-    .filter((entry) => entry !== null);
+    .filter((entry): entry is Viewable => entry !== null);
 
-  if (!readable.length) return null;
+  // Los formatos que ningun navegador sabe abrir (.doc antiguo, .rar) solo se descargan.
+  const downloadOnly = assets.filter(
+    (asset) => !viewable.some((entry) => entry.asset.id === asset.id)
+  );
+
+  if (!viewable.length && !downloadOnly.length) return null;
 
   return (
     <section id="report" className="mt-10 scroll-mt-24">
       <h2 className="text-h3 text-foreground">{messages.caseDetail.readReportTitle}</h2>
       <p className="mt-1 max-w-prose text-body text-muted-foreground">{messages.caseDetail.readReportBody}</p>
 
-      <div className="mt-5 grid gap-4">
-        {readable.map(({ asset, kind, text }) => (
-          <details key={asset.id} className="card p-5">
-            <summary className="cursor-pointer text-body font-semibold text-foreground marker:text-muted-foreground">
-              {messages.caseDetail.readReportOpen}
-              <span className="ml-2 font-normal text-muted-foreground">{asset.file_name}</span>
-            </summary>
-
-            {kind === "pdf" ? (
-              /*
-               * El PDF se incrusta con `object`, que degrada solo: si el navegador no sabe
-               * mostrarlo (algunos moviles no), enseña el enlace de dentro en vez de un
-               * recuadro roto.
-               */
-              <object
-                className="mt-4 h-[70vh] w-full rounded border border-border"
-                data={asset.file_url}
-                type="application/pdf"
+      <div className="mt-5 grid gap-6">
+        {viewable.map(({ asset, kind, src }) => (
+          <figure key={asset.id} className="card overflow-hidden p-0">
+            <figcaption className="flex flex-wrap items-center justify-between gap-3 border-b border-border p-4">
+              <span className="min-w-0 break-words text-body font-semibold text-foreground">{asset.file_name}</span>
+              {/* La descarga baja de perfil: es un enlace, no un boton. */}
+              <a
+                className="flex-none text-caption font-semibold text-muted-foreground underline hover:text-foreground"
+                href={asset.file_url}
+                download
+                rel="noopener noreferrer"
+                target="_blank"
               >
-                <a className="btn btn-primary" href={asset.file_url} rel="noopener noreferrer" target="_blank">
-                  {messages.cases.downloadOriginalReport}
-                </a>
-              </object>
+                {messages.cases.downloadOriginalReport} ↓
+              </a>
+            </figcaption>
+
+            {kind === "image" ? (
+              // Las paginas escaneadas: se ven, sin mas.
+              // eslint-disable-next-line @next/next/no-img-element
+              <img alt={asset.alt_text ?? asset.file_name ?? ""} className="w-full" src={src} loading="lazy" />
             ) : (
-              <>
-                <p className="mt-4 border-l-2 border-warning/50 pl-3 text-caption leading-5 text-warning">
-                  {messages.caseDetail.transcriptNote}
-                </p>
-                <div className="mt-4 max-h-[60vh] overflow-y-auto rounded border border-border bg-muted/40 p-4">
-                  <pre className="whitespace-pre-wrap break-words font-sans text-body leading-7 text-foreground">
-                    {text}
-                  </pre>
-                </div>
-              </>
+              <iframe
+                className="h-[75vh] w-full bg-white"
+                src={src}
+                title={asset.file_name ?? messages.caseDetail.readReportTitle}
+                loading="lazy"
+                sandbox=""
+              />
             )}
 
-            <a
-              className="btn btn-secondary mt-4"
-              href={asset.file_url}
-              download
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              {messages.cases.downloadOriginalReport}
-            </a>
-          </details>
+            {kind === "document" ? (
+              <p className="border-t border-border p-3 text-caption leading-5 text-muted-foreground">
+                {messages.caseDetail.transcriptNote}
+              </p>
+            ) : null}
+          </figure>
         ))}
+
+        {downloadOnly.length ? (
+          <ul className="grid gap-2">
+            {downloadOnly.map((asset) => (
+              <li key={asset.id}>
+                <a
+                  className="flex min-h-[44px] items-center justify-between gap-3 rounded border border-border px-4 hover:bg-muted"
+                  href={asset.file_url}
+                  download
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span className="min-w-0 break-words text-body text-foreground">{asset.file_name}</span>
+                  <span className="flex-none text-caption font-semibold text-muted-foreground">
+                    {messages.cases.downloadOriginalReport} ↓
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : null}
       </div>
     </section>
   );

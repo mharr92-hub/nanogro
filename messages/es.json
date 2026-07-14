@@ -443,10 +443,10 @@
     "dosageFromSheet": "El informe original no registró la dosis exacta. Consulta la dosis recomendada en la ficha técnica del producto.",
     "confirmWithTeam": "Toda dosis debe confirmarse con el equipo técnico antes de aplicar: depende del cultivo, la etapa y las condiciones de tu finca.",
     "viewSheets": "Ver fichas técnicas",
-    "readReportTitle": "Leer el informe original",
-    "readReportOpen": "Leer el informe",
-    "readReportBody": "El informe de campo, completo y sin salir de esta página. No hace falta descargar nada.",
-    "transcriptNote": "Transcripción del documento original. Las tablas pueden haber perdido su formato. El archivo intacto está descargable más abajo."
+    "readReportTitle": "Informe original",
+    "readReportOpen": "Ver informe original",
+    "readReportBody": "El documento de campo tal como lo firmó el técnico: sus tablas, sus mediciones y sus fotos. Sin descargar nada.",
+    "transcriptNote": "Documento reconstruido a partir del archivo original de Word. Conserva tablas y fotografías; el formato exacto de página puede variar. El archivo intacto se puede descargar arriba."
   },
   "gallery": {
     "metadataTitle": "Galeria antes y después",
