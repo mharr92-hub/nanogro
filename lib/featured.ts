@@ -1,4 +1,5 @@
 import { isVerified } from "@/lib/aggregate";
+import { isFieldPhoto } from "@/lib/photos";
 import type { CaseStudy } from "@/lib/types";
 
 /**
@@ -40,11 +41,23 @@ function isCredibleShowcase(item: CaseStudy) {
   return true;
 }
 
-/** Primero lo verificado, luego lo mejor documentado. La credibilidad manda sobre la cifra. */
+/**
+ * Primero lo que se puede VER, luego lo verificado, luego lo mejor documentado.
+ *
+ * En la portada la foto hace el trabajo que ninguna cifra hace: el agricultor reconoce el
+ * campo antes de leer nada. Entre dos casos igual de creibles, gana el que se puede enseñar.
+ * La credibilidad sigue mandando sobre el espectaculo — los filtros de `isCredibleShowcase`
+ * se aplican antes que este orden — pero a igualdad de credibilidad, manda la imagen.
+ */
 function rankForShowcase(a: CaseStudy, b: CaseStudy) {
   return (
+    Number(hasFieldPhoto(b)) - Number(hasFieldPhoto(a)) ||
     Number(isVerified(b)) - Number(isVerified(a)) ||
     (b.confidence_score ?? 0) - (a.confidence_score ?? 0) ||
     (b.case_completeness_score ?? 0) - (a.case_completeness_score ?? 0)
   );
+}
+
+function hasFieldPhoto(item: CaseStudy) {
+  return (item.evidence_assets ?? []).some(isFieldPhoto);
 }

@@ -1,4 +1,5 @@
 import type { CaseFilters, FacetCounts } from "@/components/CaseFacets";
+import { isFieldPhoto } from "@/lib/photos";
 import type { CaseStudy } from "@/lib/types";
 
 /**
@@ -52,10 +53,20 @@ export function sortCases(cases: CaseStudy[], sort?: string) {
     case "confidence":
       return sorted.sort((a, b) => (b.confidence_score ?? 0) - (a.confidence_score ?? 0));
     default:
-      // "Mas relevante" = la evidencia mas completa primero. Es el mismo criterio que ya
-      // usaba la capa de datos, y el unico defendible: el caso mejor documentado manda.
+      /*
+       * "Mas relevante" = primero los casos que SE PUEDEN VER.
+       *
+       * Una foto de campo convence antes que cualquier cifra: el agricultor reconoce su
+       * cultivo y su problema en la imagen y entra. Un caso con foto que ademas esta bien
+       * documentado es el que mas trabaja, asi que la foto es el primer criterio y la
+       * completitud el segundo.
+       *
+       * No es maquillaje: los casos sin foto siguen publicados y accesibles, y el nivel de
+       * evidencia de cada uno no cambia. Solo cambia el orden en que se ofrecen.
+       */
       return sorted.sort(
         (a, b) =>
+          Number(hasFieldPhoto(b)) - Number(hasFieldPhoto(a)) ||
           (b.case_completeness_score ?? 0) - (a.case_completeness_score ?? 0) ||
           (b.confidence_score ?? 0) - (a.confidence_score ?? 0) ||
           a.title.localeCompare(b.title)
@@ -89,6 +100,11 @@ export function getFacetCounts(cases: CaseStudy[], filters: CaseFilters): FacetC
 
 export function hasVisualEvidence(item: CaseStudy) {
   return (item.evidence_assets ?? []).some((asset) => asset.asset_type === "photo" || asset.asset_type === "video");
+}
+
+/** ¿Tiene al menos una fotografia de campo (no un documento escaneado)? */
+export function hasFieldPhoto(item: CaseStudy) {
+  return (item.evidence_assets ?? []).some(isFieldPhoto);
 }
 
 function date(value?: string | null) {

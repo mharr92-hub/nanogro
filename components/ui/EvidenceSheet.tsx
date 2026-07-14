@@ -1,6 +1,8 @@
-﻿import Link from "next/link";
+﻿import Image from "next/image";
+import Link from "next/link";
 import type { CSSProperties } from "react";
 import { getCaseFigures } from "@/lib/case-metrics";
+import { isFieldPhoto } from "@/lib/photos";
 import { publicEvidenceLevel } from "@/lib/evidence-checklist";
 import { publicContentText } from "@/lib/evidence-labels";
 import { countryIcon, cropIcon, problemIcon } from "@/lib/icons";
@@ -56,6 +58,20 @@ export function EvidenceSheet({
   // Lista ordenada y SIN repeticiones: la ficha toma la primera y la segunda.
   const figures = getCaseFigures(item, messages);
 
+  /*
+   * La portada fotografica.
+   *
+   * Mucha gente confia en una imagen antes de leer una sola cifra: ve el campo, reconoce su
+   * cultivo y su problema, y entonces entra. Por eso la foto va ARRIBA de la ficha, antes que
+   * el titulo, y no enterrada dentro del caso.
+   *
+   * Se prefiere una foto del "despues", que es la que muestra el resultado; si no la hay, se
+   * usa la primera de campo que exista. Si el caso no tiene foto, la ficha se pinta como
+   * siempre: no se inventa una imagen ni se pone un marcador de posicion gris.
+   */
+  const fieldPhotos = (item.evidence_assets ?? []).filter(isFieldPhoto);
+  const cover = fieldPhotos.find((asset) => asset.evidence_stage === "after") ?? fieldPhotos[0];
+
   return (
     <article
       /*
@@ -67,6 +83,26 @@ export function EvidenceSheet({
       className={["sheet flex flex-col p-5", variant === "compact" ? "h-full" : ""].filter(Boolean).join(" ")}
       style={{ "--sheet-accent": accentVar[level] } as CSSProperties}
     >
+      {cover && variant === "compact" ? (
+        <Link className="-mx-5 -mt-5 mb-4 block" href={href} tabIndex={-1} aria-hidden="true">
+          <span className="relative block aspect-[16/10] overflow-hidden rounded-t-sheet bg-muted">
+            <Image
+              alt=""
+              src={cover.file_url}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover transition-transform duration-300 hover:scale-[1.03]"
+            />
+            {/* La etapa, sobre la propia foto: el visitante sabe si esta viendo el "despues". */}
+            {cover.evidence_stage ? (
+              <span className="absolute left-3 top-3 rounded-pill bg-foreground/80 px-2 py-1 text-caption font-semibold text-background">
+                {messages.gallery.stages[cover.evidence_stage]}
+              </span>
+            ) : null}
+          </span>
+        </Link>
+      ) : null}
+
       <header className="flex flex-wrap items-center justify-between gap-2">
         <p className="tabular text-caption uppercase text-muted-foreground">
           {messages.sheet.eyebrow}

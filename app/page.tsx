@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
 import { Emoji, EvidenceSheet, IconBadge, MetricStat } from "@/components/ui";
 import { formatAggregate, getAggregateResults } from "@/lib/aggregate";
+import { getCaseFigures } from "@/lib/case-metrics";
 import { trackEvent } from "@/lib/analytics";
 import { getPublicTaxonomy, getPublishedCases } from "@/lib/data";
 import { getFeaturedCases } from "@/lib/featured";
@@ -69,7 +70,7 @@ export default async function HomePage() {
       sample: undefined
     }
   ].filter((metric): metric is { label: string; value: string; sample: number | undefined } => metric.value !== null);
-  const galleryPreview = pickGalleryPhotos(cases, 4);
+  const galleryPreview = pickGalleryPhotos(cases, 6);
   const countriesWithCases = localizedTaxonomy.countries
     .map((country) => ({
       ...country,
@@ -224,21 +225,44 @@ export default async function HomePage() {
                 {messages.homeSections.galleryCta}
               </Link>
             </div>
-            <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
-              {galleryPreview.map(({ item, asset }) => (
-                <Link
-                  key={asset.id}
-                  className="card relative aspect-square overflow-hidden p-0"
-                  href={localizedHref(locale, `/cases/${item.slug}`)}
-                >
-                  <EvidenceImage
-                    asset={asset}
-                    locale={locale}
-                    className="object-cover"
-                    sizes="(max-width: 640px) 50vw, 25vw"
-                  />
-                </Link>
-              ))}
+            {/*
+              Elegir el caso POR LA FOTO.
+              La imagen sola no basta: sobre cada una va el cultivo, el pais y el resultado,
+              porque lo que hace entrar a un agricultor es reconocer SU cultivo con SU
+              problema. La foto atrae; el rotulo le dice si le sirve.
+            */}
+            <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {galleryPreview.map(({ item, asset }) => {
+                const figures = getCaseFigures(item, messages);
+                return (
+                  <Link
+                    key={asset.id}
+                    className="card group relative block aspect-[4/3] overflow-hidden p-0"
+                    href={localizedHref(locale, `/cases/${item.slug}`)}
+                  >
+                    <EvidenceImage
+                      asset={asset}
+                      locale={locale}
+                      className="object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    {/* Degradado para que el texto se lea sobre cualquier foto. */}
+                    <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent p-4">
+                      <span className="block text-caption uppercase tracking-wide text-white/80">
+                        {[item.crop?.name, item.country?.name].filter(Boolean).join(" · ")}
+                      </span>
+                      {figures[0] ? (
+                        <span className="tabular mt-0.5 block text-h3 font-semibold text-white">
+                          {figures[0].value}
+                        </span>
+                      ) : null}
+                      <span className="mt-0.5 line-clamp-1 block text-caption text-white/85">
+                        {figures[0]?.label ?? item.primary_problem?.name}
+                      </span>
+                    </span>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -395,7 +419,10 @@ export default async function HomePage() {
 function pickGalleryPhotos(cases: CaseStudy[], limit: number) {
   const picked: { item: CaseStudy; asset: NonNullable<CaseStudy["evidence_assets"]>[number] }[] = [];
   for (const item of cases) {
-    const photo = (item.evidence_assets ?? []).find(isFieldPhoto);
+    const photos = (item.evidence_assets ?? []).filter(isFieldPhoto);
+    // Se prefiere el "despues": es la foto que enseña el resultado, y es la que hace clic.
+    const photo = photos.find((asset) => asset.evidence_stage === "after") ?? photos[0];
+    // Una foto por caso: seis imagenes del mismo campo no son una galeria.
     if (photo) picked.push({ item, asset: photo });
     if (picked.length === limit) break;
   }
